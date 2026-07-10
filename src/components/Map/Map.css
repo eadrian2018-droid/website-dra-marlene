@@ -1,0 +1,39 @@
+.map {
+  background: #ffffff;
+}
+
+.map .section-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 70px;
+}
+
+.map-container {
+  overflow: hidden;
+
+  border-radius: 28px;
+
+  box-shadow:
+    0 25px 70px rgba(23,59,99,.12);
+
+  border: 1px solid rgba(11,143,114,.08);
+}
+
+.map-container iframe {
+  display: block;
+
+  width: 100%;
+  height: 520px;
+
+  border: none;
+}
+
+@media (max-width:768px){
+
+  .map-container iframe{
+
+    height:420px;
+
+  }
+
+}

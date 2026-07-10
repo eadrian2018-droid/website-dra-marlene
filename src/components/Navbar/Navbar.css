@@ -1,0 +1,186 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  padding: 22px 0;
+
+  background: transparent;
+
+  transition:
+    background .35s ease,
+    padding .35s ease,
+    box-shadow .35s ease,
+    backdrop-filter .35s ease;
+}
+
+.navbar.scrolled {
+  background: rgba(255,255,255,.92);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow: 0 10px 35px rgba(0,0,0,.08);
+
+  padding: 14px 0;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #173b63;
+  text-decoration: none;
+  transition: .3s;
+}
+
+.logo span {
+  color: #0b8f72;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.nav-links a {
+  position: relative;
+
+  text-decoration: none;
+
+  color: #173b63;
+
+  font-weight: 600;
+
+  transition: .3s;
+}
+
+.nav-links a::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -7px;
+
+  width: 0;
+
+  height: 2px;
+
+  background: #0b8f72;
+
+  transition: .3s;
+}
+
+.nav-links a:hover {
+
+  color: #0b8f72;
+
+}
+
+.nav-links a:hover::after {
+
+  width: 100%;
+
+}
+
+.nav-btn {
+  display: inline-flex;
+}
+
+.menu-btn {
+
+  display: none;
+
+  width: 48px;
+  height: 48px;
+
+  border: none;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  flex-direction: column;
+  justify-content: center;
+
+  gap: 6px;
+
+}
+
+.menu-btn span {
+
+  width: 30px;
+  height: 3px;
+
+  border-radius: 999px;
+
+  background: #173b63;
+
+  transition: .35s;
+
+}
+
+.menu-btn.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.menu-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-btn.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+@media (max-width:992px){
+
+  .menu-btn{
+    display:flex;
+  }
+
+  .nav-btn{
+    display:none;
+  }
+
+  .nav-links{
+
+    position:fixed;
+
+    top:82px;
+    left:-100%;
+
+    width:100%;
+
+    height:calc(100vh - 82px);
+
+    background:white;
+
+    flex-direction:column;
+
+    justify-content:flex-start;
+
+    padding-top:55px;
+
+    transition:.35s;
+
+    gap:35px;
+
+  }
+
+  .nav-links.active{
+
+    left:0;
+
+  }
+
+}

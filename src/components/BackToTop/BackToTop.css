@@ -1,0 +1,38 @@
+.back-to-top {
+  position: fixed;
+  right: 25px;
+  bottom: 100px;
+  z-index: 998;
+
+  width: 52px;
+  height: 52px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #173b63;
+  color: #ffffff;
+
+  font-size: 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+  transition: all 0.3s ease;
+}
+
+.back-to-top:hover {
+  transform: translateY(-4px);
+  background: #0b8f72;
+}
+
+@media (max-width: 768px) {
+  .back-to-top {
+    width: 48px;
+    height: 48px;
+    right: 18px;
+    bottom: 88px;
+    font-size: 1.2rem;
+  }
+}
