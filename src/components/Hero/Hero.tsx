@@ -1,5 +1,4 @@
 import {
-  ArrowRight,
   CalendarCheck,
   Clock3,
   Phone,
@@ -19,44 +18,50 @@ export default function Hero() {
       <div className="container hero-container">
         <div className="hero-content">
           <span className="section-tag">
-            Clínica Dental Premium
+            Más de 10 años transformando sonrisas
           </span>
 
           <h1>
-            Recupera tu sonrisa con especialistas en quienes puedes confiar.
+            Tu sonrisa merece atención dental de la más alta calidad.
           </h1>
 
           <p>
-            Tecnología moderna, materiales de alta calidad y atención
+            En <strong>Dra. Marlene Group</strong> ofrecemos tratamientos
+            dentales modernos con tecnología de última generación y atención
             personalizada para pacientes de México y Estados Unidos.
           </p>
 
           <div className="hero-buttons">
             <a href="#contact" className="primary-btn">
               <CalendarCheck size={20} />
-              Agendar Cita
+              Agenda tu cita
             </a>
 
-            <a href="tel:+52653XXXXXXX" className="secondary-btn">
+            <a
+              href="https://wa.me/526532080587"
+              className="secondary-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Phone size={20} />
-              Llamar Ahora
+              WhatsApp
             </a>
           </div>
 
           <div className="hero-features">
             <div>
               <ShieldCheck size={18} />
-              Atención Profesional
+              Tecnología moderna
             </div>
 
             <div>
               <Clock3 size={18} />
-              Respuesta Rápida
+              Atención personalizada
             </div>
 
             <div>
               <Star size={18} />
-              Pacientes Satisfechos
+              Pacientes de México y EE. UU.
             </div>
           </div>
         </div>
@@ -66,8 +71,8 @@ export default function Hero() {
             <Star size={22} />
 
             <div>
-              <strong>5.0</strong>
-              <span>Calificación promedio</span>
+              <strong>5★</strong>
+              <span>Excelente atención</span>
             </div>
           </div>
 
@@ -82,14 +87,9 @@ export default function Hero() {
             <ShieldCheck size={24} />
 
             <div>
-              <strong>Tratamientos Seguros</strong>
-              <span>Tecnología moderna</span>
+              <strong>Odontología Integral</strong>
+              <span>Tratamientos personalizados</span>
             </div>
-          </div>
-
-          <div className="floating-badge">
-            <ArrowRight size={18} />
-            Agenda disponible esta semana
           </div>
         </div>
       </div>

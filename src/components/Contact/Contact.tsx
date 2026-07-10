@@ -48,43 +48,82 @@ export default function Contact() {
     <section className="contact section" id="contact">
       <div className="container contact-container">
         <div className="contact-info">
-          <span className="section-tag">Contáctanos</span>
+          <span className="section-tag">
+            Agenda tu cita
+          </span>
 
-          <h2>Agenda tu cita hoy mismo.</h2>
+          <h2>Estamos listos para ayudarte.</h2>
 
           <p>
-            Estamos listos para ayudarte a recuperar tu sonrisa.
+            Si tienes alguna pregunta o deseas agendar una cita,
+            contáctanos. Será un gusto atenderte.
           </p>
 
           <div className="contact-item">
             <MapPin className="contact-icon" />
+
             <div>
               <h3>Dirección</h3>
-              <p>San Luis Río Colorado, Sonora</p>
+
+              <p>
+                Callejón Juárez y 6ta #350 B<br />
+                Col. Comercial<br />
+                San Luis Río Colorado, Sonora, México
+              </p>
             </div>
           </div>
 
           <div className="contact-item">
             <Phone className="contact-icon" />
+
             <div>
-              <h3>Teléfono</h3>
-              <p>+52 (653) XXX-XXXX</p>
+              <h3>Teléfono / WhatsApp</h3>
+
+              <p>
+                <a href="tel:+526532080587">
+                  +52 653 208 0587
+                </a>
+              </p>
             </div>
           </div>
 
           <div className="contact-item">
             <Mail className="contact-icon" />
+
             <div>
-              <h3>Email</h3>
-              <p>dra.marlene.v@gmail.com</p>
+              <h3>Correo</h3>
+
+              <p>
+                <a href="mailto:dra.marlene.v@gmail.com">
+                  dra.marlene.v@gmail.com
+                </a>
+              </p>
             </div>
           </div>
 
           <div className="contact-item">
             <Clock className="contact-icon" />
+
             <div>
               <h3>Horario</h3>
-              <p>Lunes a Viernes • 9:00 AM – 6:00 PM</p>
+
+              <p>
+                Lunes a Viernes
+                <br />
+                9:00 AM – 1:00 PM
+                <br />
+                4:00 PM – 8:00 PM
+                <br />
+                <br />
+                Sábado
+                <br />
+                9:00 AM – 2:00 PM
+                <br />
+                <br />
+                Domingo
+                <br />
+                Cerrado
+              </p>
             </div>
           </div>
         </div>
@@ -97,7 +136,6 @@ export default function Contact() {
             value={form.name}
             onChange={handleChange}
           />
-
           {errors.name && <small>{errors.name}</small>}
 
           <input
@@ -107,7 +145,6 @@ export default function Contact() {
             value={form.email}
             onChange={handleChange}
           />
-
           {errors.email && <small>{errors.email}</small>}
 
           <input
@@ -117,7 +154,6 @@ export default function Contact() {
             value={form.phone}
             onChange={handleChange}
           />
-
           {errors.phone && <small>{errors.phone}</small>}
 
           <textarea
@@ -127,12 +163,11 @@ export default function Contact() {
             value={form.message}
             onChange={handleChange}
           />
-
           {errors.message && <small>{errors.message}</small>}
 
           <button
-            type="submit"
             className="primary-btn"
+            type="submit"
             disabled={loading}
           >
             {loading ? "Enviando..." : "Enviar mensaje"}
@@ -142,7 +177,7 @@ export default function Contact() {
             <p
               style={{
                 color: "#0b8f72",
-                marginTop: 20,
+                marginTop: "20px",
                 fontWeight: 600,
               }}
             >
