@@ -1,5 +1,6 @@
 import "./App.css";
 
+import TopBar from "./components/TopBar/TopBar";
 import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
 import TrustBar from "./components/TrustBar/TrustBar";
@@ -16,8 +17,10 @@ import BackToTop from "./components/BackToTop/BackToTop";
 function App() {
   return (
     <>
+      <TopBar />
       <Navbar />
       <Hero />
+
       <TrustBar />
       <Stats />
       <Services />

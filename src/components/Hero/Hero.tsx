@@ -1,94 +1,131 @@
 import {
+  ArrowRight,
   CalendarCheck,
-  Clock3,
-  Phone,
-  ShieldCheck,
+  Check,
+  MessageCircle,
   Star,
 } from "lucide-react";
 
+import { useLanguage } from "../../context/LanguageContext";
+
+import doctorImage from "../../assets/branding/doctora.png";
+
 import "./Hero.css";
 
-import doctorImg from "../../assets/branding/doctora.png";
-
 export default function Hero() {
+  const { t } = useLanguage();
+
+  const whatsappMessage = encodeURIComponent(
+    t.whatsapp.message
+  );
+
   return (
     <section className="hero" id="home">
-      <div className="hero-overlay"></div>
+      <div className="hero-decoration hero-decoration-one" />
+      <div className="hero-decoration hero-decoration-two" />
 
       <div className="container hero-container">
         <div className="hero-content">
-          <span className="section-tag">
-            Más de 10 años transformando sonrisas
-          </span>
+          <div className="hero-eyebrow">
+            <span className="hero-eyebrow-dot" />
+            {t.hero.eyebrow}
+          </div>
 
-          <h1>
-            Tu sonrisa merece atención dental de la más alta calidad.
+          <h1 className="hero-title">
+            <span>{t.hero.titleFirst}</span>
+            <span>{t.hero.titleSecond}</span>
+            <strong>{t.hero.titleThird}</strong>
           </h1>
 
-          <p>
-            En <strong>Dra. Marlene Group</strong> ofrecemos tratamientos
-            dentales modernos con tecnología de última generación y atención
-            personalizada para pacientes de México y Estados Unidos.
+          <p className="hero-description">
+            {t.hero.description}
           </p>
 
-          <div className="hero-buttons">
-            <a href="#contact" className="primary-btn">
-              <CalendarCheck size={20} />
-              Agenda tu cita
+          <div className="hero-actions">
+            <a href="#contact" className="hero-primary-button">
+              <CalendarCheck size={19} />
+              {t.hero.primaryButton}
             </a>
 
-            <a
-              href="https://wa.me/526532080587"
-              className="secondary-btn"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Phone size={20} />
-              WhatsApp
+            <a href="#services" className="hero-secondary-button">
+              {t.hero.secondaryButton}
+              <ArrowRight size={18} />
             </a>
           </div>
 
+          <a
+            className="hero-whatsapp-link"
+            href={`https://wa.me/526532080587?text=${whatsappMessage}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <MessageCircle size={18} />
+            {t.hero.whatsappButton}
+          </a>
+
           <div className="hero-features">
-            <div>
-              <ShieldCheck size={18} />
-              Tecnología moderna
+            <div className="hero-feature">
+              <Check size={16} />
+              <span>{t.hero.featureOne}</span>
             </div>
 
-            <div>
-              <Clock3 size={18} />
-              Atención personalizada
+            <div className="hero-feature">
+              <Check size={16} />
+              <span>{t.hero.featureTwo}</span>
             </div>
 
-            <div>
-              <Star size={18} />
-              Pacientes de México y EE. UU.
+            <div className="hero-feature">
+              <Check size={16} />
+              <span>{t.hero.featureThree}</span>
             </div>
           </div>
         </div>
 
-        <div className="hero-image-wrapper">
-          <div className="floating-card floating-card-top">
-            <Star size={22} />
+        <div className="hero-visual">
+          <div className="hero-image-background" />
 
-            <div>
-              <strong>5★</strong>
-              <span>Excelente atención</span>
-            </div>
-          </div>
-
-          <div className="hero-image">
+          <div className="hero-image-frame">
             <img
-              src={doctorImg}
-              alt="Dra. Marlene Verdugo"
+              src={doctorImage}
+              alt="Dr. Marlene Verdugo at Dra. Marlene Group"
             />
           </div>
 
-          <div className="floating-card floating-card-bottom">
-            <ShieldCheck size={24} />
+          <div className="hero-rating-card">
+            <div className="hero-rating-stars">
+              <Star size={15} fill="currentColor" />
+              <Star size={15} fill="currentColor" />
+              <Star size={15} fill="currentColor" />
+              <Star size={15} fill="currentColor" />
+              <Star size={15} fill="currentColor" />
+            </div>
+
+            <div className="hero-card-content">
+              <strong>{t.hero.ratingValue}</strong>
+
+              <div>
+                <span>{t.hero.ratingTitle}</span>
+                <small>{t.hero.ratingText}</small>
+              </div>
+            </div>
+          </div>
+
+          <div className="hero-experience-card">
+            <strong>{t.hero.experienceValue}</strong>
+            <span>{t.hero.experienceTitle}</span>
+          </div>
+
+          <div className="hero-patients-card">
+            <strong>{t.hero.patientsValue}</strong>
+            <span>{t.hero.patientsTitle}</span>
+          </div>
+
+          <div className="hero-availability-card">
+            <span className="hero-availability-dot" />
 
             <div>
-              <strong>Odontología Integral</strong>
-              <span>Tratamientos personalizados</span>
+              <strong>{t.hero.availabilityTitle}</strong>
+              <small>{t.hero.availabilityText}</small>
             </div>
           </div>
         </div>
