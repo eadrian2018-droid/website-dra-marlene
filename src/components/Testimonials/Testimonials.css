@@ -1,42 +1,127 @@
 .testimonials {
-  background: #f8fbfd;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.google-score {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 50px 0 60px;
+  padding: 28px 34px;
+
+  border: 1px solid #e8eef3;
+  border-radius: 24px;
+
+  background: #fff;
+
+  box-shadow: 0 18px 45px rgba(18, 56, 94, 0.07);
+}
+
+.google-left {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.google-left h3 {
+  margin: 0;
+
+  font-size: 2rem;
+  font-weight: 800;
+
+  color: #12385e;
+}
+
+.google-stars {
+  display: flex;
+  gap: 4px;
+
+  color: #fbbc04;
+}
+
+.google-left strong {
+  font-size: 2rem;
+  color: #12385e;
+}
+
+.google-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 14px 24px;
+
+  border-radius: 999px;
+
+  background: #0b8f72;
+  color: white;
+
+  text-decoration: none;
+  font-weight: 700;
+
+  transition: .3s;
+}
+
+.google-button:hover {
+  background: #097b62;
+  transform: translateY(-2px);
 }
 
 .testimonials-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 28px;
 }
 
 .testimonial-card {
-  background: #fff;
-  border-radius: 22px;
-  padding: 35px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+
+  padding: 34px;
+
+  border: 1px solid #e8eef3;
+  border-radius: 24px;
+
+  background: white;
+
+  box-shadow: 0 18px 45px rgba(18,56,94,.05);
+
+  transition: .35s;
 }
 
 .testimonial-card:hover {
   transform: translateY(-8px);
+
+  box-shadow: 0 28px 60px rgba(18,56,94,.12);
 }
 
 .stars {
-  color: #f4b400;
-  font-size: 1.3rem;
-  margin-bottom: 20px;
-  letter-spacing: 3px;
+  display: flex;
+  gap: 5px;
+
+  margin-bottom: 22px;
+
+  color: #fbbc04;
 }
 
 .testimonial-text {
-  color: #5b6470;
-  line-height: 1.8;
-  margin-bottom: 30px;
+  flex: 1;
+
+  margin: 0 0 30px;
+
+  color: #5f6f80;
+
+  line-height: 1.9;
   font-style: italic;
 }
 
 .testimonial-author h3 {
-  color: #173b63;
-  margin-bottom: 5px;
+  margin: 0 0 6px;
+
+  color: #12385e;
+
+  font-size: 1.1rem;
 }
 
 .testimonial-author span {
@@ -45,7 +130,31 @@
 }
 
 @media (max-width: 992px) {
+
+  .google-score {
+    flex-direction: column;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .google-left {
+    flex-direction: column;
+  }
+
   .testimonials-grid {
     grid-template-columns: 1fr;
   }
+
+}
+
+@media (max-width: 600px) {
+
+  .google-score {
+    padding: 24px;
+  }
+
+  .testimonial-card {
+    padding: 28px;
+  }
+
 }
