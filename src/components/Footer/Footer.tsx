@@ -9,10 +9,61 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 
+import { useLanguage } from "../../context/LanguageContext";
+
 import "./Footer.css";
 
 export default function Footer() {
+  const { language } = useLanguage();
+
   const year = new Date().getFullYear();
+
+  const t =
+    language === "en"
+      ? {
+          description:
+            "Modern dentistry, advanced technology and personalized care for patients from the United States and Mexico.",
+
+          navigation: "Navigation",
+
+          home: "Home",
+
+          services: "Treatments",
+
+          about: "Meet Dr. Marlene",
+
+          testimonials: "Reviews",
+
+          contact: "Contact",
+
+          contactTitle: "Contact",
+
+          maps: "View on Google Maps",
+
+          rights: "All Rights Reserved.",
+        }
+      : {
+          description:
+            "Odontología moderna, tecnología avanzada y atención personalizada para pacientes de México y Estados Unidos.",
+
+          navigation: "Navegación",
+
+          home: "Inicio",
+
+          services: "Tratamientos",
+
+          about: "Conoce a la Dra. Marlene",
+
+          testimonials: "Reseñas",
+
+          contact: "Contacto",
+
+          contactTitle: "Contacto",
+
+          maps: "Ver en Google Maps",
+
+          rights: "Todos los derechos reservados.",
+        };
 
   return (
     <footer className="footer">
@@ -20,10 +71,7 @@ export default function Footer() {
         <div className="footer-brand">
           <h2>Dra. Marlene Group</h2>
 
-          <p>
-            Atención dental moderna, tecnología de vanguardia y un trato
-            personalizado para ayudarte a recuperar la confianza en tu sonrisa.
-          </p>
+          <p>{t.description}</p>
 
           <div className="footer-social">
             <a
@@ -32,7 +80,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               aria-label="Facebook"
             >
-             <FaFacebookF size={20} />
+              <FaFacebookF size={20} />
             </a>
 
             <a
@@ -41,23 +89,27 @@ export default function Footer() {
               rel="noopener noreferrer"
               aria-label="Instagram"
             >
-             <FaInstagram size={20} />
+              <FaInstagram size={20} />
             </a>
           </div>
         </div>
 
         <div className="footer-links">
-          <h3>Navegación</h3>
+          <h3>{t.navigation}</h3>
 
-          <a href="#home">Inicio</a>
-          <a href="#services">Servicios</a>
-          <a href="#about">Nosotros</a>
-          <a href="#testimonials">Testimonios</a>
-          <a href="#contact">Contacto</a>
+          <a href="#home">{t.home}</a>
+
+          <a href="#services">{t.services}</a>
+
+          <a href="#about">{t.about}</a>
+
+          <a href="#testimonials">{t.testimonials}</a>
+
+          <a href="#contact">{t.contact}</a>
         </div>
 
         <div className="footer-contact">
-          <h3>Contacto</h3>
+          <h3>{t.contactTitle}</h3>
 
           <p>
             <MapPin size={18} />
@@ -84,13 +136,13 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Ver en Google Maps
+            {t.maps}
           </a>
         </div>
       </div>
 
       <div className="footer-bottom">
-        © {year} Dra. Marlene Group. Todos los derechos reservados.
+        © {year} Dra. Marlene Group. {t.rights}
       </div>
     </footer>
   );

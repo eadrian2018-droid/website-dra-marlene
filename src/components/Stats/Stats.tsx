@@ -1,31 +1,62 @@
 import { useEffect, useRef, useState } from "react";
+import { useLanguage } from "../../context/LanguageContext";
 import "./Stats.css";
 
-const stats = [
-  {
-    target: 10,
-    suffix: "+",
-    label: "Años de experiencia",
-  },
-  {
-    target: 5000,
-    suffix: "+",
-    label: "Pacientes atendidos",
-  },
-  {
-    target: 98,
-    suffix: "%",
-    label: "Pacientes satisfechos",
-  },
-  {
-    target: 24,
-    suffix: "h",
-    label: "Respuesta por WhatsApp",
-  },
-];
+const content = {
+  en: [
+    {
+      target: 10,
+      suffix: "+",
+      label: "Years of Experience",
+    },
+    {
+      target: 5000,
+      suffix: "+",
+      label: "Patients Treated",
+    },
+    {
+      target: 98,
+      suffix: "%",
+      label: "Patient Satisfaction",
+    },
+    {
+      target: 24,
+      suffix: "h",
+      label: "WhatsApp Response",
+    },
+  ],
+
+  es: [
+    {
+      target: 10,
+      suffix: "+",
+      label: "Años de Experiencia",
+    },
+    {
+      target: 5000,
+      suffix: "+",
+      label: "Pacientes Atendidos",
+    },
+    {
+      target: 98,
+      suffix: "%",
+      label: "Pacientes Satisfechos",
+    },
+    {
+      target: 24,
+      suffix: "h",
+      label: "Respuesta por WhatsApp",
+    },
+  ],
+};
 
 export default function Stats() {
+  const { language } = useLanguage();
+
+  const stats = content[language];
+
   const [started, setStarted] = useState(false);
+
   const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -36,7 +67,9 @@ export default function Stats() {
           observer.disconnect();
         }
       },
-      { threshold: 0.4 }
+      {
+        threshold: 0.4,
+      }
     );
 
     if (sectionRef.current) {
@@ -47,11 +80,14 @@ export default function Stats() {
   }, []);
 
   return (
-    <section className="stats" ref={sectionRef}>
+    <section
+      className="stats"
+      ref={sectionRef}
+    >
       <div className="container stats-container">
-        {stats.map((item, index) => (
+        {stats.map((item) => (
           <StatCard
-            key={index}
+            key={item.label}
             target={item.target}
             suffix={item.suffix}
             label={item.label}
@@ -80,8 +116,10 @@ function StatCard({
     if (!started) return;
 
     let current = 0;
+
     const duration = 1400;
     const steps = 60;
+
     const increment = target / steps;
     const intervalTime = duration / steps;
 
@@ -100,12 +138,13 @@ function StatCard({
   }, [started, target]);
 
   return (
-    <div className="stat-card">
+    <article className="stat-card">
       <h3>
         {count.toLocaleString()}
         {suffix}
       </h3>
+
       <p>{label}</p>
-    </div>
+    </article>
   );
 }
