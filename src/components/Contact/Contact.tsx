@@ -10,6 +10,7 @@ import {
 import { useLanguage } from "../../context/LanguageContext";
 import { useContactForm } from "../../hooks/useContactForm";
 import { sendContactEmail } from "../../services/email";
+import { site } from "../../config/site";
 
 import "./Contact.css";
 
@@ -152,10 +153,7 @@ export default function Contact() {
   }
 
   return (
-    <section
-      className="contact section"
-      id="contact"
-    >
+    <section className="contact section" id="contact">
       <div className="container contact-container">
 
         <div className="contact-info">
@@ -164,34 +162,22 @@ export default function Contact() {
             {t.tag}
           </span>
 
-          <h2>
-            {t.title}
-          </h2>
+          <h2>{t.title}</h2>
 
           <p className="contact-description">
             {t.description}
           </p>
 
           <div className="contact-benefits">
-
             {t.benefits.map((item) => (
-
-              <div
-                className="benefit"
-                key={item}
-              >
+              <div className="benefit" key={item}>
                 <CheckCircle2 size={18} />
-
                 <span>{item}</span>
-
               </div>
-
             ))}
-
           </div>
 
           <div className="contact-item">
-
             <MapPin className="contact-icon" />
 
             <div>
@@ -199,17 +185,12 @@ export default function Contact() {
               <h3>{t.address}</h3>
 
               <p>
-
-                Callejón Juárez y 6ta #350 B
-
+                {site.address.street}
                 <br />
-
-                Col. Comercial
-
+                {site.address.neighborhood}
                 <br />
-
-                San Luis Río Colorado, Sonora, México
-
+                {site.address.city}, {site.address.state},{" "}
+                {site.address.country}
               </p>
 
             </div>
@@ -226,10 +207,8 @@ export default function Contact() {
 
               <p>
 
-                <a href="tel:+526532080587">
-
-                  +52 653 208 0587
-
+                <a href={`tel:${site.phoneLink}`}>
+                  {site.phone}
                 </a>
 
               </p>
@@ -248,10 +227,8 @@ export default function Contact() {
 
               <p>
 
-                <a href="mailto:dra.marlene.v@gmail.com">
-
-                  dra.marlene.v@gmail.com
-
+                <a href={`mailto:${site.email}`}>
+                  {site.email}
                 </a>
 
               </p>
@@ -274,31 +251,27 @@ export default function Contact() {
 
                 <br />
 
-                9:00 AM – 1:00 PM
+                {site.officeHours.mondayFriday}
 
                 <br />
-
-                4:00 PM – 8:00 PM
-
-                <br />
-
                 <br />
 
                 {t.saturday}
 
                 <br />
 
-                9:00 AM – 2:00 PM
+                {site.officeHours.saturday}
 
                 <br />
-
                 <br />
 
                 {t.sunday}
 
                 <br />
 
-                {t.closed}
+                {language === "en"
+                  ? site.officeHours.sunday
+                  : "Cerrado"}
 
               </p>
 

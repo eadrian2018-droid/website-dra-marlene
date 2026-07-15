@@ -1,11 +1,12 @@
 import { MessageCircle } from "lucide-react";
+
 import { useLanguage } from "../../context/LanguageContext";
+import { site } from "../../config/site";
+
 import "./WhatsAppButton.css";
 
 export default function WhatsAppButton() {
   const { language } = useLanguage();
-
-  const phoneNumber = "526532080587";
 
   const message =
     language === "en"
@@ -18,7 +19,7 @@ export default function WhatsAppButton() {
 
   return (
     <a
-      href={`https://api.whatsapp.com/send?phone=${phoneNumber}&text=${message}`}
+      href={`https://api.whatsapp.com/send?phone=${site.whatsapp}&text=${message}`}
       className="whatsapp-button"
       target="_blank"
       rel="noopener noreferrer"
@@ -30,7 +31,10 @@ export default function WhatsAppButton() {
           : "Agenda tu cita"}
       </span>
 
-      <MessageCircle size={30} strokeWidth={2.3} />
+      <MessageCircle
+        size={30}
+        strokeWidth={2.3}
+      />
     </a>
   );
 }

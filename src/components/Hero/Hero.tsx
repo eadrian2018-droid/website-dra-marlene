@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 
 import { useLanguage } from "../../context/LanguageContext";
+import { site } from "../../config/site";
 
 import doctorImage from "../../assets/branding/doctora.png";
 
@@ -55,7 +56,7 @@ export default function Hero() {
 
           <a
             className="hero-whatsapp-link"
-            href={`https://wa.me/526532080587?text=${whatsappMessage}`}
+            href={`https://wa.me/${site.whatsapp}?text=${whatsappMessage}`}
             target="_blank"
             rel="noopener noreferrer"
           >

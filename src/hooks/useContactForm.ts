@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
 import type {
   ContactFormData,
   ContactFormErrors,
@@ -12,6 +13,8 @@ const initialValues: ContactFormData = {
 };
 
 export function useContactForm() {
+  const { language } = useLanguage();
+
   const [form, setForm] =
     useState<ContactFormData>(initialValues);
 
@@ -38,20 +41,38 @@ export function useContactForm() {
   function validate() {
     const newErrors: ContactFormErrors = {};
 
-    if (!form.name.trim())
-      newErrors.name = "Nombre requerido.";
+    if (!form.name.trim()) {
+      newErrors.name =
+        language === "en"
+          ? "Name is required."
+          : "Nombre requerido.";
+    }
 
-    if (!form.email.trim())
-      newErrors.email = "Correo requerido.";
+    if (!form.email.trim()) {
+      newErrors.email =
+        language === "en"
+          ? "Email is required."
+          : "Correo requerido.";
+    } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+      newErrors.email =
+        language === "en"
+          ? "Invalid email."
+          : "Correo inválido.";
+    }
 
-    if (!/\S+@\S+\.\S+/.test(form.email))
-      newErrors.email = "Correo inválido.";
+    if (!form.phone.trim()) {
+      newErrors.phone =
+        language === "en"
+          ? "Phone number is required."
+          : "Teléfono requerido.";
+    }
 
-    if (!form.phone.trim())
-      newErrors.phone = "Teléfono requerido.";
-
-    if (!form.message.trim())
-      newErrors.message = "Escribe un mensaje.";
+    if (!form.message.trim()) {
+      newErrors.message =
+        language === "en"
+          ? "Please enter a message."
+          : "Escribe un mensaje.";
+    }
 
     setErrors(newErrors);
 

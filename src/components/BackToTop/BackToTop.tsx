@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+import { useLanguage } from "../../context/LanguageContext";
 import "./BackToTop.css";
 
 export default function BackToTop() {
+  const { language } = useLanguage();
+
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -27,7 +30,11 @@ export default function BackToTop() {
     <button
       className="back-to-top"
       onClick={scrollToTop}
-      aria-label="Volver arriba"
+      aria-label={
+        language === "en"
+          ? "Back to top"
+          : "Volver arriba"
+      }
     >
       ↑
     </button>
