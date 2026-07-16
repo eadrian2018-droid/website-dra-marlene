@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Languages } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 import { useLanguage } from "../../context/LanguageContext";
 
@@ -20,9 +21,7 @@ export default function Navbar() {
 
     window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -35,6 +34,11 @@ export default function Navbar() {
 
   function closeMenu() {
     setMenuOpen(false);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }
 
   function toggleLanguage() {
@@ -44,42 +48,68 @@ export default function Navbar() {
 
   return (
     <header
-      className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}
+      className={`navbar ${
+        scrolled ? "navbar-scrolled" : ""
+      }`}
     >
       <div className="container navbar-container">
-        <a
-          href="#home"
+
+        <NavLink
+          to="/"
           className="navbar-logo"
           onClick={closeMenu}
-          aria-label="Dra. Marlene Group"
         >
-          <span className="navbar-logo-primary">DRA. MARLENE</span>
-          <span className="navbar-logo-secondary">GROUP</span>
-        </a>
+          <span className="navbar-logo-primary">
+            DRA. MARLENE
+          </span>
+
+          <span className="navbar-logo-secondary">
+            GROUP
+          </span>
+        </NavLink>
 
         <nav
-          className={`navbar-links ${menuOpen ? "navbar-links-open" : ""}`}
-          aria-label="Main navigation"
+          className={`navbar-links ${
+            menuOpen
+              ? "navbar-links-open"
+              : ""
+          }`}
         >
-          <a href="#home" onClick={closeMenu}>
+
+          <NavLink
+            to="/"
+            onClick={closeMenu}
+          >
             {t.navigation.home}
-          </a>
+          </NavLink>
 
-          <a href="#services" onClick={closeMenu}>
+          <NavLink
+            to="/treatments"
+            onClick={closeMenu}
+          >
             {t.navigation.services}
-          </a>
+          </NavLink>
 
-          <a href="#about" onClick={closeMenu}>
+          <NavLink
+            to="/meet-dr-marlene"
+            onClick={closeMenu}
+          >
             {t.navigation.about}
-          </a>
+          </NavLink>
 
-          <a href="#testimonials" onClick={closeMenu}>
+          <NavLink
+            to="/reviews"
+            onClick={closeMenu}
+          >
             {t.navigation.testimonials}
-          </a>
+          </NavLink>
 
-          <a href="#contact" onClick={closeMenu}>
+          <NavLink
+            to="/contact"
+            onClick={closeMenu}
+          >
             {t.navigation.contact}
-          </a>
+          </NavLink>
 
           <button
             className="navbar-mobile-language"
@@ -87,29 +117,41 @@ export default function Navbar() {
             onClick={toggleLanguage}
           >
             <Languages size={18} />
-            {language === "en" ? "🇲🇽 Español" : "🇺🇸 English"}
+
+            {language === "en"
+              ? "🇲🇽 Español"
+              : "🇺🇸 English"}
           </button>
 
-          <a
-            href="#contact"
+          <NavLink
+            to="/contact"
             className="navbar-mobile-appointment"
             onClick={closeMenu}
           >
             {t.navigation.appointment}
-          </a>
+          </NavLink>
+
         </nav>
 
         <div className="navbar-actions">
-          <a href="#contact" className="navbar-appointment">
+
+          <NavLink
+            to="/contact"
+            className="navbar-appointment"
+          >
             {t.navigation.appointment}
-          </a>
+          </NavLink>
 
           <button
             className={`navbar-menu-button ${
-              menuOpen ? "navbar-menu-button-open" : ""
+              menuOpen
+                ? "navbar-menu-button-open"
+                : ""
             }`}
             type="button"
-            onClick={() => setMenuOpen((current) => !current)}
+            onClick={() =>
+              setMenuOpen(!menuOpen)
+            }
             aria-label={
               menuOpen
                 ? t.navigation.closeMenu
@@ -121,7 +163,9 @@ export default function Navbar() {
             <span />
             <span />
           </button>
+
         </div>
+
       </div>
     </header>
   );

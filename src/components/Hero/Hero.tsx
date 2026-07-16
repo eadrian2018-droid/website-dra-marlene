@@ -6,6 +6,8 @@ import {
   Star,
 } from "lucide-react";
 
+import { Link } from "react-router-dom";
+
 import { useLanguage } from "../../context/LanguageContext";
 import { site } from "../../config/site";
 
@@ -21,7 +23,7 @@ export default function Hero() {
   );
 
   return (
-    <section className="hero" id="home">
+    <section className="hero">
       <div className="hero-decoration hero-decoration-one" />
       <div className="hero-decoration hero-decoration-two" />
 
@@ -43,15 +45,23 @@ export default function Hero() {
           </p>
 
           <div className="hero-actions">
-            <a href="#contact" className="hero-primary-button">
+
+            <Link
+              to="/contact"
+              className="hero-primary-button"
+            >
               <CalendarCheck size={19} />
               {t.hero.primaryButton}
-            </a>
+            </Link>
 
-            <a href="#services" className="hero-secondary-button">
+            <Link
+              to="/treatments"
+              className="hero-secondary-button"
+            >
               {t.hero.secondaryButton}
               <ArrowRight size={18} />
-            </a>
+            </Link>
+
           </div>
 
           <a
@@ -65,6 +75,7 @@ export default function Hero() {
           </a>
 
           <div className="hero-features">
+
             <div className="hero-feature">
               <Check size={16} />
               <span>{t.hero.featureOne}</span>
@@ -79,10 +90,12 @@ export default function Hero() {
               <Check size={16} />
               <span>{t.hero.featureThree}</span>
             </div>
+
           </div>
         </div>
 
         <div className="hero-visual">
+
           <div className="hero-image-background" />
 
           <div className="hero-image-frame">
@@ -93,6 +106,7 @@ export default function Hero() {
           </div>
 
           <div className="hero-rating-card">
+
             <div className="hero-rating-stars">
               <Star size={15} fill="currentColor" />
               <Star size={15} fill="currentColor" />
@@ -109,6 +123,7 @@ export default function Hero() {
                 <small>{t.hero.ratingText}</small>
               </div>
             </div>
+
           </div>
 
           <div className="hero-experience-card">
@@ -129,6 +144,7 @@ export default function Hero() {
               <small>{t.hero.availabilityText}</small>
             </div>
           </div>
+
         </div>
       </div>
     </section>

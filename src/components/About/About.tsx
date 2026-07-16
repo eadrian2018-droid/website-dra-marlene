@@ -8,6 +8,8 @@ import {
   Sparkles,
 } from "lucide-react";
 
+import { Link } from "react-router-dom";
+
 import { useLanguage } from "../../context/LanguageContext";
 
 import doctorImg from "../../assets/branding/doctora.png";
@@ -92,14 +94,12 @@ export default function About() {
         };
 
   return (
-    <section
-      className="about section"
-      id="about"
-    >
+    <section className="about section">
       <div className="container about-container">
+
         <div className="about-photo">
 
-          <div className="about-photo-bg"></div>
+          <div className="about-photo-bg" />
 
           <img
             src={doctorImg}
@@ -114,17 +114,11 @@ export default function About() {
             {content.tag}
           </span>
 
-          <h2>
-            {content.title}
-          </h2>
+          <h2>{content.title}</h2>
 
-          <p>
-            {content.description1}
-          </p>
+          <p>{content.description1}</p>
 
-          <p>
-            {content.description2}
-          </p>
+          <p>{content.description2}</p>
 
           <div className="about-grid">
 
@@ -133,7 +127,6 @@ export default function About() {
               const Icon = item.icon;
 
               return (
-
                 <div
                   key={item.title}
                   className="about-card"
@@ -152,24 +145,23 @@ export default function About() {
                   </div>
 
                 </div>
-
               );
 
             })}
 
           </div>
 
-          <a
-            href="#contact"
+          <Link
+            to="/contact"
             className="about-button"
           >
             {content.button}
 
             <ArrowRight size={18} />
-
-          </a>
+          </Link>
 
         </div>
+
       </div>
     </section>
   );

@@ -28,43 +28,34 @@ export default function TopBar() {
               size={14}
               fill="currentColor"
             />
-
             <span>{t.topBar.rating}</span>
-
           </div>
 
           <div className="topbar-item">
-
             <MapPin size={14} />
-
             <span>{t.topBar.location}</span>
-
           </div>
 
           <a
             className="topbar-item"
             href={`tel:${site.phoneLink}`}
           >
-
             <Phone size={14} />
-
             <span>{site.phone}</span>
-
           </a>
 
         </div>
 
         <button
-          className="topbar-language"
           type="button"
+          className="topbar-language"
           onClick={toggleLanguage}
           aria-label={
             language === "en"
-              ? "Cambiar el idioma a español"
+              ? "Cambiar idioma a español"
               : "Change language to English"
           }
         >
-
           <Languages size={15} />
 
           <span>

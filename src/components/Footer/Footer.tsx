@@ -9,6 +9,8 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 
+import { Link } from "react-router-dom";
+
 import { useLanguage } from "../../context/LanguageContext";
 import { site } from "../../config/site";
 
@@ -104,15 +106,25 @@ export default function Footer() {
 
           <h3>{t.navigation}</h3>
 
-          <a href="#home">{t.home}</a>
+          <Link to="/">
+            {t.home}
+          </Link>
 
-          <a href="#services">{t.services}</a>
+          <Link to="/treatments">
+            {t.services}
+          </Link>
 
-          <a href="#about">{t.about}</a>
+          <Link to="/meet-dr-marlene">
+            {t.about}
+          </Link>
 
-          <a href="#testimonials">{t.testimonials}</a>
+          <Link to="/reviews">
+            {t.testimonials}
+          </Link>
 
-          <a href="#contact">{t.contact}</a>
+          <Link to="/contact">
+            {t.contact}
+          </Link>
 
         </div>
 
@@ -122,7 +134,6 @@ export default function Footer() {
 
           <p>
             <MapPin size={18} />
-
             {site.address.street}
           </p>
 
@@ -136,7 +147,6 @@ export default function Footer() {
           </p>
 
           <p>
-
             <Mail size={18} />
 
             <a href={`mailto:${site.email}`}>

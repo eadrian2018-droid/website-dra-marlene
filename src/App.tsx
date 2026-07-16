@@ -1,18 +1,14 @@
-import "./App.css";
-
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import MainLayout from "./layouts/MainLayout";
 
 import Home from "./pages/Home";
-import Treatments from "./pages/Treatments";
 import MeetDrMarlene from "./pages/MeetDrMarlene";
+import Treatments from "./pages/Treatments";
 import Reviews from "./pages/Reviews";
 import ContactPage from "./pages/ContactPage";
+
+import "./App.css";
 
 export default function App() {
   return (
@@ -27,13 +23,13 @@ export default function App() {
           />
 
           <Route
-            path="/treatments"
-            element={<Treatments />}
+            path="/meet-dr-marlene"
+            element={<MeetDrMarlene />}
           />
 
           <Route
-            path="/meet-dr-marlene"
-            element={<MeetDrMarlene />}
+            path="/treatments"
+            element={<Treatments />}
           />
 
           <Route
