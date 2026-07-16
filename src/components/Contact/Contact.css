@@ -1,276 +1,177 @@
 .contact{
-    background:linear-gradient(180deg,#ffffff 0%,#f8fafc 100%);
+    background:linear-gradient(180deg,#fff 0%,var(--background) 100%);
 }
 
 .contact-container{
-
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:70px;
     align-items:start;
-
 }
 
 .contact-info h2{
-
     margin:18px 0;
-
     font-size:clamp(2.7rem,4vw,4rem);
-
-    color:#12385e;
-
+    color:var(--text);
     line-height:1.1;
-
 }
 
 .contact-description{
-
-    color:#64748b;
-
+    color:var(--text-light);
     font-size:1.05rem;
-
     line-height:1.9;
-
     margin-bottom:40px;
-
 }
 
 .contact-benefits{
-
     display:grid;
-
     grid-template-columns:repeat(2,1fr);
-
     gap:18px;
-
     margin-bottom:45px;
-
 }
 
 .benefit{
-
     display:flex;
-
     align-items:center;
-
     gap:12px;
-
     padding:14px 18px;
-
-    background:white;
-
-    border-radius:16px;
-
-    border:1px solid #e8eef3;
-
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius-md);
+    box-shadow:var(--shadow-sm);
+    color:var(--text);
     font-weight:600;
+    transition:var(--transition);
+}
 
-    color:#12385e;
-
-    box-shadow:0 10px 25px rgba(18,56,94,.05);
-
+.benefit:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow-md);
 }
 
 .benefit svg{
-
-    color:#0b8f72;
-
+    color:var(--secondary);
     flex-shrink:0;
-
 }
 
 .contact-item{
-
     display:flex;
-
     gap:18px;
-
     margin-bottom:28px;
-
 }
 
 .contact-icon{
-
-    color:#0b8f72;
-
     width:24px;
-
     height:24px;
-
     margin-top:5px;
-
     flex-shrink:0;
-
+    color:var(--secondary);
 }
 
 .contact-item h3{
-
     margin-bottom:8px;
-
-    color:#12385e;
-
+    color:var(--text);
 }
 
 .contact-item p{
-
-    color:#64748b;
-
+    color:var(--text-light);
     line-height:1.8;
-
 }
 
 .contact-item a{
-
-    color:#12385e;
-
+    color:var(--text);
     text-decoration:none;
+    transition:var(--transition);
+}
 
+.contact-item a:hover{
+    color:var(--secondary);
 }
 
 .contact-form{
-
-    background:white;
-
+    background:var(--surface);
     padding:42px;
-
-    border-radius:28px;
-
-    border:1px solid #e8eef3;
-
-    box-shadow:0 20px 50px rgba(18,56,94,.08);
-
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-md);
 }
 
 .form-header{
-
     display:flex;
-
     align-items:center;
-
     gap:14px;
-
     margin-bottom:28px;
-
-    color:#12385e;
-
+    color:var(--text);
 }
 
 .form-header svg{
-
-    color:#0b8f72;
-
+    color:var(--secondary);
 }
 
 .form-header h3{
-
     margin:0;
-
     font-size:1.4rem;
-
 }
 
 .contact-form input,
-
 .contact-form textarea{
-
     width:100%;
-
     padding:18px;
-
     margin-bottom:18px;
-
-    border-radius:16px;
-
-    border:1px solid #d9e3eb;
-
+    border:1px solid var(--border);
+    border-radius:var(--radius-md);
     background:#fbfcfd;
-
-    font-family:inherit;
-
-    font-size:1rem;
-
-    transition:.3s;
-
+    font:inherit;
+    transition:var(--transition);
 }
 
 .contact-form input:focus,
-
 .contact-form textarea:focus{
-
     outline:none;
-
-    border-color:#0b8f72;
-
-    background:white;
-
+    border-color:var(--secondary);
+    background:#fff;
     box-shadow:0 0 0 4px rgba(11,143,114,.12);
-
 }
 
 .contact-form textarea{
-
     resize:vertical;
-
     min-height:170px;
-
 }
 
 .contact-form small{
-
     display:block;
-
     margin-top:-10px;
-
     margin-bottom:14px;
-
     color:#d32f2f;
-
 }
 
 .contact-form button{
-
     width:100%;
-
     margin-top:8px;
-
 }
 
 .contact-success{
-
     margin-top:22px;
-
     padding:16px;
-
-    border-radius:14px;
-
+    border-radius:var(--radius-md);
     background:#ecfdf5;
-
-    color:#0b8f72;
-
+    color:var(--secondary);
     font-weight:700;
-
     text-align:center;
-
 }
 
 @media(max-width:1100px){
 
 .contact-container{
-
 grid-template-columns:1fr;
-
 }
 
 .contact-info{
-
 order:2;
-
 }
 
 .contact-form{
-
 order:1;
-
 }
 
 }
@@ -278,21 +179,15 @@ order:1;
 @media(max-width:700px){
 
 .contact-benefits{
-
 grid-template-columns:1fr;
-
 }
 
 .contact-form{
-
 padding:28px;
-
 }
 
 .contact-info h2{
-
 font-size:2.4rem;
-
 }
 
 }

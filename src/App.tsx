@@ -1,60 +1,54 @@
 import "./App.css";
 
-import TopBar from "./components/TopBar/TopBar";
-import Navbar from "./components/Navbar/Navbar";
-import Hero from "./components/Hero/Hero";
-import TrustBadges from "./components/TrustBadges/TrustBadges";
-import WhyChooseUs from "./components/WhyChooseUs/WhyChooseUs";
-import Stats from "./components/Stats/Stats";
-import Services from "./components/Services/Services";
-import TravelSection from "./components/TravelSection/TravelSection";
-import About from "./components/About/About";
-import Memberships from "./components/Memberships/Memberships";
-import Testimonials from "./components/Testimonials/Testimonials";
-import Contact from "./components/Contact/Contact";
-import Map from "./components/Map/Map";
-import Footer from "./components/Footer/Footer";
-import WhatsAppButton from "./components/WhatsAppButton/WhatsAppButton";
-import BackToTop from "./components/BackToTop/BackToTop";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+
+import MainLayout from "./layouts/MainLayout";
+
+import Home from "./pages/Home";
+import Treatments from "./pages/Treatments";
+import MeetDrMarlene from "./pages/MeetDrMarlene";
+import Reviews from "./pages/Reviews";
+import ContactPage from "./pages/ContactPage";
 
 export default function App() {
   return (
-    <>
-      <TopBar />
+    <BrowserRouter>
+      <Routes>
 
-      <Navbar />
+        <Route element={<MainLayout />}>
 
-      <main>
+          <Route
+            path="/"
+            element={<Home />}
+          />
 
-        <Hero />
+          <Route
+            path="/treatments"
+            element={<Treatments />}
+          />
 
-        <TrustBadges />
+          <Route
+            path="/meet-dr-marlene"
+            element={<MeetDrMarlene />}
+          />
 
-        <WhyChooseUs />
+          <Route
+            path="/reviews"
+            element={<Reviews />}
+          />
 
-        <Stats />
+          <Route
+            path="/contact"
+            element={<ContactPage />}
+          />
 
-        <Services />
+        </Route>
 
-        <TravelSection />
-
-        <About />
-
-        <Memberships />
-
-        <Testimonials />
-
-        <Contact />
-
-        <Map />
-
-      </main>
-
-      <Footer />
-
-      <WhatsAppButton />
-
-      <BackToTop />
-    </>
+      </Routes>
+    </BrowserRouter>
   );
 }

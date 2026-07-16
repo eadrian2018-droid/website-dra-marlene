@@ -1,7 +1,7 @@
 .services {
   position: relative;
   overflow: hidden;
-  background: #f8fafc;
+  background: var(--background);
 }
 
 .services::before {
@@ -28,7 +28,7 @@
   padding: 10px 18px;
   border-radius: 999px;
   background: rgba(11, 143, 114, 0.08);
-  color: #0b8f72;
+  color: var(--secondary);
   font-size: .8rem;
   font-weight: 800;
   letter-spacing: .08em;
@@ -37,199 +37,153 @@
 
 .services-header h2 {
   margin: 24px 0;
-  color: #12385e;
-  font-size: clamp(2.6rem,4vw,4rem);
+  color: var(--text);
+  font-size: clamp(2.6rem, 4vw, 4rem);
   line-height: 1.08;
   letter-spacing: -.05em;
 }
 
 .services-header p {
-  color: #687785;
+  color: var(--text-light);
   font-size: 1.05rem;
   line-height: 1.9;
 }
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 34px;
 }
 
 .service-card {
   overflow: hidden;
-  border-radius: 28px;
-  background: white;
-  border: 1px solid #e9eef2;
-  transition: .35s;
-  box-shadow: 0 15px 35px rgba(18,56,94,.05);
-}
-
-.service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 30px 60px rgba(18,56,94,.12);
 }
 
 .service-image {
   position: relative;
   height: 220px;
   overflow: hidden;
-  background:
-      linear-gradient(
-      135deg,
-      #12385e,
-      #0b8f72);
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary)
+  );
 }
 
-.service-image::before{
-content:"";
-position:absolute;
-inset:0;
-background:
-radial-gradient(circle at top right,
-rgba(255,255,255,.22),
-transparent 40%);
-transition:.4s;
+.service-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top right,
+    rgba(255,255,255,.22),
+    transparent 40%
+  );
+  transition: var(--transition);
 }
 
-.service-card:hover
-.service-image::before{
-
-transform:scale(1.15);
-
+.service-card:hover .service-image::before {
+  transform: scale(1.15);
 }
 
-.service-overlay{
-
-position:absolute;
-inset:0;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-color:white;
-
-transition:.35s;
-
+.service-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: var(--transition);
 }
 
-.service-card:hover
-.service-overlay{
-
-transform:scale(1.12);
-
+.service-card:hover .service-overlay {
+  transform: scale(1.12);
 }
 
-.service-badge{
+.service-badge {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 3;
 
-position:absolute;
-left:18px;
-top:18px;
-z-index:3;
+  padding: 8px 14px;
 
-padding:8px 14px;
+  border-radius: 999px;
 
-border-radius:999px;
+  background: white;
 
-background:white;
+  color: var(--secondary);
 
-color:#0b8f72;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .04em;
 
-font-size:.72rem;
-font-weight:800;
-letter-spacing:.04em;
-
-box-shadow:
-0 8px 20px rgba(18,56,94,.12);
-
+  box-shadow: var(--shadow-sm);
 }
 
-.service-content{
-
-padding:34px;
-
+.service-content {
+  padding: 34px;
 }
 
-.service-content h3{
-
-margin-bottom:14px;
-
-color:#12385e;
-
-font-size:1.45rem;
-font-weight:700;
-
+.service-content h3 {
+  margin-bottom: 14px;
+  color: var(--text);
+  font-size: 1.45rem;
+  font-weight: 700;
 }
 
-.service-content p{
-
-color:#677786;
-
-line-height:1.8;
-
-margin-bottom:28px;
-
+.service-content p {
+  margin-bottom: 28px;
+  color: var(--text-light);
+  line-height: 1.8;
 }
 
-.service-button{
+.service-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 
-display:inline-flex;
-align-items:center;
-gap:10px;
+  padding: 0;
 
-padding:0;
+  border: none;
 
-border:none;
+  background: transparent;
 
-background:none;
+  color: var(--secondary);
 
-font-family:inherit;
+  font: inherit;
+  font-size: .92rem;
+  font-weight: 700;
 
-font-size:.92rem;
-font-weight:700;
+  cursor: pointer;
 
-color:#0b8f72;
+  transition: var(--transition);
+}
 
-cursor:pointer;
+.service-button:hover {
+  gap: 16px;
+}
 
-transition:.3s;
+@media (max-width:1100px) {
+
+  .services-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
 
 }
 
-.service-button:hover{
+@media (max-width:700px) {
 
-gap:16px;
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
 
-}
+  .service-image {
+    height: 200px;
+  }
 
-@media(max-width:1100px){
-
-.services-grid{
-
-grid-template-columns:repeat(2,1fr);
-
-}
-
-}
-
-@media(max-width:700px){
-
-.services-grid{
-
-grid-template-columns:1fr;
-
-}
-
-.service-image{
-
-height:200px;
-
-}
-
-.service-content{
-
-padding:28px;
-
-}
+  .service-content {
+    padding: 28px;
+  }
 
 }
