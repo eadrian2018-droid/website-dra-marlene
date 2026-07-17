@@ -3,6 +3,7 @@ import {
   CreditCard,
   Shield,
   SmilePlus,
+  ArrowRight,
 } from "lucide-react";
 
 import { useLanguage } from "../../context/LanguageContext";
@@ -60,28 +61,29 @@ const content = {
 export default function TrustBar() {
   const { language } = useLanguage();
 
-  const items = content[language];
-
   return (
     <section className="trust-bar">
       <div className="container trust-grid">
-        {items.map((item) => {
+        {content[language].map((item) => {
           const Icon = item.icon;
 
           return (
-            <article
-              className="trust-card"
-              key={item.title}
-            >
+            <article className="trust-card" key={item.title}>
               <div className="trust-icon">
-                <Icon size={30} />
+                <Icon />
               </div>
 
-              <div>
-                <h3>{item.title}</h3>
+              <h3>{item.title}</h3>
 
-                <p>{item.text}</p>
-              </div>
+              <p>{item.text}</p>
+
+              <div className="trust-line" />
+
+              <span className="trust-more">
+                {language === "en" ? "Learn More" : "Conoce Más"}
+
+                <ArrowRight size={18} />
+              </span>
             </article>
           );
         })}

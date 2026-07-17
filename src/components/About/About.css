@@ -1,43 +1,323 @@
 .about {
-  background: #fff;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top right,
+      rgba(11,143,114,.08),
+      transparent 35%),
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #f8fbfc 100%
+    );
 }
 
-.about-container {
-  display: grid;
-  grid-template-columns: 0.95fr 1.05fr;
-  gap: 4rem;
-  align-items: center;
+.about-container{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:90px;
 }
 
-.about-image img {
-  width: 100%;
-  border-radius: 24px;
-  box-shadow: var(--shadow-lg);
+.about-image{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-.about-content h2 {
-  margin: 0.5rem 0 1.25rem;
+.about-image-bg{
+  position:absolute;
+  width:92%;
+  height:92%;
+  border-radius:42px;
+  background:linear-gradient(
+      135deg,
+      #0b8f72,
+      #1db89a
+  );
+  opacity:.08;
+  transform:rotate(-6deg);
 }
 
-.about-content p {
-  color: var(--text-light);
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
+.about-image img{
+  position:relative;
+  z-index:2;
+
+  width:100%;
+  max-width:500px;
+
+  border-radius:34px;
+
+  box-shadow:
+      0 30px 80px rgba(0,0,0,.12),
+      0 10px 30px rgba(0,0,0,.08);
+
+  transition:.45s;
 }
 
-.about-buttons {
-  display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
-  flex-wrap: wrap;
+.about-image:hover img{
+  transform:translateY(-10px);
 }
 
-@media (max-width: 992px) {
-  .about-container {
-    grid-template-columns: 1fr;
-  }
+.about-floating-card{
 
-  .about-image {
-    order: -1;
-  }
+  position:absolute;
+
+  left:-20px;
+  bottom:40px;
+
+  z-index:3;
+
+  display:flex;
+  align-items:center;
+  gap:14px;
+
+  padding:18px 22px;
+
+  background:#fff;
+
+  border-radius:20px;
+
+  box-shadow:
+      0 20px 45px rgba(0,0,0,.12);
+
+}
+
+.about-floating-card svg{
+
+  color:#0b8f72;
+
+}
+
+.about-floating-card strong{
+
+  display:block;
+
+  color:#173b63;
+
+  font-size:1rem;
+
+}
+
+.about-floating-card span{
+
+  color:#667085;
+
+  font-size:.82rem;
+
+}
+
+.about-content{
+
+  max-width:620px;
+
+}
+
+.section-tag{
+
+  display:inline-flex;
+
+  padding:10px 18px;
+
+  border-radius:999px;
+
+  background:#eaf8f4;
+
+  color:#0b8f72;
+
+  font-size:.8rem;
+
+  font-weight:700;
+
+  margin-bottom:24px;
+
+}
+
+.about-content h2{
+
+  font-size:clamp(2.5rem,4vw,3.6rem);
+
+  line-height:1.05;
+
+  color:#173b63;
+
+  margin-bottom:28px;
+
+}
+
+.about-content h2 span{
+
+  color:#0b8f72;
+
+}
+
+.about-content p{
+
+  color:#667085;
+
+  line-height:1.9;
+
+  font-size:1.03rem;
+
+  margin-bottom:18px;
+
+}
+
+.about-highlights{
+
+  display:grid;
+
+  gap:18px;
+
+  margin:42px 0;
+
+}
+
+.about-highlight{
+
+  display:flex;
+
+  align-items:flex-start;
+
+  gap:18px;
+
+  padding:20px;
+
+  border-radius:22px;
+
+  background:white;
+
+  box-shadow:
+      0 15px 35px rgba(0,0,0,.06);
+
+  transition:.35s;
+
+}
+
+.about-highlight:hover{
+
+  transform:translateX(10px);
+
+  box-shadow:
+      0 22px 50px rgba(0,0,0,.12);
+
+}
+
+.about-highlight svg{
+
+  color:#0b8f72;
+
+  flex-shrink:0;
+
+  margin-top:2px;
+
+}
+
+.about-highlight strong{
+
+  display:block;
+
+  color:#173b63;
+
+  margin-bottom:6px;
+
+  font-size:1rem;
+
+}
+
+.about-highlight span{
+
+  color:#667085;
+
+  line-height:1.6;
+
+}
+
+.about-buttons{
+
+  display:flex;
+
+  gap:18px;
+
+  flex-wrap:wrap;
+
+}
+
+@media(max-width:1000px){
+
+.about-container{
+
+grid-template-columns:1fr;
+
+gap:60px;
+
+}
+
+.about-content{
+
+max-width:none;
+
+text-align:center;
+
+}
+
+.about-buttons{
+
+justify-content:center;
+
+}
+
+.about-floating-card{
+
+left:20px;
+
+bottom:20px;
+
+}
+
+.about-highlights{
+
+text-align:left;
+
+}
+
+}
+
+@media(max-width:650px){
+
+.about-content h2{
+
+font-size:2.3rem;
+
+}
+
+.about-image img{
+
+border-radius:28px;
+
+}
+
+.about-floating-card{
+
+position:relative;
+
+left:auto;
+
+bottom:auto;
+
+margin-top:-40px;
+
+width:100%;
+
+max-width:320px;
+
+}
+
+.about-image{
+
+flex-direction:column;
+
+}
+
 }
