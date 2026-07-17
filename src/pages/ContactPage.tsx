@@ -7,7 +7,7 @@ export default function ContactPage() {
     <>
       <PageHero
         title="Contact Us"
-        subtitle="Schedule your visit, request a free consultation, or send us a message. Our team is ready to help you."
+        subtitle="Book your appointment or send us a message. We'd love to help you smile with confidence."
       />
 
       <Contact />

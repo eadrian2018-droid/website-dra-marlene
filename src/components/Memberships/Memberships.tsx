@@ -1,91 +1,57 @@
-import { useLanguage } from "../../context/LanguageContext";
-import { memberships } from "../../data/memberships";
-
 import "./Memberships.css";
-
-const content = {
-  en: {
-    tag: "Professional Credentials",
-
-    title: "Committed to Excellence in Modern Dentistry",
-
-    description:
-      "Professional affiliations and continuing education reflect our commitment to providing modern, ethical and high-quality dental care.",
-  },
-
-  es: {
-    tag: "Credenciales Profesionales",
-
-    title: "Comprometidos con la Excelencia en Odontología",
-
-    description:
-      "Las afiliaciones profesionales y la educación continua reflejan nuestro compromiso con una odontología moderna, ética y de alta calidad.",
-  },
-};
+import { FaAward } from "react-icons/fa";
+import { BsPatchCheckFill } from "react-icons/bs";
 
 export default function Memberships() {
-  const { language } = useLanguage();
-
-  const t = content[language];
-
   return (
-    <section
-      className="memberships section"
-      id="memberships"
-    >
-      <div className="container">
+    <section className="memberships section">
+      <div className="container memberships-container">
+        <div className="memberships-content">
+          <span className="section-tag">Professional Memberships</span>
 
-        <div className="section-header">
+          <h2>Committed to Excellence in Dentistry</h2>
 
-          <span className="section-tag">
-            {t.tag}
-          </span>
+          <p>
+            Dr. Marlene Verdugo is committed to continuous education and
+            evidence-based dentistry to provide every patient with the highest
+            standard of care.
+          </p>
 
-          <h2>{t.title}</h2>
+          <div className="membership-card">
+            <FaAward className="membership-icon" />
 
-          <p>{t.description}</p>
+            <div>
+              <h3>American Dental Association (ADA)</h3>
 
+              <p>
+                International Member dedicated to maintaining the highest
+                ethical and clinical standards while staying current with the
+                latest advancements in modern dentistry.
+              </p>
+            </div>
+          </div>
+
+          <div className="membership-card">
+            <BsPatchCheckFill className="membership-icon" />
+
+            <div>
+              <h3>Continuous Professional Education</h3>
+
+              <p>
+                Regular participation in advanced courses and professional
+                training to deliver predictable, comfortable, and long-lasting
+                dental treatments.
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div className="memberships-grid">
-
-          {memberships.map((item) => {
-
-            const Icon = item.icon;
-
-            return (
-
-              <article
-                className="membership-card"
-                key={item.title.en}
-              >
-
-                <div className="membership-icon">
-
-                  <Icon size={42} />
-
-                </div>
-
-                <h3>
-                  {item.title[language]}
-                </h3>
-
-                <h4>
-                  {item.subtitle[language]}
-                </h4>
-
-                <p>
-                  {item.description[language]}
-                </p>
-
-              </article>
-
-            );
-
-          })}
-
+        <div className="memberships-image">
+          <img
+            src="/images/ada-membership.jpg"
+            alt="American Dental Association Membership"
+          />
         </div>
-
       </div>
     </section>
   );

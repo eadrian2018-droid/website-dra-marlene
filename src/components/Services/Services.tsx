@@ -1,112 +1,90 @@
-import { ArrowRight } from "lucide-react";
-
-import { useLanguage } from "../../context/LanguageContext";
-import { services } from "../../data/services";
-
 import "./Services.css";
+import {
+  FaTooth,
+  FaTeeth,
+  FaSmile,
+  FaRegGrinStars,
+  FaXRay,
+  FaShieldAlt,
+  FaMagic,
+  FaStethoscope,
+} from "react-icons/fa";
 
-const content = {
-  en: {
-    tag: "Featured Treatments",
-
-    title: "Premium dentistry designed around your smile.",
-
+const services = [
+  {
+    icon: <FaTooth />,
+    title: "Dental Implants",
     description:
-      "Discover the treatments most requested by our patients from the United States and Mexico.",
-
-    button: "Learn More",
+      "Permanent replacement for missing teeth with natural function and appearance.",
   },
-
-  es: {
-    tag: "Tratamientos Destacados",
-
-    title: "Odontología premium diseñada para tu sonrisa.",
-
+  {
+    icon: <FaTeeth />,
+    title: "Crowns & Bridges",
     description:
-      "Conoce los tratamientos más solicitados por nuestros pacientes de México y Estados Unidos.",
-
-    button: "Más información",
+      "Restore damaged or missing teeth with durable and aesthetic restorations.",
   },
-};
+  {
+    icon: <FaSmile />,
+    title: "Cosmetic Dentistry",
+    description:
+      "Enhance your smile with veneers, bonding, and aesthetic treatments.",
+  },
+  {
+    icon: <FaRegGrinStars />,
+    title: "Professional Whitening",
+    description:
+      "Safe in-office whitening for a brighter, healthier-looking smile.",
+  },
+  {
+    icon: <FaXRay />,
+    title: "Digital X-Rays",
+    description:
+      "Modern imaging technology for faster diagnosis and better treatment planning.",
+  },
+  {
+    icon: <FaShieldAlt />,
+    title: "Preventive Care",
+    description:
+      "Exams, cleanings, fluoride, and education to maintain lifelong oral health.",
+  },
+  {
+    icon: <FaMagic />,
+    title: "Smile Makeovers",
+    description:
+      "Personalized treatment plans to completely transform your smile.",
+  },
+  {
+    icon: <FaStethoscope />,
+    title: "General Dentistry",
+    description:
+      "Routine dental care for patients of all ages in a comfortable environment.",
+  },
+];
 
 export default function Services() {
-  const { language } = useLanguage();
-
-  const t = content[language];
-
   return (
-    <section className="services section" id="services">
+    <section className="services section">
       <div className="container">
-
-        <div className="services-header">
-
-          <span className="services-tag">
-            {t.tag}
-          </span>
-
-          <h2>{t.title}</h2>
-
-          <p>{t.description}</p>
-
+        <div className="section-header">
+          <span className="section-tag">Our Services</span>
+          <h2>Complete Dental Care Under One Roof</h2>
+          <p>
+            Personalized treatments designed to keep your smile healthy,
+            functional, and beautiful.
+          </p>
         </div>
 
         <div className="services-grid">
+          {services.map((service) => (
+            <article className="service-card" key={service.title}>
+              <div className="service-icon">{service.icon}</div>
 
-          {services.map((service) => {
+              <h3>{service.title}</h3>
 
-            const Icon = service.icon;
-
-            return (
-
-              <article
-                className="service-card"
-                key={service.title.en}
-              >
-
-                <div className="service-image">
-
-                  <div className="service-overlay">
-
-                    <Icon
-                      size={46}
-                      strokeWidth={1.8}
-                    />
-
-                  </div>
-
-                </div>
-
-                <div className="service-content">
-
-                  <h3>
-                    {service.title[language]}
-                  </h3>
-
-                  <p>
-                    {service.description[language]}
-                  </p>
-
-                  <button
-                    type="button"
-                    className="service-button"
-                  >
-
-                    {t.button}
-
-                    <ArrowRight size={17} />
-
-                  </button>
-
-                </div>
-
-              </article>
-
-            );
-
-          })}
-
+              <p>{service.description}</p>
+            </article>
+          ))}
         </div>
-
       </div>
     </section>
   );

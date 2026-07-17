@@ -1,91 +1,44 @@
-import {
-  Award,
-  MapPinned,
-  MessageCircleMore,
-  Star,
-} from "lucide-react";
-
-import { useLanguage } from "../../context/LanguageContext";
-
 import "./TrustBadges.css";
+import {
+  FaAward,
+  FaTooth,
+  FaUserMd,
+  FaShieldAlt,
+} from "react-icons/fa";
 
-const content = {
-  en: {
-    items: [
-      {
-        icon: Award,
-        title: "ADA International Member",
-      },
-      {
-        icon: Star,
-        title: "5-Star Patient Reviews",
-      },
-      {
-        icon: MessageCircleMore,
-        title: "English Speaking Team",
-      },
-      {
-        icon: MapPinned,
-        title: "Minutes from Arizona",
-      },
-    ],
+const badges = [
+  {
+    icon: <FaAward />,
+    title: "ADA Member",
   },
-
-  es: {
-    items: [
-      {
-        icon: Award,
-        title: "Miembro Internacional ADA",
-      },
-      {
-        icon: Star,
-        title: "Pacientes 5 Estrellas",
-      },
-      {
-        icon: MessageCircleMore,
-        title: "Atención en Inglés",
-      },
-      {
-        icon: MapPinned,
-        title: "A Minutos de Arizona",
-      },
-    ],
+  {
+    icon: <FaTooth />,
+    title: "Modern Technology",
   },
-};
+  {
+    icon: <FaUserMd />,
+    title: "Personalized Care",
+  },
+  {
+    icon: <FaShieldAlt />,
+    title: "Trusted by U.S. Patients",
+  },
+];
 
 export default function TrustBadges() {
-  const { language } = useLanguage();
-
-  const t = content[language];
-
   return (
     <section className="trust-badges">
-
-      <div className="container trust-badges-container">
-
-        {t.items.map((item) => {
-
-          const Icon = item.icon;
-
-          return (
-
-            <div
-              className="trust-badge"
-              key={item.title}
-            >
-
-              <Icon size={22} />
-
-              <span>{item.title}</span>
-
+      <div className="container trust-grid">
+        {badges.map((badge) => (
+          <div className="trust-card" key={badge.title}>
+            <div className="trust-icon">
+              {badge.icon}
             </div>
 
-          );
-
-        })}
-
+            <h3>{badge.title}</h3>
+          </div>
+        ))}
       </div>
-
     </section>
   );
 }

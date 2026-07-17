@@ -1,177 +1,72 @@
-import {
-  Mail,
-  MapPin,
-  Phone,
-} from "lucide-react";
-
-import {
-  FaFacebookF,
-  FaInstagram,
-} from "react-icons/fa";
-
-import { Link } from "react-router-dom";
-
-import { useLanguage } from "../../context/LanguageContext";
-import { site } from "../../config/site";
-
 import "./Footer.css";
+import { Link } from "react-router-dom";
+import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
 export default function Footer() {
-  const { language } = useLanguage();
-
-  const year = new Date().getFullYear();
-
-  const t =
-    language === "en"
-      ? {
-          description:
-            "Modern dentistry, advanced technology and personalized care for patients from the United States and Mexico.",
-
-          navigation: "Navigation",
-
-          home: "Home",
-
-          services: "Treatments",
-
-          about: "Meet Dr. Marlene",
-
-          testimonials: "Reviews",
-
-          contact: "Contact",
-
-          contactTitle: "Contact",
-
-          maps: "View on Google Maps",
-
-          rights: "All Rights Reserved.",
-        }
-      : {
-          description:
-            "Odontología moderna, tecnología avanzada y atención personalizada para pacientes de México y Estados Unidos.",
-
-          navigation: "Navegación",
-
-          home: "Inicio",
-
-          services: "Tratamientos",
-
-          about: "Conoce a la Dra. Marlene",
-
-          testimonials: "Reseñas",
-
-          contact: "Contacto",
-
-          contactTitle: "Contacto",
-
-          maps: "Ver en Google Maps",
-
-          rights: "Todos los derechos reservados.",
-        };
-
   return (
     <footer className="footer">
-      <div className="container footer-container">
+      <div className="container footer-grid">
+        <div>
+          <h3>Dra. Marlene Group</h3>
 
-        <div className="footer-brand">
+          <p>
+            Modern dentistry with personalized care for patients from Mexico,
+            Arizona, and California.
+          </p>
+        </div>
 
-          <h2>{site.clinicName}</h2>
+        <div>
+          <h4>Quick Links</h4>
 
-          <p>{t.description}</p>
+          <Link to="/">Home</Link>
+          <Link to="/meet-dr-marlene">Meet Dr. Marlene</Link>
+          <Link to="/treatments">Treatments</Link>
+          <Link to="/reviews">Reviews</Link>
+          <Link to="/contact">Contact</Link>
+        </div>
+
+        <div>
+          <h4>Contact</h4>
+
+          <p>San Luis Río Colorado, Sonora</p>
+          <p>Mexico</p>
+          <p>dra.marlene.v.citas@gmail.com</p>
+        </div>
+
+        <div>
+          <h4>Follow Us</h4>
 
           <div className="footer-social">
-
             <a
-              href={site.social.facebook}
+              href="https://facebook.com/dentistamarlene"
               target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
+              rel="noreferrer"
             >
-              <FaFacebookF size={20} />
+              <FaFacebookF />
             </a>
 
             <a
-              href={site.social.instagram}
+              href="https://instagram.com/dra.marleneverdugo_"
               target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
+              rel="noreferrer"
             >
-              <FaInstagram size={20} />
+              <FaInstagram />
             </a>
 
+            <a
+              href="https://wa.me/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FaWhatsapp />
+            </a>
           </div>
-
         </div>
-
-        <div className="footer-links">
-
-          <h3>{t.navigation}</h3>
-
-          <Link to="/">
-            {t.home}
-          </Link>
-
-          <Link to="/treatments">
-            {t.services}
-          </Link>
-
-          <Link to="/meet-dr-marlene">
-            {t.about}
-          </Link>
-
-          <Link to="/reviews">
-            {t.testimonials}
-          </Link>
-
-          <Link to="/contact">
-            {t.contact}
-          </Link>
-
-        </div>
-
-        <div className="footer-contact">
-
-          <h3>{t.contactTitle}</h3>
-
-          <p>
-            <MapPin size={18} />
-            {site.address.street}
-          </p>
-
-          <p>
-            <Phone size={18} />
-
-            <a href={`tel:${site.phoneLink}`}>
-              {site.phone}
-            </a>
-
-          </p>
-
-          <p>
-            <Mail size={18} />
-
-            <a href={`mailto:${site.email}`}>
-              {site.email}
-            </a>
-
-          </p>
-
-          <a
-            className="google-business-btn"
-            href={site.googleMaps}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {t.maps}
-          </a>
-
-        </div>
-
       </div>
 
       <div className="footer-bottom">
-        © {year} {site.clinicName}. {t.rights}
+        © {new Date().getFullYear()} Dra. Marlene Group. All rights reserved.
       </div>
-
     </footer>
   );
 }

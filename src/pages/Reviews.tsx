@@ -7,7 +7,7 @@ export default function Reviews() {
     <>
       <PageHero
         title="Patient Reviews"
-        subtitle="Read why patients from Arizona, California, and throughout Mexico trust Dra. Marlene Group for their dental care."
+        subtitle="See why patients from Arizona, California, and throughout Mexico trust Dra. Marlene Group for their dental care."
       />
 
       <Testimonials />
