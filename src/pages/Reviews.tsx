@@ -1,6 +1,6 @@
 import PageHero from "../components/PageHero/PageHero";
 import Testimonials from "../components/Testimonials/Testimonials";
-import Contact from "../components/Contact/Contact";
+
 
 export default function Reviews() {
   return (
@@ -12,7 +12,7 @@ export default function Reviews() {
 
       <Testimonials />
 
-      <Contact />
+      
     </>
   );
 }

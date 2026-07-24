@@ -59,9 +59,11 @@ export default function Navbar() {
           className="navbar-logo"
           onClick={closeMenu}
         >
-          <span className="navbar-logo-primary">
-            DRA. MARLENE
-          </span>
+       <span className="navbar-logo-primary">
+  {language === "en"
+    ? "DR. MARLENE"
+    : "DRA. MARLENE"}
+</span>
 
           <span className="navbar-logo-secondary">
             GROUP

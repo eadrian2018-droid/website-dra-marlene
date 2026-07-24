@@ -1,83 +1,184 @@
 import "./WhyChooseUs.css";
-import {
-  FaMapMarkerAlt,
-  FaRegClock,
-  FaHandHoldingUsd,
-  FaHeartbeat,
-} from "react-icons/fa";
 
-const features = [
+import { Link } from "react-router-dom";
+
+import {
+  ShieldCheck,
+  ScanLine,
+  HeartHandshake,
+  MapPin,
+  ArrowRight,
+} from "lucide-react";
+
+const reasons = [
   {
-    icon: <FaMapMarkerAlt />,
-    title: "Minutes from Arizona",
-    description:
-      "Conveniently located in San Luis Río Colorado, making quality dental care easily accessible for U.S. patients.",
+    icon: ShieldCheck,
+    title: "ADA Member",
+    text: "Committed to internationally recognized standards, continuing education, and evidence-based dentistry.",
   },
   {
-    icon: <FaRegClock />,
-    title: "Flexible Scheduling",
-    description:
-      "Appointments designed around your schedule, with efficient visits and minimal waiting time.",
+    icon: ScanLine,
+    title: "Modern Digital Dentistry",
+    text: "Advanced digital technology provides more accurate diagnoses, greater comfort, and predictable results.",
   },
   {
-    icon: <FaHandHoldingUsd />,
-    title: "Transparent Pricing",
-    description:
-      "High-quality dentistry at affordable prices, with clear treatment plans and no surprises.",
-  },
-  {
-    icon: <FaHeartbeat />,
-    title: "Stress-Free Experience",
-    description:
-      "A calm, welcoming environment focused on comfort, trust, and personalized attention from start to finish.",
+    icon: HeartHandshake,
+    title: "Personalized Care",
+    text: "Every treatment plan is tailored specifically to your goals, your health, and your smile.",
   },
 ];
 
 export default function WhyChooseUs() {
   return (
-    <section className="why section">
+    <section className="why">
+
       <div className="container">
 
-        <div className="section-header">
+        {/* ================= HEADER ================= */}
 
-          <span className="section-tag">
-            WHY PATIENTS CHOOSE US
+        <div className="why-header">
+
+          <span className="why-label">
+            WHY CHOOSE US
           </span>
 
           <h2>
-            Making Your Dental Visit
+            Experience Dentistry
             <br />
-            Easier Than Ever.
+
+            <span>Designed Around You.</span>
+
           </h2>
 
-          <p>
-            We believe outstanding dentistry goes beyond great clinical
-            results. From convenient access to transparent pricing and
-            personalized care, every detail is designed to make your
-            experience simple and stress-free.
+          <p className="why-description">
+            At Dra. Marlene Group, we combine advanced technology,
+            personalized care, and clinical excellence to create an
+            experience that feels comfortable, honest, and completely
+            focused on your smile.
           </p>
 
         </div>
 
-        <div className="why-grid">
+        {/* ================= CARDS ================= */}
 
-          {features.map((item) => (
-            <article className="why-card" key={item.title}>
+        <div className="why-cards">
 
-              <div className="why-icon">
-                {item.icon}
-              </div>
+          {reasons.map((item) => {
 
-              <h3>{item.title}</h3>
+            const Icon = item.icon;
 
-              <p>{item.description}</p>
+            return (
 
-            </article>
-          ))}
+              <article
+                key={item.title}
+                className="why-card"
+              >
+
+                <div className="why-card-icon">
+
+                  <Icon size={26} />
+
+                </div>
+
+                <h3>
+
+                  {item.title}
+
+                </h3>
+
+                <p>
+
+                  {item.text}
+
+                </p>
+
+              </article>
+
+            );
+
+          })}
+
+        </div>
+
+        {/* ================= LOCATION BAR ================= */}
+
+        <div className="why-location">
+
+          <div className="why-location-left">
+
+            <div className="why-location-icon">
+
+              <MapPin size={24} />
+
+            </div>
+
+            <div>
+
+              <h3>
+                Minutes from Arizona
+              </h3>
+
+              <p>
+                Conveniently located in San Luis Río Colorado,
+                providing premium dental care for patients from
+                Arizona, California and throughout the United States.
+              </p>
+
+            </div>
+
+          </div>
+
+          <div className="why-location-right">
+
+            <div className="location-dot"></div>
+
+            <div className="location-line"></div>
+
+            <div className="location-dot active"></div>
+
+          </div>
+
+        </div>
+
+        {/* ================= CTA ================= */}
+
+        <div className="why-cta">
+
+          <span className="why-cta-badge">
+            DRA. MARLENE GROUP
+          </span>
+
+          <h3>
+
+            Let's Create Your
+            <br />
+            Best Smile.
+
+          </h3>
+
+          <p>
+
+            We'll answer your questions, discuss your goals,
+            and create a personalized treatment plan designed
+            specifically for you.
+
+          </p>
+
+          <Link
+            to="/contact"
+            className="why-button"
+          >
+
+            Get Your Free Consultation
+
+            <ArrowRight size={18} />
+
+          </Link>
 
         </div>
 
       </div>
+
     </section>
   );
 }

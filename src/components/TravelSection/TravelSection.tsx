@@ -1,99 +1,55 @@
 import {
-  BadgeDollarSign,
-  CalendarCheck,
+  Clock3,
+  MapPin,
+  Phone,
+  Navigation,
   Car,
-  Globe,
-  MapPinned,
-  ShieldCheck,
 } from "lucide-react";
 
+import { site } from "../../config/site";
 import { useLanguage } from "../../context/LanguageContext";
 
 import "./TravelSection.css";
 
 const content = {
   en: {
-    tag: "International Patients",
+    badge: "VISIT OUR CLINIC",
 
-    title: "Why Patients Travel to Dra. Marlene Group",
+    title: "Easy to Find.\nEasy to Love.",
 
     description:
-      "Receive premium dental care just minutes from the Arizona border while saving significantly compared to typical U.S. treatment costs.",
+      "Conveniently located just minutes from the Arizona border, our modern dental office welcomes patients from both the United States and Mexico.",
 
-    benefits: [
-      {
-        icon: BadgeDollarSign,
-        title: "Save up to 70%",
-        text: "Excellent value without compromising quality.",
-      },
-      {
-        icon: Globe,
-        title: "English Speaking Team",
-        text: "Clear communication throughout your visit.",
-      },
-      {
-        icon: Car,
-        title: "Easy Border Crossing",
-        text: "Convenient location just minutes from Arizona.",
-      },
-      {
-        icon: ShieldCheck,
-        title: "Premium Materials",
-        text: "Modern dentistry using trusted brands and technology.",
-      },
-      {
-        icon: CalendarCheck,
-        title: "Flexible Scheduling",
-        text: "Appointments designed around your travel plans.",
-      },
-      {
-        icon: MapPinned,
-        title: "Personalized Care",
-        text: "Every treatment plan is tailored to your needs.",
-      },
-    ],
+    address: "Address",
+    hours: "Hours",
+    parking: "Parking",
+    border: "Border Crossing",
+
+    parkingText: "Free parking available.",
+    borderText: "Only minutes from Arizona.",
+
+    directions: "Get Directions",
+    consultation: "Free Consultation",
   },
 
   es: {
-    tag: "Pacientes Internacionales",
+    badge: "VISITA NUESTRO CONSULTORIO",
 
-    title: "¿Por qué los pacientes viajan a Dra. Marlene Group?",
+    title: "Fácil de Encontrar.\nFácil de Elegir.",
 
     description:
-      "Recibe atención dental de alta calidad a minutos de la frontera con Arizona y ahorra significativamente en comparación con los tratamientos en Estados Unidos.",
+      "Ubicados a solo minutos de la frontera con Arizona, recibimos pacientes de México y Estados Unidos todos los días.",
 
-    benefits: [
-      {
-        icon: BadgeDollarSign,
-        title: "Ahorra hasta un 70%",
-        text: "Excelente valor sin comprometer la calidad.",
-      },
-      {
-        icon: Globe,
-        title: "Atención en Inglés",
-        text: "Comunicación clara durante toda tu visita.",
-      },
-      {
-        icon: Car,
-        title: "Cruce Fronterizo Fácil",
-        text: "Ubicación conveniente a minutos de Arizona.",
-      },
-      {
-        icon: ShieldCheck,
-        title: "Materiales Premium",
-        text: "Odontología moderna con tecnología de confianza.",
-      },
-      {
-        icon: CalendarCheck,
-        title: "Horarios Flexibles",
-        text: "Citas adaptadas a tus planes de viaje.",
-      },
-      {
-        icon: MapPinned,
-        title: "Atención Personalizada",
-        text: "Cada tratamiento es diseñado para tus necesidades.",
-      },
-    ],
+    address: "Dirección",
+    hours: "Horario",
+    parking: "Estacionamiento",
+    border: "Frontera",
+
+    parkingText: "Estacionamiento gratuito.",
+    borderText: "A minutos de Arizona.",
+
+    directions: "Cómo Llegar",
+    consultation: "Consulta Gratuita",
   },
 };
 
@@ -103,48 +59,134 @@ export default function TravelSection() {
   const t = content[language];
 
   return (
-    <section className="travel section">
+    <section className="travel">
       <div className="container">
+        <div className="travel-wrapper">
 
-        <div className="section-header">
+          {/* LEFT */}
 
-          <span className="section-tag">
-            {t.tag}
-          </span>
+          <div className="travel-content">
 
-          <h2>{t.title}</h2>
+            <span className="travel-badge">
+              {t.badge}
+            </span>
 
-          <p>{t.description}</p>
+            <h2>
+              {t.title.split("\n").map((line) => (
+                <span key={line}>
+                  {line}
+                  <br />
+                </span>
+              ))}
+            </h2>
 
-        </div>
+            <p className="travel-description">
+              {t.description}
+            </p>
 
-        <div className="travel-grid">
+            <div className="travel-info">
 
-          {t.benefits.map((item) => {
+              <div className="travel-item">
+                <MapPin size={20} />
 
-            const Icon = item.icon;
+                <div>
+                  <strong>{t.address}</strong>
 
-            return (
+                  <span>
+                    {site.address.street}
+                    <br />
+                    {site.address.city}, {site.address.state}
+                  </span>
+                </div>
+              </div>
 
-              <article
-                className="travel-card"
-                key={item.title}
+              <div className="travel-item">
+                <Clock3 size={20} />
+
+                <div>
+                  <strong>{t.hours}</strong>
+
+                  <span>
+                    {site.officeHours.mondayFriday}
+                  </span>
+                </div>
+              </div>
+
+              <div className="travel-item">
+                <Phone size={20} />
+
+                <div>
+                  <strong>Phone</strong>
+
+                  <span>
+                    {site.phone}
+                  </span>
+                </div>
+              </div>
+
+              <div className="travel-item">
+                <Car size={20} />
+
+                <div>
+                  <strong>{t.parking}</strong>
+
+                  <span>
+                    {t.parkingText}
+                  </span>
+                </div>
+              </div>
+
+              <div className="travel-item">
+                <Navigation size={20} />
+
+                <div>
+                  <strong>{t.border}</strong>
+
+                  <span>
+                    {t.borderText}
+                  </span>
+                </div>
+              </div>
+
+            </div>
+
+            <div className="travel-buttons">
+
+              <a
+                href={site.googleMaps}
+                target="_blank"
+                rel="noreferrer"
+                className="travel-btn"
               >
+                {t.directions}
+              </a>
 
-                <Icon size={42} />
+              <a
+                href="/contact"
+                className="travel-btn-outline"
+              >
+                {t.consultation}
+              </a>
 
-                <h3>{item.title}</h3>
+            </div>
 
-                <p>{item.text}</p>
+          </div>
 
-              </article>
+          {/* MAP */}
 
-            );
+          <div className="travel-map">
 
-          })}
+            <iframe
+              src={site.googleMapsEmbed}
+              title="Dra. Marlene Group"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+
+          </div>
 
         </div>
-
       </div>
     </section>
   );

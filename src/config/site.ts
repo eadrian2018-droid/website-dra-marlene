@@ -27,8 +27,13 @@ export const site = {
       "https://www.instagram.com/dra.marleneverdugo_/",
   },
 
+  // Opens Google Maps with navigation to the clinic
   googleMaps:
-    "https://www.google.com/maps/place/Dra+Marlene+Verdugo/@32.4788099,-114.7771726,1017m/data=!3m1!1e3!4m16!1m9!3m8!1s0x80d64f39bc0a7061:0x1ead79917b3811cf!2sDra+Marlene+Verdugo!8m2!3d32.4788099!4d-114.7771726!9m1!1b1!16s%2Fg%2F11n10kz263",
+    "https://www.google.com/maps/search/?api=1&query=32.4788099,-114.7771726",
+
+  // Embedded map shown on the website
+  googleMapsEmbed:
+    "https://maps.google.com/maps?q=32.4788099,-114.7771726&ll=32.4788099,-114.7771726&z=16&output=embed",
 
   officeHours: {
     mondayFriday: "9:00 AM – 1:00 PM | 4:00 PM – 8:00 PM",

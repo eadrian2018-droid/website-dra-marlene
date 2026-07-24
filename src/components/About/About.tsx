@@ -93,7 +93,7 @@ export default function About() {
               to="/contact"
               className="btn btn-primary"
             >
-              Schedule Appointment
+              Get Your Free Consultation
             </Link>
 
             <Link

@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer-grid">
         <div>
-          <h3>Dra. Marlene Group</h3>
+          <h3>Dr. Marlene Group</h3>
 
           <p>
             Modern dentistry with personalized care for patients from Mexico,
@@ -65,7 +65,7 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom">
-        © {new Date().getFullYear()} Dra. Marlene Group. All rights reserved.
+        © {new Date().getFullYear()} Dr. Marlene Group. All rights reserved.
       </div>
     </footer>
   );

@@ -2,6 +2,7 @@ import {
   CalendarDays,
   CheckCircle2,
   Clock,
+  Lock,
   Mail,
   MapPin,
   Phone,
@@ -11,128 +12,48 @@ import { useLanguage } from "../../context/LanguageContext";
 import { useContactForm } from "../../hooks/useContactForm";
 import { sendContactEmail } from "../../services/email";
 import { site } from "../../config/site";
+import { content } from "./contact.content";
 
 import "./Contact.css";
 
-const content = {
-  en: {
-    tag: "Free Consultation",
-
-    title: "Ready to Transform Your Smile?",
-
-    description:
-      "Schedule your consultation today. Our bilingual team is ready to help patients from the United States and Mexico.",
-
-    benefits: [
-      "English Speaking Team",
-      "Minutes from Arizona",
-      "Same-Day Appointments",
-      "Personalized Treatment Plans",
-    ],
-
-    address: "Address",
-
-    phone: "Phone & WhatsApp",
-
-    email: "Email",
-
-    hours: "Office Hours",
-
-    weekdays: "Monday - Friday",
-
-    saturday: "Saturday",
-
-    sunday: "Sunday",
-
-    closed: "Closed",
-
-    name: "Full Name",
-
-    emailPlaceholder: "Email Address",
-
-    phonePlaceholder: "Phone Number",
-
-    messagePlaceholder: "How can we help you?",
-
-    sending: "Sending...",
-
-    button: "Book My Appointment",
-
-    success:
-      "Your request has been received. We'll contact you shortly.",
-  },
-
-  es: {
-    tag: "Consulta Gratuita",
-
-    title: "Estamos listos para ayudarte.",
-
-    description:
-      "Agenda tu consulta hoy mismo. Nuestro equipo está listo para atender pacientes de México y Estados Unidos.",
-
-    benefits: [
-      "Atención en Inglés y Español",
-      "A minutos de Arizona",
-      "Citas el mismo día",
-      "Plan de tratamiento personalizado",
-    ],
-
-    address: "Dirección",
-
-    phone: "Teléfono / WhatsApp",
-
-    email: "Correo",
-
-    hours: "Horario",
-
-    weekdays: "Lunes a Viernes",
-
-    saturday: "Sábado",
-
-    sunday: "Domingo",
-
-    closed: "Cerrado",
-
-    name: "Nombre completo",
-
-    emailPlaceholder: "Correo electrónico",
-
-    phonePlaceholder: "Teléfono",
-
-    messagePlaceholder: "¿Cómo podemos ayudarte?",
-
-    sending: "Enviando...",
-
-    button: "Agendar mi cita",
-
-    success:
-      "Hemos recibido tu solicitud. Nos pondremos en contacto contigo muy pronto.",
-  },
-};
-
 export default function Contact() {
+
   const { language } = useLanguage();
 
   const t = content[language];
 
   const {
+
     form,
+
     errors,
+
     loading,
+
     success,
+
     setLoading,
+
     setSuccess,
+
     setForm,
+
     handleChange,
+
     validate,
+
   } = useContactForm();
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(
+    e: React.FormEvent<HTMLFormElement>
+  ) {
+
     e.preventDefault();
 
     if (!validate()) return;
 
     try {
+
       setLoading(true);
 
       await sendContactEmail(form);
@@ -140,140 +61,242 @@ export default function Contact() {
       setSuccess(true);
 
       setForm({
+
         name: "",
+
         email: "",
+
         phone: "",
+
+        contactMethod: "",
+
+        facebookProfile: "",
+
+        treatment: "",
+
         message: "",
+
       });
 
-      setTimeout(() => setSuccess(false), 5000);
+      setTimeout(() => {
+
+        setSuccess(false);
+
+      }, 5000);
+
     } finally {
+
       setLoading(false);
+
     }
+
   }
 
   return (
-    <section className="contact section" id="contact">
+
+    <section
+      id="contact"
+      className="contact section"
+    >
+
       <div className="container contact-container">
 
         <div className="contact-info">
 
           <span className="section-tag">
+
             {t.tag}
+
           </span>
 
-          <h2>{t.title}</h2>
+          <h2>
+
+            {t.title}
+
+          </h2>
 
           <p className="contact-description">
+
             {t.description}
+
           </p>
 
           <div className="contact-benefits">
-            {t.benefits.map((item) => (
-              <div className="benefit" key={item}>
+
+            {t.benefits.map((benefit) => (
+
+              <div
+                key={benefit}
+                className="benefit"
+              >
+
                 <CheckCircle2 size={18} />
-                <span>{item}</span>
+
+                <span>
+
+                  {benefit}
+
+                </span>
+
               </div>
+
             ))}
+
           </div>
 
-          <div className="contact-item">
-            <MapPin className="contact-icon" />
+          <div className="contact-details-wrapper">
 
-            <div>
+            <div className="contact-details">
 
-              <h3>{t.address}</h3>
+                          <div className="contact-item">
+
+              <div className="contact-top">
+
+                <MapPin
+                  size={20}
+                  className="contact-icon"
+                />
+
+                <h4>
+
+                  {t.address}
+
+                </h4>
+
+              </div>
 
               <p>
+
                 {site.address.street}
+
                 <br />
+
                 {site.address.neighborhood}
+
                 <br />
-                {site.address.city}, {site.address.state},{" "}
+
+                {site.address.city},{" "}
+
+                {site.address.state}
+
+                <br />
+
                 {site.address.country}
-              </p>
-
-            </div>
-
-          </div>
-
-          <div className="contact-item">
-
-            <Phone className="contact-icon" />
-
-            <div>
-
-              <h3>{t.phone}</h3>
-
-              <p>
-
-                <a href={`tel:${site.phoneLink}`}>
-                  {site.phone}
-                </a>
 
               </p>
 
             </div>
 
-          </div>
+            <div className="contact-item">
 
-          <div className="contact-item">
+              <div className="contact-top">
 
-            <Mail className="contact-icon" />
+                <Phone
+                  size={20}
+                  className="contact-icon"
+                />
 
-            <div>
+                <h4>
 
-              <h3>{t.email}</h3>
+                  {t.phone}
 
-              <p>
+                </h4>
 
-                <a href={`mailto:${site.email}`}>
-                  {site.email}
-                </a>
+              </div>
 
-              </p>
+              <a href={`tel:${site.phoneLink}`}>
+
+                {site.phone}
+
+              </a>
 
             </div>
 
-          </div>
+            <div className="contact-item">
 
-          <div className="contact-item">
+              <div className="contact-top">
 
-            <Clock className="contact-icon" />
+                <Mail
+                  size={20}
+                  className="contact-icon"
+                />
 
-            <div>
+                <h4>
 
-              <h3>{t.hours}</h3>
+                  {t.email}
+
+                </h4>
+
+              </div>
+
+              <a href={`mailto:${site.email}`}>
+
+                {site.email}
+
+              </a>
+
+            </div>
+
+            <div className="contact-item">
+
+              <div className="contact-top">
+
+                <Clock
+                  size={20}
+                  className="contact-icon"
+                />
+
+                <h4>
+
+                  {t.hours}
+
+                </h4>
+
+              </div>
 
               <p>
 
-                {t.weekdays}
+                <strong>
+
+                  {t.weekdays}
+
+                </strong>
 
                 <br />
 
                 {site.officeHours.mondayFriday}
 
                 <br />
+
                 <br />
 
-                {t.saturday}
+                <strong>
+
+                  {t.saturday}
+
+                </strong>
 
                 <br />
 
                 {site.officeHours.saturday}
 
                 <br />
-                <br />
-
-                {t.sunday}
 
                 <br />
 
-                {language === "en"
-                  ? site.officeHours.sunday
-                  : "Cerrado"}
+                <strong>
+
+                  {t.sunday}
+
+                </strong>
+
+                <br />
+
+                {t.closed}
 
               </p>
+
+            </div>
 
             </div>
 
@@ -288,9 +311,27 @@ export default function Contact() {
 
           <div className="form-header">
 
-            <CalendarDays size={26} />
+            <div className="form-icon">
 
-            <h3>{t.button}</h3>
+              <CalendarDays size={24} />
+
+            </div>
+
+            <div>
+
+              <h3>
+
+                {t.formTitle}
+
+              </h3>
+
+              <p>
+
+                {t.formSubtitle}
+
+              </p>
+
+            </div>
 
           </div>
 
@@ -302,7 +343,9 @@ export default function Contact() {
             onChange={handleChange}
           />
 
-          {errors.name && <small>{errors.name}</small>}
+          {errors.name && (
+            <small>{errors.name}</small>
+          )}
 
           <input
             type="email"
@@ -312,7 +355,9 @@ export default function Contact() {
             onChange={handleChange}
           />
 
-          {errors.email && <small>{errors.email}</small>}
+          {errors.email && (
+            <small>{errors.email}</small>
+          )}
 
           <input
             type="tel"
@@ -322,7 +367,90 @@ export default function Contact() {
             onChange={handleChange}
           />
 
-          {errors.phone && <small>{errors.phone}</small>}
+          {errors.phone && (
+            <small>{errors.phone}</small>
+          )}
+
+          <select
+            name="contactMethod"
+            value={form.contactMethod}
+            onChange={handleChange}
+          >
+
+            <option value="">
+              {t.contactMethod}
+            </option>
+
+            {t.contactMethods.map((method) => (
+
+              <option
+                key={method}
+                value={method}
+              >
+                {method}
+              </option>
+
+            ))}
+
+          </select>
+
+          {errors.contactMethod && (
+            <small>{errors.contactMethod}</small>
+          )}
+
+          {form.contactMethod ===
+            "Facebook Messenger" && (
+
+            <>
+
+              <input
+                type="text"
+                name="facebookProfile"
+                placeholder={t.facebookProfile}
+                value={form.facebookProfile}
+                onChange={handleChange}
+              />
+
+              {errors.facebookProfile && (
+
+                <small>
+
+                  {errors.facebookProfile}
+
+                </small>
+
+              )}
+
+            </>
+
+          )}
+
+          <select
+            name="treatment"
+            value={form.treatment}
+            onChange={handleChange}
+          >
+
+            <option value="">
+              {t.treatment}
+            </option>
+
+            {t.treatments.map((treatment) => (
+
+              <option
+                key={treatment}
+                value={treatment}
+              >
+                {treatment}
+              </option>
+
+            ))}
+
+          </select>
+
+          {errors.treatment && (
+            <small>{errors.treatment}</small>
+          )}
 
           <textarea
             rows={6}
@@ -332,25 +460,50 @@ export default function Contact() {
             onChange={handleChange}
           />
 
-          {errors.message && <small>{errors.message}</small>}
+          {errors.message && (
+            <small>{errors.message}</small>
+          )}
 
           <button
             className="primary-btn"
             type="submit"
             disabled={loading}
           >
-            {loading ? t.sending : t.button}
+
+            {loading
+              ? t.sending
+              : t.button}
+
           </button>
 
+          <div className="form-privacy">
+
+            <Lock size={16} />
+
+            <span>
+
+              {t.privacy}
+
+            </span>
+
+          </div>
+
           {success && (
+
             <p className="contact-success">
+
               {t.success}
+
             </p>
+
           )}
 
         </form>
 
       </div>
+
     </section>
+
   );
+
 }

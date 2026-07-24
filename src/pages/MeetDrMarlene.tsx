@@ -1,7 +1,7 @@
 import PageHero from "../components/PageHero/PageHero";
 import About from "../components/About/About";
 import Memberships from "../components/Memberships/Memberships";
-import Contact from "../components/Contact/Contact";
+
 
 export default function MeetDrMarlene() {
   return (
@@ -15,7 +15,7 @@ export default function MeetDrMarlene() {
 
       <Memberships />
 
-      <Contact />
+      
     </>
   );
 }

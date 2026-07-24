@@ -12,7 +12,7 @@ const en = {
     about: "Meet Dr. Marlene",
     testimonials: "Patient Reviews",
     contact: "Contact",
-    appointment: "Book an Appointment",
+    appointment: "Free Consultation",
     openMenu: "Open navigation menu",
     closeMenu: "Close navigation menu",
   },
@@ -113,8 +113,8 @@ const en = {
     tag: "Meet Dr. Marlene",
     title:
       "Professional dental care with a personal and compassionate approach.",
-    paragraphOne:
-      "At Dra. Marlene Group, every patient receives honest guidance, excellent care, and a treatment plan designed specifically for their needs.",
+   paragraphOne:
+  "At Dr. Marlene Group, every patient receives honest guidance, excellent care, and a treatment plan designed specifically for their needs.",
     paragraphTwo:
       "Our clinic combines modern technology, high-quality materials, and personalized attention to help patients feel comfortable and confident throughout their dental journey.",
 
@@ -211,8 +211,8 @@ const en = {
 
   whatsapp: {
     tooltip: "Book your appointment",
-    message:
-      "Hello, I would like more information and to schedule an appointment with Dra. Marlene Group.",
+   message:
+  "Hello, I would like more information and to schedule an appointment with Dr. Marlene Group.",
   },
 };
 

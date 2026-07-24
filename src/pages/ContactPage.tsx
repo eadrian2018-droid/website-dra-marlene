@@ -1,18 +1,18 @@
 import PageHero from "../components/PageHero/PageHero";
 import Contact from "../components/Contact/Contact";
-import Map from "../components/Map/Map";
+import VisitPlanning from "../components/VisitPlanning/VisitPlanning";
 
 export default function ContactPage() {
   return (
     <>
       <PageHero
-        title="Contact Us"
-        subtitle="Book your appointment or send us a message. We'd love to help you smile with confidence."
+        title="Let's Talk About Your Smile"
+        subtitle="Whether you're traveling from the United States, Canada, or you're a local patient, we're happy to answer your questions before you make any decision."
       />
 
       <Contact />
 
-      <Map />
+      <VisitPlanning />
     </>
   );
 }

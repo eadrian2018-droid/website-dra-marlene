@@ -1,8 +1,8 @@
 import {
   ArrowRight,
-  CalendarCheck,
-  Check,
+  Calendar,
   MessageCircle,
+  ShieldCheck,
   Star,
 } from "lucide-react";
 
@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { useLanguage } from "../../context/LanguageContext";
 import { site } from "../../config/site";
 
-import doctorImage from "../../assets/branding/doctora.png";
+import heroImage from "../../assets/images/hero/hero.jpg";
 
 import "./Hero.css";
 
@@ -24,128 +24,201 @@ export default function Hero() {
 
   return (
     <section className="hero">
-      <div className="hero-decoration hero-decoration-one" />
-      <div className="hero-decoration hero-decoration-two" />
+      <div className="hero-container">
+        <div className="hero-left">
+          <div className="hero-badge">
+            <ShieldCheck
+              size={17}
+              strokeWidth={2.3}
+            />
 
-      <div className="container hero-container">
-        <div className="hero-content">
-          <div className="hero-eyebrow">
-            <span className="hero-eyebrow-dot" />
-            {t.hero.eyebrow}
+            <span>
+              Premium Dental Care in Mexico
+            </span>
           </div>
 
           <h1 className="hero-title">
-            <span>{t.hero.titleFirst}</span>
-            <span>{t.hero.titleSecond}</span>
-            <strong>{t.hero.titleThird}</strong>
+            <span>Modern Dentistry.</span>
+            <span>Affordable Care.</span>
+
+            <span className="green">
+              Beautiful Smiles.
+            </span>
           </h1>
 
-          <p className="hero-description">
-            {t.hero.description}
+          <div className="hero-line" />
+
+          <p className="hero-text">
+            Experience high-quality dentistry with
+            advanced technology, personalized treatment,
+            and compassionate professionals dedicated to
+            creating healthy, confident smiles that last
+            a lifetime.
           </p>
 
-          <div className="hero-actions">
+          <div className="hero-buttons">
 
             <Link
               to="/contact"
-              className="hero-primary-button"
+              className="btn-primary"
             >
-              <CalendarCheck size={19} />
-              {t.hero.primaryButton}
+              <Calendar size={18} />
+              Get Your Free Consultation
             </Link>
 
             <Link
               to="/treatments"
-              className="hero-secondary-button"
+              className="btn-secondary"
             >
-              {t.hero.secondaryButton}
+              Our Services
               <ArrowRight size={18} />
             </Link>
 
           </div>
 
           <a
-            className="hero-whatsapp-link"
             href={`https://wa.me/${site.whatsapp}?text=${whatsappMessage}`}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noreferrer"
+            className="hero-contact"
           >
-            <MessageCircle size={18} />
-            {t.hero.whatsappButton}
-          </a>
-
-          <div className="hero-features">
-
-            <div className="hero-feature">
-              <Check size={16} />
-              <span>{t.hero.featureOne}</span>
+            <div className="hero-contact-icon">
+              <MessageCircle size={18} />
             </div>
-
-            <div className="hero-feature">
-              <Check size={16} />
-              <span>{t.hero.featureTwo}</span>
-            </div>
-
-            <div className="hero-feature">
-              <Check size={16} />
-              <span>{t.hero.featureThree}</span>
-            </div>
-
-          </div>
-        </div>
-
-        <div className="hero-visual">
-
-          <div className="hero-image-background" />
-
-          <div className="hero-image-frame">
-            <img
-              src={doctorImage}
-              alt="Dr. Marlene Verdugo at Dra. Marlene Group"
-            />
-          </div>
-
-          <div className="hero-rating-card">
-
-            <div className="hero-rating-stars">
-              <Star size={15} fill="currentColor" />
-              <Star size={15} fill="currentColor" />
-              <Star size={15} fill="currentColor" />
-              <Star size={15} fill="currentColor" />
-              <Star size={15} fill="currentColor" />
-            </div>
-
-            <div className="hero-card-content">
-              <strong>{t.hero.ratingValue}</strong>
-
-              <div>
-                <span>{t.hero.ratingTitle}</span>
-                <small>{t.hero.ratingText}</small>
-              </div>
-            </div>
-
-          </div>
-
-          <div className="hero-experience-card">
-            <strong>{t.hero.experienceValue}</strong>
-            <span>{t.hero.experienceTitle}</span>
-          </div>
-
-          <div className="hero-patients-card">
-            <strong>{t.hero.patientsValue}</strong>
-            <span>{t.hero.patientsTitle}</span>
-          </div>
-
-          <div className="hero-availability-card">
-            <span className="hero-availability-dot" />
 
             <div>
-              <strong>{t.hero.availabilityTitle}</strong>
-              <small>{t.hero.availabilityText}</small>
+              <small>
+                Need immediate assistance?
+              </small>
+
+              <strong>
+                Let's Talk About Your Smile
+              </strong>
             </div>
+          </a>
+        </div>
+
+        <div className="hero-right">
+          <div className="hero-image-wrapper">
+
+            <svg
+              className="hero-wave"
+              viewBox="0 0 260 900"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path
+                d="
+                  M260 0
+                  C60 120,
+                  40 770,
+                  260 900
+                  L0 900
+                  L0 0
+                  Z
+                "
+                fill="white"
+              />
+            </svg>
+
+            <div className="hero-image-overlay" />
+
+            <img
+              src={heroImage}
+              alt="Dra. Marlene Group dental care"
+              className="hero-image"
+            />
+
+            <div className="hero-floating-card">
+
+              <div className="hero-floating-top">
+
+                <div
+                  className="hero-stars"
+                  aria-label="Five-star rating"
+                >
+                  <Star size={16} fill="currentColor" />
+                  <Star size={16} fill="currentColor" />
+                  <Star size={16} fill="currentColor" />
+                  <Star size={16} fill="currentColor" />
+                  <Star size={16} fill="currentColor" />
+                </div>
+
+                <span>4.9/5 Rating</span>
+
+              </div>
+
+              <h3>
+                Trusted by Thousands of Patients
+              </h3>
+
+              <p>
+                Modern technology,
+                affordable prices,
+                and personalized dental care.
+              </p>
+
+            </div>
+
           </div>
+        </div>
+      </div>
+
+      <div className="hero-stats">
+
+        <div className="stat-card">
+
+          <h2>10+</h2>
+
+          <h4>Years Experience</h4>
+
+          <p>
+            Providing quality dental care with modern
+            techniques.
+          </p>
 
         </div>
+
+        <div className="stat-card">
+
+          <h2>5000+</h2>
+
+          <h4>Happy Patients</h4>
+
+          <p>
+            Beautiful smiles created for families from
+            Mexico and the USA.
+          </p>
+
+        </div>
+
+        <div className="stat-card">
+
+          <h2>4.9★</h2>
+
+          <h4>Patient Rating</h4>
+
+          <p>
+            Consistently rated excellent for quality,
+            comfort, and service.
+          </p>
+
+        </div>
+
+        <div className="stat-card">
+
+          <h2>100%</h2>
+
+          <h4>Modern Technology</h4>
+
+          <p>
+            Digital dentistry,
+            premium materials,
+            and advanced equipment.
+          </p>
+
+        </div>
+
       </div>
     </section>
   );

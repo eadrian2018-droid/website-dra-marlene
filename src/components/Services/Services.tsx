@@ -1,91 +1,183 @@
 import "./Services.css";
+
 import {
   FaTooth,
   FaTeeth,
   FaSmile,
   FaRegGrinStars,
   FaXRay,
-  FaShieldAlt,
-  FaMagic,
-  FaStethoscope,
+  FaHeartbeat,
+  FaTeethOpen,
+  FaUserMd,
+  FaArrowRight,
 } from "react-icons/fa";
 
 const services = [
+
   {
+    badge: "Most Popular",
     icon: <FaTooth />,
     title: "Dental Implants",
     description:
-      "Permanent replacement for missing teeth with natural function and appearance.",
+      "Replace missing teeth with permanent implants that look, feel, and function like natural teeth.",
   },
+
+  {
+    badge: "International Favorite",
+    icon: <FaTeeth />,
+    title: "All-on-4 / All-on-X",
+    description:
+      "A full-arch solution that restores your smile with fixed implant-supported teeth in fewer visits.",
+  },
+
+  {
+    badge: "Smile Design",
+    icon: <FaSmile />,
+    title: "Porcelain Veneers",
+    description:
+      "Create a brighter, more symmetrical smile with custom-crafted porcelain veneers.",
+  },
+
+  {
+    badge: "Complete Transformation",
+    icon: <FaRegGrinStars />,
+    title: "Smile Makeovers",
+    description:
+      "Personalized treatment plans combining cosmetic and restorative dentistry for dramatic results.",
+  },
+
   {
     icon: <FaTeeth />,
     title: "Crowns & Bridges",
     description:
-      "Restore damaged or missing teeth with durable and aesthetic restorations.",
+      "Restore damaged or missing teeth with durable, natural-looking restorations.",
   },
+
   {
-    icon: <FaSmile />,
-    title: "Cosmetic Dentistry",
+    icon: <FaHeartbeat />,
+    title: "Root Canal Therapy",
     description:
-      "Enhance your smile with veneers, bonding, and aesthetic treatments.",
+      "Save infected teeth comfortably using modern endodontic techniques.",
   },
+
   {
     icon: <FaRegGrinStars />,
-    title: "Professional Whitening",
+    title: "Professional Teeth Whitening",
     description:
-      "Safe in-office whitening for a brighter, healthier-looking smile.",
+      "Achieve a brighter smile safely with professional in-office whitening.",
   },
+
+  {
+    icon: <FaTeethOpen />,
+    title: "Invisalign®",
+    description:
+      "Straighten your teeth discreetly with clear aligner therapy.",
+  },
+
+  {
+    icon: <FaUserMd />,
+    title: "Professional Cleaning",
+    description:
+      "Maintain healthy gums and teeth with routine preventive cleanings.",
+  },
+
+  {
+    icon: <FaHeartbeat />,
+    title: "Emergency Dentistry",
+    description:
+      "Fast care for dental pain, broken teeth, infections, and urgent dental needs.",
+  },
+
+  {
+    icon: <FaTooth />,
+    title: "Wisdom Teeth Removal",
+    description:
+      "Comfortable surgical extractions performed by experienced specialists.",
+  },
+
   {
     icon: <FaXRay />,
     title: "Digital X-Rays",
     description:
-      "Modern imaging technology for faster diagnosis and better treatment planning.",
+      "Advanced digital imaging for precise diagnosis and treatment planning.",
   },
-  {
-    icon: <FaShieldAlt />,
-    title: "Preventive Care",
-    description:
-      "Exams, cleanings, fluoride, and education to maintain lifelong oral health.",
-  },
-  {
-    icon: <FaMagic />,
-    title: "Smile Makeovers",
-    description:
-      "Personalized treatment plans to completely transform your smile.",
-  },
-  {
-    icon: <FaStethoscope />,
-    title: "General Dentistry",
-    description:
-      "Routine dental care for patients of all ages in a comfortable environment.",
-  },
+
 ];
 
 export default function Services() {
+
   return (
+
     <section className="services section">
+
       <div className="container">
+
         <div className="section-header">
-          <span className="section-tag">Our Services</span>
-          <h2>Complete Dental Care Under One Roof</h2>
+
+          <h2>
+
+            Complete Dental Care Under One Roof
+
+          </h2>
+
           <p>
-            Personalized treatments designed to keep your smile healthy,
-            functional, and beautiful.
+
+            From preventive dentistry to full-mouth rehabilitation,
+            we provide comprehensive care for local and international
+            patients using modern technology and personalized treatment
+            plans.
+
           </p>
+
         </div>
 
         <div className="services-grid">
+
           {services.map((service) => (
-            <article className="service-card" key={service.title}>
-              <div className="service-icon">{service.icon}</div>
 
-              <h3>{service.title}</h3>
+            <article
+              className="service-card"
+              key={service.title}
+            >
 
-              <p>{service.description}</p>
+              {service.badge && (
+
+                <span className="service-badge">
+
+                  {service.badge}
+
+                </span>
+
+              )}
+
+              <div className="service-icon">
+
+                {service.icon}
+
+              </div>
+
+              <h3>
+
+                {service.title}
+
+              </h3>
+
+              <p>
+
+                {service.description}
+
+              </p>
+
             </article>
+
           ))}
+
         </div>
+
       </div>
+
     </section>
+
   );
+
 }

@@ -1,25 +1,41 @@
-import { useState } from "react";
-import { useLanguage } from "../context/LanguageContext";
-import type {
-  ContactFormData,
-  ContactFormErrors,
-} from "../types/contact";
+import { useState, type ChangeEvent } from "react";
 
-const initialValues: ContactFormData = {
+export interface ContactFormData {
+  name: string;
+  email: string;
+  phone: string;
+  contactMethod: string;
+  facebookProfile: string;
+  treatment: string;
+  message: string;
+}
+
+interface ContactErrors {
+  name?: string;
+  email?: string;
+  phone?: string;
+  contactMethod?: string;
+  facebookProfile?: string;
+  treatment?: string;
+  message?: string;
+}
+
+const initialForm: ContactFormData = {
   name: "",
   email: "",
   phone: "",
+  contactMethod: "",
+  facebookProfile: "",
+  treatment: "",
   message: "",
 };
 
 export function useContactForm() {
-  const { language } = useLanguage();
-
   const [form, setForm] =
-    useState<ContactFormData>(initialValues);
+    useState<ContactFormData>(initialForm);
 
   const [errors, setErrors] =
-    useState<ContactFormErrors>({});
+    useState<ContactErrors>({});
 
   const [loading, setLoading] =
     useState(false);
@@ -28,65 +44,126 @@ export function useContactForm() {
     useState(false);
 
   function handleChange(
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement
+    e: ChangeEvent<
+      HTMLInputElement |
+      HTMLTextAreaElement |
+      HTMLSelectElement
     >
   ) {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
+    const { name, value } = e.target;
+
+    setForm((prev) => {
+      const updated = {
+        ...prev,
+        [name]: value,
+      };
+
+      if (
+        name === "contactMethod" &&
+        value !== "Facebook Messenger"
+      ) {
+        updated.facebookProfile = "";
+      }
+
+      return updated;
     });
+
+    if (
+      errors[name as keyof ContactErrors]
+    ) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: "",
+      }));
+    }
+
+    if (
+      name === "contactMethod" &&
+      value !== "Facebook Messenger"
+    ) {
+      setErrors((prev) => ({
+        ...prev,
+        facebookProfile: "",
+      }));
+    }
   }
 
   function validate() {
-    const newErrors: ContactFormErrors = {};
+    const newErrors: ContactErrors = {};
 
     if (!form.name.trim()) {
       newErrors.name =
-        language === "en"
-          ? "Name is required."
-          : "Nombre requerido.";
+        "Please enter your name.";
     }
 
     if (!form.email.trim()) {
       newErrors.email =
-        language === "en"
-          ? "Email is required."
-          : "Correo requerido.";
-    } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+        "Please enter your email.";
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
+        form.email
+      )
+    ) {
       newErrors.email =
-        language === "en"
-          ? "Invalid email."
-          : "Correo inválido.";
+        "Please enter a valid email.";
     }
 
     if (!form.phone.trim()) {
       newErrors.phone =
-        language === "en"
-          ? "Phone number is required."
-          : "Teléfono requerido.";
+        "Please enter your phone number.";
+    }
+
+    if (!form.contactMethod.trim()) {
+      newErrors.contactMethod =
+        "Please select your preferred contact method.";
+    }
+
+    if (
+      form.contactMethod ===
+        "Facebook Messenger" &&
+      !form.facebookProfile.trim()
+    ) {
+      newErrors.facebookProfile =
+        "Please enter your Facebook name or profile.";
+    }
+
+    if (!form.treatment.trim()) {
+      newErrors.treatment =
+        "Please select a treatment.";
     }
 
     if (!form.message.trim()) {
       newErrors.message =
-        language === "en"
-          ? "Please enter a message."
-          : "Escribe un mensaje.";
+        "Please tell us how we can help you.";
+    } else if (
+      form.message.trim().length < 20
+    ) {
+      newErrors.message =
+        "Please provide a little more detail.";
     }
 
     setErrors(newErrors);
 
-    return Object.keys(newErrors).length === 0;
+    return (
+      Object.keys(newErrors).length === 0
+    );
+  }
+
+  function resetForm() {
+    setForm(initialForm);
+    setErrors({});
+    setSuccess(false);
   }
 
   return {
     form,
+    setForm,
+    resetForm,
     errors,
     loading,
     success,
     setLoading,
     setSuccess,
-    setForm,
     handleChange,
     validate,
   };

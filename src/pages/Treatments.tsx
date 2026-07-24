@@ -1,6 +1,5 @@
 import PageHero from "../components/PageHero/PageHero";
 import Services from "../components/Services/Services";
-import Contact from "../components/Contact/Contact";
 
 export default function Treatments() {
   return (
@@ -12,7 +11,6 @@ export default function Treatments() {
 
       <Services />
 
-      <Contact />
     </>
   );
 }

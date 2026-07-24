@@ -1,104 +1,190 @@
-.travel{
-    position:relative;
-    overflow:hidden;
+/* ==========================================
+   VISIT OUR CLINIC
+========================================== */
 
-    background:linear-gradient(
-        180deg,
-        var(--background) 0%,
-        #fff 100%
-    );
+.travel {
+  padding: 110px 24px 120px;
+  background: #ffffff;
 }
 
-.travel::before{
+.travel .container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
 
-    content:"";
+.travel-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 70px;
+  align-items: center;
+}
 
-    position:absolute;
+/* ==========================================
+   LEFT
+========================================== */
 
-    top:-180px;
-    right:-180px;
+.travel-badge {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(0, 167, 157, 0.12);
+  color: #009688;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
 
-    width:420px;
-    height:420px;
+.travel-content h2 {
+  font-size: clamp(2.3rem, 5vw, 3.8rem);
+  line-height: 1.1;
+  color: #0f172a;
+  margin-bottom: 24px;
+}
 
-    border-radius:50%;
+.travel-description {
+  color: #64748b;
+  line-height: 1.8;
+  font-size: 1.08rem;
+  margin-bottom: 42px;
+}
 
-    background:rgba(11,143,114,.05);
+.travel-info {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.travel-item {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.travel-item svg {
+  color: #00a79d;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.travel-item strong {
+  display: block;
+  color: #0f172a;
+  margin-bottom: 5px;
+  font-size: 1rem;
+}
+
+.travel-item span {
+  color: #64748b;
+  line-height: 1.7;
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.travel-buttons {
+  display: flex;
+  gap: 18px;
+  margin-top: 45px;
+  flex-wrap: wrap;
+}
+
+.travel-btn,
+.travel-btn-outline {
+  height: 56px;
+  padding: 0 32px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.98rem;
+  transition: all 0.3s ease;
+}
+
+.travel-btn {
+  background: #00a79d;
+  color: #ffffff;
+  border: 2px solid #00a79d;
+}
+
+.travel-btn:hover {
+  background: #00897b;
+  border-color: #00897b;
+  transform: translateY(-3px);
+}
+
+.travel-btn-outline {
+  background: transparent;
+  color: #00a79d;
+  border: 2px solid #00a79d;
+}
+
+.travel-btn-outline:hover {
+  background: #00a79d;
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+/* ==========================================
+   MAP
+========================================== */
+
+.travel-map {
+  height: 640px;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.12);
+  border: 1px solid #edf2f7;
+}
+
+.travel-map iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 992px) {
+
+  .travel {
+    padding: 90px 20px;
+  }
+
+  .travel-wrapper {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .travel-map {
+    height: 450px;
+  }
 
 }
 
-.travel-grid{
+@media (max-width: 768px) {
 
-    display:grid;
+  .travel-content h2 {
+    font-size: 2.3rem;
+  }
 
-    grid-template-columns:repeat(3,1fr);
+  .travel-buttons {
+    flex-direction: column;
+  }
 
-    gap:28px;
+  .travel-btn,
+  .travel-btn-outline {
+    width: 100%;
+  }
 
-    margin-top:60px;
-
-}
-
-.travel-card{
-
-    position:relative;
-
-    padding:38px 32px;
-
-    text-align:center;
-
-}
-
-.travel-card svg{
-
-    color:var(--secondary);
-
-    margin-bottom:22px;
-
-    transition:var(--transition);
-
-}
-
-.travel-card:hover svg{
-
-    transform:scale(1.1);
-
-}
-
-.travel-card h3{
-
-    margin-bottom:14px;
-
-    color:var(--text);
-
-    font-size:1.35rem;
-
-}
-
-.travel-card p{
-
-    color:var(--text-light);
-
-    line-height:1.8;
-
-}
-
-@media(max-width:992px){
-
-.travel-grid{
-
-grid-template-columns:repeat(2,1fr);
-
-}
-
-}
-
-@media(max-width:700px){
-
-.travel-grid{
-
-grid-template-columns:1fr;
-
-}
+  .travel-map {
+    height: 380px;
+  }
 
 }
