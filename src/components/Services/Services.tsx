@@ -9,7 +9,7 @@ import {
   FaHeartbeat,
   FaTeethOpen,
   FaUserMd,
-  FaArrowRight,
+
 } from "react-icons/fa";
 
 const services = [
