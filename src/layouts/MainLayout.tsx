@@ -5,16 +5,24 @@ import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import WhatsAppButton from "../components/WhatsAppButton/WhatsAppButton";
 import BackToTop from "../components/BackToTop/BackToTop";
+import ScrollToTop from "../components/ScrollToTop";
 
 export default function MainLayout() {
+
   return (
+
     <>
+
+      <ScrollToTop />
+
       <TopBar />
 
       <Navbar />
 
       <main>
+
         <Outlet />
+
       </main>
 
       <Footer />
@@ -22,6 +30,9 @@ export default function MainLayout() {
       <WhatsAppButton />
 
       <BackToTop />
+
     </>
+
   );
+
 }

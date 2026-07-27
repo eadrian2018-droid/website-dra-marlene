@@ -1,113 +1,328 @@
 import "./About.css";
-import { Link } from "react-router-dom";
+
 import {
+
   Award,
-  ShieldCheck,
-  Sparkles,
+
   GraduationCap,
+
+  Globe,
+
+  ShieldCheck,
+
+  CheckCircle2,
+
 } from "lucide-react";
 
+import doctorImage from "../../assets/images/about/dr-marlene-about.jpg";
+import doctorPortrait from "../../assets/images/about/dr-marlene-portrait.jpg";
+
 export default function About() {
+
   return (
+
     <section className="about section">
-      <div className="container about-container">
 
-        <div className="about-image">
+      <div className="container">
 
-          <div className="about-image-bg"></div>
+        <div className="about-hero">
 
-          <img
-            src="/images/dr-marlene-about.jpg"
-            alt="Dr. Marlene Verdugo"
-          />
+          <div className="about-hero-content">
 
-          <div className="about-floating-card">
-            <Award size={22} />
+            <span className="section-tag">
 
-            <div>
-              <strong>10+ Years</strong>
-              <span>Creating Beautiful Smiles</span>
+              Meet The Doctor
+
+            </span>
+
+            <h2>
+
+              Meet Dr. Marlene
+
+              <br />
+
+              Verdugo
+
+            </h2>
+
+            <p className="about-intro">
+
+              With more than a decade of experience, Dr. Marlene
+              combines advanced clinical training with a genuine
+              passion for helping patients smile with confidence.
+
+            </p>
+
+            <p className="about-intro">
+
+              Every treatment is planned with honesty,
+              precision, and personalized attention,
+              creating a comfortable experience for local
+              and international patients alike.
+
+            </p>
+
+            <div className="about-stats">
+
+              <div className="about-stat">
+
+                <Award size={22} />
+
+                <div>
+
+                  <strong>
+
+                    10+ Years
+
+                  </strong>
+
+                  <span>
+
+                    Experience
+
+                  </span>
+
+                </div>
+
+              </div>
+
+              <div className="about-stat">
+
+                <ShieldCheck size={22} />
+
+                <div>
+
+                  <strong>
+
+                    5,000+
+
+                  </strong>
+
+                  <span>
+
+                    Happy Patients
+
+                  </span>
+
+                </div>
+
+              </div>
+
+              <div className="about-stat">
+
+                <GraduationCap size={22} />
+
+                <div>
+
+                  <strong>
+
+                    Continuing
+
+                  </strong>
+
+                  <span>
+
+                    Education
+
+                  </span>
+
+                </div>
+
+              </div>
+
+              <div className="about-stat">
+
+                <Globe size={22} />
+
+                <div>
+
+                  <strong>
+
+                    English
+
+                  </strong>
+
+                  <span>
+
+                    & Spanish Care
+
+                  </span>
+
+                </div>
+
+              </div>
+
             </div>
+
+          </div>
+
+          <div className="about-hero-image">
+
+            <div className="image-decoration"></div>
+
+            <img
+
+              src={doctorImage}
+
+              alt="Dr. Marlene Verdugo"
+
+            />
+
           </div>
 
         </div>
 
-        <div className="about-content">
+        <div className="about-story">
 
-          <span className="section-tag">
-            Meet Dr. Marlene Verdugo
-          </span>
+          <div className="about-story-image">
 
-          <h2>
-            Dentistry Built on
-            <span> Trust, Experience & Compassion.</span>
-          </h2>
+            <img
 
-          <p>
-            Every patient deserves honest recommendations,
-            exceptional clinical care and a comfortable experience.
-            Dr. Marlene combines modern dentistry with a personalized
-            approach so every smile receives the attention it deserves.
-          </p>
+              src={doctorPortrait}
 
-          <div className="about-highlights">
+              alt="Dr. Marlene"
 
-            <div className="about-highlight">
-              <ShieldCheck size={22} />
+            />
 
-              <div>
-                <strong>Premium Quality Care</strong>
-                <span>
-                  Modern materials and evidence-based dentistry.
-                </span>
-              </div>
-            </div>
+          </div>
 
-            <div className="about-highlight">
-              <GraduationCap size={22} />
+          <div className="about-story-content">
 
-              <div>
-                <strong>Continuous Education</strong>
-                <span>
-                  Committed to staying current with the latest techniques.
-                </span>
-              </div>
-            </div>
+            <span className="section-tag">
 
-            <div className="about-highlight">
-              <Sparkles size={22} />
+              About Dr. Marlene
 
-              <div>
-                <strong>Personalized Treatments</strong>
-                <span>
-                  Every treatment plan is tailored to your needs.
-                </span>
-              </div>
+            </span>
+
+            <h2>
+
+              Committed to Excellence
+
+              <br />
+
+              in Every Smile
+
+            </h2>
+
+            <p>
+
+              Dr. Marlene believes outstanding dentistry begins
+              with listening. Every patient receives a customized
+              treatment plan designed around their goals,
+              comfort, and long-term oral health.
+
+            </p>
+
+            <p>
+
+              By combining modern technology, continuing education,
+              and a conservative approach, she focuses on creating
+              healthy, natural-looking smiles that last.
+
+            </p>
+
+                        <div className="about-signature">
+
+              <strong>
+
+                Dr. Marlene Verdugo
+
+              </strong>
+
+              <span>
+
+                General & Cosmetic Dentist
+
+              </span>
+
             </div>
 
           </div>
 
-          <div className="about-buttons">
+          <div className="about-education-card">
 
-            <Link
-              to="/contact"
-              className="btn btn-primary"
-            >
-              Get Your Free Consultation
-            </Link>
+            <span className="education-tag">
 
-            <Link
-              to="/treatments"
-              className="btn btn-outline"
-            >
-              Explore Treatments
-            </Link>
+              Education & Training
+
+            </span>
+
+            <h3>
+
+              Always Learning.
+              Always Improving.
+
+            </h3>
+
+            <p>
+
+              Continuing education allows Dr. Marlene to
+              provide modern, predictable and minimally
+              invasive treatments using the latest
+              techniques and technology.
+
+            </p>
+
+            <ul>
+
+              <li>
+
+                <CheckCircle2 size={18} />
+
+                <span>
+
+                  Doctor of Dental Surgery (DDS)
+
+                </span>
+
+              </li>
+
+              <li>
+
+                <CheckCircle2 size={18} />
+
+                <span>
+
+                  Advanced Aesthetic Dentistry
+
+                </span>
+
+              </li>
+
+              <li>
+
+                <CheckCircle2 size={18} />
+
+                <span>
+
+                  Implant & Restorative Dentistry
+
+                </span>
+
+              </li>
+
+              <li>
+
+                <CheckCircle2 size={18} />
+
+                <span>
+
+                  Continuing Education Every Year
+
+                </span>
+
+              </li>
+
+            </ul>
 
           </div>
 
         </div>
 
       </div>
+
     </section>
+
   );
+
 }
