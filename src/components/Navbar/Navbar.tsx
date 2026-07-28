@@ -4,6 +4,8 @@ import { NavLink } from "react-router-dom";
 
 import { useLanguage } from "../../context/LanguageContext";
 
+import logo from "../../assets/logos/logo-horizontal.png";
+
 import "./Navbar.css";
 
 export default function Navbar() {
@@ -59,15 +61,11 @@ export default function Navbar() {
           className="navbar-logo"
           onClick={closeMenu}
         >
-       <span className="navbar-logo-primary">
-  {language === "en"
-    ? "DR. MARLENE"
-    : "DRA. MARLENE"}
-</span>
-
-          <span className="navbar-logo-secondary">
-            GROUP
-          </span>
+          <img
+            src={logo}
+            alt="Dra. Marlene Group"
+            className="navbar-logo-image"
+          />
         </NavLink>
 
         <nav

@@ -8,59 +8,52 @@ import Treatments from "./pages/Treatments";
 import Reviews from "./pages/Reviews";
 import ContactPage from "./pages/ContactPage";
 
+import FloatingChat from "./components/Chatbot";
+
 import "./App.css";
 
 export default function App() {
 
   return (
 
-    <Routes>
+    <>
 
-      <Route element={<MainLayout />}>
+      <Routes>
 
-        <Route
+        <Route element={<MainLayout />}>
 
-          path="/"
+          <Route
+            path="/"
+            element={<Home />}
+          />
 
-          element={<Home />}
+          <Route
+            path="/meet-dr-marlene"
+            element={<MeetDrMarlene />}
+          />
 
-        />
+          <Route
+            path="/treatments"
+            element={<Treatments />}
+          />
 
-        <Route
+          <Route
+            path="/reviews"
+            element={<Reviews />}
+          />
 
-          path="/meet-dr-marlene"
+          <Route
+            path="/contact"
+            element={<ContactPage />}
+          />
 
-          element={<MeetDrMarlene />}
+        </Route>
 
-        />
+      </Routes>
 
-        <Route
+      <FloatingChat />
 
-          path="/treatments"
-
-          element={<Treatments />}
-
-        />
-
-        <Route
-
-          path="/reviews"
-
-          element={<Reviews />}
-
-        />
-
-        <Route
-
-          path="/contact"
-
-          element={<ContactPage />}
-
-        />
-
-      </Route>
-
-    </Routes>
+    </>
 
   );
 
