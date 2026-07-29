@@ -8,123 +8,369 @@ import {
   Hotel,
   Car,
   Smile,
+  ShieldCheck,
 } from "lucide-react";
 
 import "./FloatingChat.css";
 
+type Message = {
+  id: number;
+  sender: "assistant" | "user";
+  text: string;
+};
+
+const welcomeMessage = `👋 Welcome!
+
+I'm your AI Dental Assistant.
+
+I can help you with:
+
+• Prices
+• Treatments
+• Appointments
+• Border Crossing
+• Hotel Recommendations
+
+Select a topic below or ask me anything.`;
+
 export default function FloatingChat() {
+
   const [isOpen, setIsOpen] = useState(false);
 
+  const [input, setInput] = useState("");
+
+  const [isTyping, setIsTyping] =
+    useState(false);
+
+  const [messages, setMessages] =
+    useState<Message[]>([
+      {
+        id: 1,
+        sender: "assistant",
+        text: welcomeMessage,
+      },
+    ]);
+
+  function addUserMessage(
+    text: string
+  ) {
+
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: Date.now(),
+        sender: "user",
+        text,
+      },
+    ]);
+
+  }
+
+  function addAssistantMessage(
+    text: string
+  ) {
+
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: Date.now() + 1,
+        sender: "assistant",
+        text,
+      },
+    ]);
+
+  }
+
+  function simulateResponse(
+    response: string
+  ) {
+
+    setIsTyping(true);
+
+    setTimeout(() => {
+
+      setIsTyping(false);
+
+      addAssistantMessage(response);
+
+    }, 1200);
+
+  }
+
+  function handleQuickAction(
+    action: string
+  ) {
+
+    addUserMessage(action);
+
+    switch (action) {
+
+      case "Prices":
+
+        simulateResponse(
+
+`Our treatments are significantly more affordable than in the United States.
+
+Tell me which treatment you're interested in and I'll gladly provide an estimate.`
+
+        );
+
+        break;
+
+      case "Treatments":
+
+        simulateResponse(
+
+`We offer:
+
+• Dental Implants
+
+• Veneers
+
+• Crowns
+
+• Root Canals
+
+• Teeth Whitening
+
+• Invisalign
+
+• General Dentistry
+
+Which treatment would you like to learn more about?`
+
+        );
+
+        break;
+
+      case "Appointment":
+
+        simulateResponse(
+
+`We'd love to help!
+
+Most of our international patients schedule their visit a few days in advance.
+
+We can also help you plan your dental trip.`
+
+        );
+
+        break;
+
+      case "Border":
+
+        simulateResponse(
+
+`Crossing into San Luis Río Colorado is simple.
+
+We'll gladly explain the easiest border crossing options and answer any travel questions.`
+
+        );
+
+        break;
+
+      case "Hotels":
+
+        simulateResponse(
+
+`We can recommend comfortable hotels located near our clinic for every budget.
+
+Just let us know your travel dates.`
+
+        );
+
+        break;
+
+      default:
+
+        simulateResponse(
+
+"How can I help you today?"
+
+        );
+
+    }
+
+  }
+
+  function sendMessage() {
+
+    if (!input.trim()) return;
+
+    addUserMessage(input);
+
+    const question = input;
+
+    setInput("");
+
+    simulateResponse(
+
+`Thanks for your question:
+
+"${question}"
+
+Very soon I'll be able to answer automatically using our AI Dental Assistant.`
+
+    );
+
+  }
+
   return (
+
     <>
-      {/* Floating Button */}
 
       <button
         className="floating-chat-button"
         onClick={() => setIsOpen(true)}
         aria-label="Open AI Dental Assistant"
       >
-        <Bot size={26} />
-      </button>
 
-      {/* Chat Window */}
+        <Bot size={22} />
+
+        <span>
+
+          Ask AI
+
+        </span>
+
+      </button>
 
       <div
         className={`floating-chat ${
           isOpen ? "open" : ""
         }`}
       >
+
         <div className="floating-chat-header">
 
           <div className="chat-title">
 
             <div className="chat-avatar">
-              <Bot size={20} />
+
+              <Bot size={22} />
+
             </div>
 
             <div>
-              <h3>AI Dental Assistant</h3>
 
-              <span>Online</span>
+              <h3>
+
+                AI Dental Concierge
+
+              </h3>
+
+              <span>
+
+                Here to help 24/7
+
+              </span>
+
             </div>
 
           </div>
 
           <button
             className="chat-close"
-            onClick={() => setIsOpen(false)}
+            onClick={() =>
+              setIsOpen(false)
+            }
           >
+
             <X size={18} />
+
           </button>
 
         </div>
 
         <div className="floating-chat-body">
 
-          <div className="assistant-message">
+          {messages.map((message) => (
 
-            <p>
+            <div
+              key={message.id}
+              className={
+                message.sender ===
+                "assistant"
+                  ? "assistant-message"
+                  : "user-message"
+              }
+            >
 
-              👋 Hello!
+              {message.text
+                .split("\n")
+                .map((line, index) => (
+                  <p key={index}>
+                    {line}
+                  </p>
+                ))}
 
-            </p>
+            </div>
 
-            <p>
+          ))}
 
-              I'm your AI Dental Assistant.
+          {isTyping && (
 
-            </p>
+            <div className="assistant-message typing">
 
-            <p>
+                            <div className="typing-dots">
 
-              Ask me anything about our dental
-              treatments, pricing, travel, or
-              appointments.
+                <span></span>
 
-            </p>
+                <span></span>
 
-          </div>
+                <span></span>
+
+              </div>
+
+            </div>
+
+          )}
 
           <div className="quick-actions">
 
-            <button>
-
+            <button
+              onClick={() =>
+                handleQuickAction("Prices")
+              }
+            >
               <DollarSign size={16} />
-
               Prices
-
             </button>
 
-            <button>
-
+            <button
+              onClick={() =>
+                handleQuickAction("Treatments")
+              }
+            >
               <Smile size={16} />
-
               Treatments
-
             </button>
 
-            <button>
-
+            <button
+              onClick={() =>
+                handleQuickAction("Appointment")
+              }
+            >
               <CalendarDays size={16} />
-
-              Appointments
-
+              Appointment
             </button>
 
-            <button>
-
+            <button
+              onClick={() =>
+                handleQuickAction("Border")
+              }
+            >
               <Car size={16} />
-
-              Border Crossing
-
+              Border
             </button>
 
-            <button>
-
+            <button
+              onClick={() =>
+                handleQuickAction("Hotels")
+              }
+            >
               <Hotel size={16} />
-
               Hotels
-
             </button>
 
           </div>
@@ -133,20 +379,55 @@ export default function FloatingChat() {
 
         <div className="floating-chat-footer">
 
-          <input
-            type="text"
-            placeholder="Type your question..."
-          />
+          <div className="chat-security">
 
-          <button>
+            <ShieldCheck size={15} />
 
-            <Send size={18} />
+            <span>
 
-          </button>
+              Private & Secure
+
+            </span>
+
+          </div>
+
+          <div className="chat-input">
+
+            <input
+              type="text"
+              value={input}
+              placeholder="Ask me anything..."
+              onChange={(e) =>
+                setInput(e.target.value)
+              }
+              onKeyDown={(e) => {
+
+                if (e.key === "Enter") {
+
+                  sendMessage();
+
+                }
+
+              }}
+            />
+
+            <button
+              onClick={sendMessage}
+              aria-label="Send message"
+            >
+
+              <Send size={18} />
+
+            </button>
+
+          </div>
 
         </div>
 
       </div>
+
     </>
+
   );
+
 }
