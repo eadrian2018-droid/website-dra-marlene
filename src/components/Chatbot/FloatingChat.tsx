@@ -398,9 +398,9 @@ export default function FloatingChat() {
 
       </button>
 
-      {isOpen && (
+     {isOpen && (
 
-        <div className="floating-chat">
+  <div className="floating-chat open">
 
           <div className="floating-chat-header">
 
