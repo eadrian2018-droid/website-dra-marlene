@@ -67,11 +67,6 @@ How can I help you today?`,
       },
 
       {
-        id: "financingInfo",
-        label: "💳 Financing",
-      },
-
-      {
         id: "emergencyInfo",
         label: "🆘 Emergency",
       },
