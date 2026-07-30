@@ -1,14 +1,22 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 import {
   Bot,
   ChevronLeft,
   Home,
   Send,
+  ShieldCheck,
   X,
 } from "lucide-react";
 
-import { chatData } from "./chatData";
+import {
+  chatData,
+} from "./chatData";
 
 import type {
   ChatNode,
@@ -21,11 +29,15 @@ type Sender =
   | "assistant"
   | "user";
 
-type Message = {
-  id: number;
-  sender: Sender;
-  text: string;
-};
+interface Message {
+
+  id:number;
+
+  sender:Sender;
+
+  text:string;
+
+}
 
 const ROOT_NODE = "welcome";
 
@@ -34,33 +46,51 @@ const TYPING_DELAY = 700;
 export default function FloatingChat() {
 
   const [
+
     isOpen,
+
     setIsOpen,
+
   ] = useState(false);
 
   const [
+
     input,
+
     setInput,
+
   ] = useState("");
 
   const [
+
     isTyping,
+
     setIsTyping,
+
   ] = useState(false);
 
   const [
+
     currentNodeId,
+
     setCurrentNodeId,
+
   ] = useState(ROOT_NODE);
 
   const [
+
     history,
+
     setHistory,
+
   ] = useState<string[]>([]);
 
   const [
+
     messages,
+
     setMessages,
+
   ] = useState<Message[]>([]);
 
   const messageIdRef =
@@ -77,46 +107,167 @@ export default function FloatingChat() {
   const currentNode:
     | ChatNode
     | undefined = useMemo(
-    () =>
-      chatData[currentNodeId],
-    [currentNodeId]
-  );
 
-  useEffect(() => {
+      () =>
 
-    if (!isOpen) {
+        chatData[currentNodeId],
 
-      return;
+      [
 
-    }
+        currentNodeId,
 
-    bottomRef.current?.scrollIntoView(
-      {
-        behavior: "smooth",
-      }
+      ]
+
     );
-
-  }, [
-    messages,
-    isTyping,
-    isOpen,
-  ]);
 
   useEffect(() => {
 
     if (
-      initialized.current
+
+      !initialized.current
+
+    ) {
+
+      initialized.current =
+        true;
+
+      const welcome =
+        chatData[
+          ROOT_NODE
+        ];
+
+      setMessages([
+
+        {
+
+          id:
+            messageIdRef.current++,
+
+          sender:
+            "assistant",
+
+          text:
+            welcome.message,
+
+        },
+
+      ]);
+
+    }
+
+  }, []);
+
+  useEffect(() => {
+
+    if (
+
+      !isOpen
+
     ) {
 
       return;
 
     }
 
-    initialized.current =
-      true;
+    bottomRef.current?.scrollIntoView({
+
+      behavior:
+        "smooth",
+
+    });
+
+  }, [
+
+    messages,
+
+    isTyping,
+
+    isOpen,
+
+  ]);
+
+  function addAssistantMessage(
+
+    text:string
+
+  ) {
+
+    setIsTyping(true);
+
+    window.setTimeout(
+
+      () => {
+
+        setMessages(
+
+          previous => [
+
+            ...previous,
+
+            {
+
+              id:
+                messageIdRef.current++,
+
+              sender:
+                "assistant",
+
+              text,
+
+            },
+
+          ]
+
+        );
+
+        setIsTyping(false);
+
+      },
+
+      TYPING_DELAY
+
+    );
+
+  }
+
+  function addUserMessage(
+
+    text:string
+
+  ) {
+
+    setMessages(
+
+      previous => [
+
+        ...previous,
+
+        {
+
+          id:
+            messageIdRef.current++,
+
+          sender:
+            "user",
+
+          text,
+
+        },
+
+      ]
+
+    );
+
+  }
+
+    function navigateToNode(
+
+    nodeId:string
+
+  ) {
 
     const node =
-      chatData[ROOT_NODE];
+      chatData[nodeId];
 
     if (!node) {
 
@@ -124,303 +275,237 @@ export default function FloatingChat() {
 
     }
 
-    setMessages([
-      {
-        id:
-          messageIdRef.current++,
-        sender:
-          "assistant",
-        text: node.message,
-      },
-    ]);
+    setHistory(
 
-  }, []);
+      previous => [
 
-  const appendAssistantMessage =
-    (
-      text: string
-    ) => {
+        ...previous,
 
-      setIsTyping(true);
+        currentNodeId,
 
-      window.setTimeout(
-        () => {
+      ]
 
-          setMessages(
-            (
-              previous
-            ) => [
-              ...previous,
-              {
-                id:
-                  messageIdRef.current++,
-                sender:
-                  "assistant",
-                text,
-              },
-            ]
-          );
+    );
 
-          setIsTyping(
-            false
-          );
+    setCurrentNodeId(
+      nodeId
+    );
 
-        },
-        TYPING_DELAY
-      );
+    addAssistantMessage(
+      node.message
+    );
 
-    };
+  }
 
-  const appendUserMessage =
-    (
-      text: string
-    ) => {
+  function handleOptionClick(
 
-      setMessages(
-        (
-          previous
-        ) => [
-          ...previous,
-          {
-            id:
-              messageIdRef.current++,
-            sender:
-              "user",
-            text,
-          },
-        ]
-      );
+    option:ChatOption
 
-    };
+  ) {
 
-  const navigateToNode =
-    (
-      nodeId: string
-    ) => {
+    addUserMessage(
+      option.label
+    );
 
-      const node =
-        chatData[nodeId];
+    navigateToNode(
+      option.id
+    );
 
-      if (!node) {
+  }
 
-        return;
+  function handleBack() {
 
-      }
+    if (
 
-      setHistory(
-        (
-          previous
-        ) => [
-          ...previous,
-          currentNodeId,
-        ]
-      );
+      history.length === 0
 
-      setCurrentNodeId(
-        nodeId
-      );
+    ) {
 
-      appendAssistantMessage(
+      return;
+
+    }
+
+    const previousNode =
+
+      history[
+        history.length - 1
+      ];
+
+    setHistory(
+
+      previous =>
+
+        previous.slice(
+          0,
+          -1
+        )
+
+    );
+
+    setCurrentNodeId(
+
+      previousNode
+
+    );
+
+    const node =
+
+      chatData[
+        previousNode
+      ];
+
+    if (
+
+      node
+
+    ) {
+
+      addAssistantMessage(
+
         node.message
+
       );
 
-    };
+    }
 
-  const handleOptionClick =
-    (
-      option: ChatOption
-    ) => {
+  }
 
-      appendUserMessage(
-        option.label
-      );
+  function handleMainMenu() {
 
-      navigateToNode(
-        option.id
-      );
+    setHistory([]);
 
-    };
+    setCurrentNodeId(
 
-  const handleBack =
-    () => {
+      ROOT_NODE
 
-      if (
-        history.length ===
-        0
-      ) {
+    );
 
-        return;
+    const node =
 
-      }
-
-      const previous =
-        history[
-          history.length -
-            1
-        ];
-
-      const node =
-        chatData[
-          previous
-        ];
-
-      if (!node) {
-
-        return;
-
-      }
-
-      setHistory(
-        (
-          stack
-        ) =>
-          stack.slice(
-            0,
-            -1
-          )
-      );
-
-      setCurrentNodeId(
-        previous
-      );
-
-      appendAssistantMessage(
-        node.message
-      );
-
-    };
-
-  const handleMainMenu =
-    () => {
-
-      setHistory([]);
-
-      setCurrentNodeId(
+      chatData[
         ROOT_NODE
-      );
+      ];
 
-      const node =
-        chatData[
-          ROOT_NODE
-        ];
+    addAssistantMessage(
 
-      if (!node) {
+      node.message
 
-        return;
+    );
 
-      }
+  }
 
-      appendAssistantMessage(
-        node.message
-      );
+  function handleSubmit(
 
-    };
+    event:
+      React.FormEvent<HTMLFormElement>
 
-  const handleSubmit =
-    (
-      event:
-        React.FormEvent<HTMLFormElement>
-    ) => {
+  ) {
 
-      event.preventDefault();
+    event.preventDefault();
 
-      const value =
-        input.trim();
+    const value =
+      input.trim();
 
-      if (!value) {
+    if (
 
-        return;
+      !value
 
-      }
+    ) {
 
-      appendUserMessage(
-        value
-      );
+      return;
 
-      setInput("");
+    }
 
-      setIsTyping(
-        true
-      );
+    addUserMessage(
+      value
+    );
 
-      window.setTimeout(
-        () => {
+    setInput("");
 
-          setMessages(
-            (
-              previous
-            ) => [
-              ...previous,
-              {
-                id:
-                  messageIdRef.current++,
-                sender:
-                  "assistant",
-                text:
+    addAssistantMessage(
 
-                                  "OpenAI responses will be connected here.",
-              },
-            ]
-          );
+      "OpenAI responses will be connected here."
 
-          setIsTyping(
-            false
-          );
+    );
 
-        },
-        TYPING_DELAY
-      );
-
-    };
+  }
 
   return (
 
     <>
 
       <button
+
         className="floating-chat-button"
+
         onClick={() =>
+
           setIsOpen(
-            !isOpen
+
+            previous =>
+
+              !previous
+
           )
+
         }
+
       >
 
         {isOpen ? (
 
-          <X size={24} />
+          <X size={26} />
 
         ) : (
 
-          <Bot size={24} />
+          <Bot size={28} />
 
         )}
 
       </button>
 
-     {isOpen && (
+      {isOpen && (
 
-  <div className="floating-chat open">
+        <div className="floating-chat open">
 
           <div className="floating-chat-header">
 
-            <div className="floating-chat-title">
+            <div className="chat-title">
 
-              <Bot size={18} />
+              <div className="chat-avatar">
 
-              <span>
+                <Bot size={24} />
 
-                AI Dental Assistant
+              </div>
 
-              </span>
+              <div>
+
+                <h3>
+
+                  AI Dental Assistant
+
+                </h3>
+
+                <span>
+
+                  Online • Usually replies within 24 hours
+
+                </span>
+
+              </div>
 
             </div>
 
             <button
-              className="floating-chat-close"
+
+              className="chat-close"
+
               onClick={() =>
+
                 setIsOpen(false)
+
               }
+
             >
 
               <X size={18} />
@@ -431,36 +516,50 @@ export default function FloatingChat() {
 
           <div className="floating-chat-body">
 
-            {messages.map(
-              (message) => (
+                      {messages.map(
+
+              message => (
 
                 <div
+
                   key={message.id}
-                  className={`chat-message ${message.sender}`}
+
+                  className={
+
+                    message.sender ===
+                    "assistant"
+
+                      ? "assistant-message"
+
+                      : "user-message"
+
+                  }
+
                 >
 
-                  <div className="chat-bubble">
+                  <p>
 
                     {message.text}
 
-                  </div>
+                  </p>
 
                 </div>
 
               )
+
             )}
 
             {isTyping && (
 
-              <div className="chat-message assistant">
+              <div className="assistant-message typing">
 
-                <div className="chat-bubble typing">
+                <div className="typing-dots">
 
-                  <span></span>
+                  <span />
 
-                  <span></span>
+                  <span />
 
-                  <span></span>
+                  <span />
 
                 </div>
 
@@ -469,7 +568,9 @@ export default function FloatingChat() {
             )}
 
             <div
+
               ref={bottomRef}
+
             />
 
           </div>
@@ -477,13 +578,19 @@ export default function FloatingChat() {
           <div className="floating-chat-actions">
 
             <button
+
               type="button"
+
               className="chat-nav-button"
+
               onClick={handleBack}
+
               disabled={
-                history.length ===
-                0
+
+                history.length === 0
+
               }
+
             >
 
               <ChevronLeft size={16} />
@@ -497,9 +604,13 @@ export default function FloatingChat() {
             </button>
 
             <button
+
               type="button"
+
               className="chat-nav-button"
+
               onClick={handleMainMenu}
+
             >
 
               <Home size={16} />
@@ -519,17 +630,27 @@ export default function FloatingChat() {
             <div className="floating-chat-options">
 
               {currentNode.options.map(
-                (option) => (
+
+                option => (
 
                   <button
+
                     key={option.id}
+
                     type="button"
+
                     className="chat-option-button"
+
                     onClick={() =>
+
                       handleOptionClick(
+
                         option
+
                       )
+
                     }
+
                   >
 
                     {option.label}
@@ -537,41 +658,72 @@ export default function FloatingChat() {
                   </button>
 
                 )
+
               )}
 
             </div>
 
           )}
 
-          <form
-            className="floating-chat-input"
-            onSubmit={handleSubmit}
-          >
+                      <div className="floating-chat-footer">
 
-            <input
-              type="text"
-              value={input}
-              placeholder="Type your message..."
-              onChange={(
-                event
-              ) =>
-                setInput(
-                  event.target.value
-                )
-              }
-            />
+            <div className="chat-security">
 
-            <button
-              type="submit"
+              <ShieldCheck size={14} />
+
+              <span>
+
+                Secure & Private Conversation
+
+              </span>
+
+            </div>
+
+            <form
+
+              className="chat-input"
+
+              onSubmit={handleSubmit}
+
             >
 
-              <Send size={18} />
+              <input
 
-            </button>
+                type="text"
 
-          </form>
+                value={input}
 
-        </div>
+                placeholder="Type your message..."
+
+                onChange={event =>
+
+                  setInput(
+
+                    event.target.value
+
+                  )
+
+                }
+
+              />
+
+              <button
+
+                type="submit"
+
+                aria-label="Send message"
+
+              >
+
+                <Send size={18} />
+
+              </button>
+
+            </form>
+
+          </div>
+
+                  </div>
 
       )}
 
