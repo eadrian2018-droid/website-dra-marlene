@@ -1,219 +1,377 @@
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+
 import {
   Bot,
-  X,
+  ChevronLeft,
+  Home,
   Send,
-  DollarSign,
-  CalendarDays,
-  Hotel,
-  Car,
-  Smile,
-  ShieldCheck,
+  X,
 } from "lucide-react";
+
+import { chatData } from "./chatData";
+
+import type {
+  ChatNode,
+  ChatOption,
+} from "./chatData";
 
 import "./FloatingChat.css";
 
+type Sender =
+  | "assistant"
+  | "user";
+
 type Message = {
   id: number;
-  sender: "assistant" | "user";
+  sender: Sender;
   text: string;
 };
 
-const welcomeMessage = `👋 Welcome!
+const ROOT_NODE = "welcome";
 
-I'm your AI Dental Assistant.
-
-I can help you with:
-
-• Prices
-• Treatments
-• Appointments
-• Border Crossing
-• Hotel Recommendations
-
-Select a topic below or ask me anything.`;
+const TYPING_DELAY = 700;
 
 export default function FloatingChat() {
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [
+    isOpen,
+    setIsOpen,
+  ] = useState(false);
 
-  const [input, setInput] = useState("");
+  const [
+    input,
+    setInput,
+  ] = useState("");
 
-  const [isTyping, setIsTyping] =
-    useState(false);
+  const [
+    isTyping,
+    setIsTyping,
+  ] = useState(false);
 
-  const [messages, setMessages] =
-    useState<Message[]>([
-      {
-        id: 1,
-        sender: "assistant",
-        text: welcomeMessage,
-      },
-    ]);
+  const [
+    currentNodeId,
+    setCurrentNodeId,
+  ] = useState(ROOT_NODE);
 
-  function addUserMessage(
-    text: string
-  ) {
+  const [
+    history,
+    setHistory,
+  ] = useState<string[]>([]);
 
-    setMessages((prev) => [
-      ...prev,
-      {
-        id: Date.now(),
-        sender: "user",
-        text,
-      },
-    ]);
+  const [
+    messages,
+    setMessages,
+  ] = useState<Message[]>([]);
 
-  }
+  const messageIdRef =
+    useRef(1);
 
-  function addAssistantMessage(
-    text: string
-  ) {
+  const bottomRef =
+    useRef<HTMLDivElement | null>(
+      null
+    );
 
-    setMessages((prev) => [
-      ...prev,
-      {
-        id: Date.now() + 1,
-        sender: "assistant",
-        text,
-      },
-    ]);
+  const initialized =
+    useRef(false);
 
-  }
+  const currentNode:
+    | ChatNode
+    | undefined = useMemo(
+    () =>
+      chatData[currentNodeId],
+    [currentNodeId]
+  );
 
-  function simulateResponse(
-    response: string
-  ) {
+  useEffect(() => {
 
-    setIsTyping(true);
+    if (!isOpen) {
 
-    setTimeout(() => {
-
-      setIsTyping(false);
-
-      addAssistantMessage(response);
-
-    }, 1200);
-
-  }
-
-  function handleQuickAction(
-    action: string
-  ) {
-
-    addUserMessage(action);
-
-    switch (action) {
-
-      case "Prices":
-
-        simulateResponse(
-
-`Our treatments are significantly more affordable than in the United States.
-
-Tell me which treatment you're interested in and I'll gladly provide an estimate.`
-
-        );
-
-        break;
-
-      case "Treatments":
-
-        simulateResponse(
-
-`We offer:
-
-• Dental Implants
-
-• Veneers
-
-• Crowns
-
-• Root Canals
-
-• Teeth Whitening
-
-• Invisalign
-
-• General Dentistry
-
-Which treatment would you like to learn more about?`
-
-        );
-
-        break;
-
-      case "Appointment":
-
-        simulateResponse(
-
-`We'd love to help!
-
-Most of our international patients schedule their visit a few days in advance.
-
-We can also help you plan your dental trip.`
-
-        );
-
-        break;
-
-      case "Border":
-
-        simulateResponse(
-
-`Crossing into San Luis Río Colorado is simple.
-
-We'll gladly explain the easiest border crossing options and answer any travel questions.`
-
-        );
-
-        break;
-
-      case "Hotels":
-
-        simulateResponse(
-
-`We can recommend comfortable hotels located near our clinic for every budget.
-
-Just let us know your travel dates.`
-
-        );
-
-        break;
-
-      default:
-
-        simulateResponse(
-
-"How can I help you today?"
-
-        );
+      return;
 
     }
 
-  }
-
-  function sendMessage() {
-
-    if (!input.trim()) return;
-
-    addUserMessage(input);
-
-    const question = input;
-
-    setInput("");
-
-    simulateResponse(
-
-`Thanks for your question:
-
-"${question}"
-
-Very soon I'll be able to answer automatically using our AI Dental Assistant.`
-
+    bottomRef.current?.scrollIntoView(
+      {
+        behavior: "smooth",
+      }
     );
 
-  }
+  }, [
+    messages,
+    isTyping,
+    isOpen,
+  ]);
+
+  useEffect(() => {
+
+    if (
+      initialized.current
+    ) {
+
+      return;
+
+    }
+
+    initialized.current =
+      true;
+
+    const node =
+      chatData[ROOT_NODE];
+
+    if (!node) {
+
+      return;
+
+    }
+
+    setMessages([
+      {
+        id:
+          messageIdRef.current++,
+        sender:
+          "assistant",
+        text: node.message,
+      },
+    ]);
+
+  }, []);
+
+  const appendAssistantMessage =
+    (
+      text: string
+    ) => {
+
+      setIsTyping(true);
+
+      window.setTimeout(
+        () => {
+
+          setMessages(
+            (
+              previous
+            ) => [
+              ...previous,
+              {
+                id:
+                  messageIdRef.current++,
+                sender:
+                  "assistant",
+                text,
+              },
+            ]
+          );
+
+          setIsTyping(
+            false
+          );
+
+        },
+        TYPING_DELAY
+      );
+
+    };
+
+  const appendUserMessage =
+    (
+      text: string
+    ) => {
+
+      setMessages(
+        (
+          previous
+        ) => [
+          ...previous,
+          {
+            id:
+              messageIdRef.current++,
+            sender:
+              "user",
+            text,
+          },
+        ]
+      );
+
+    };
+
+  const navigateToNode =
+    (
+      nodeId: string
+    ) => {
+
+      const node =
+        chatData[nodeId];
+
+      if (!node) {
+
+        return;
+
+      }
+
+      setHistory(
+        (
+          previous
+        ) => [
+          ...previous,
+          currentNodeId,
+        ]
+      );
+
+      setCurrentNodeId(
+        nodeId
+      );
+
+      appendAssistantMessage(
+        node.message
+      );
+
+    };
+
+  const handleOptionClick =
+    (
+      option: ChatOption
+    ) => {
+
+      appendUserMessage(
+        option.label
+      );
+
+      navigateToNode(
+        option.id
+      );
+
+    };
+
+  const handleBack =
+    () => {
+
+      if (
+        history.length ===
+        0
+      ) {
+
+        return;
+
+      }
+
+      const previous =
+        history[
+          history.length -
+            1
+        ];
+
+      const node =
+        chatData[
+          previous
+        ];
+
+      if (!node) {
+
+        return;
+
+      }
+
+      setHistory(
+        (
+          stack
+        ) =>
+          stack.slice(
+            0,
+            -1
+          )
+      );
+
+      setCurrentNodeId(
+        previous
+      );
+
+      appendAssistantMessage(
+        node.message
+      );
+
+    };
+
+  const handleMainMenu =
+    () => {
+
+      setHistory([]);
+
+      setCurrentNodeId(
+        ROOT_NODE
+      );
+
+      const node =
+        chatData[
+          ROOT_NODE
+        ];
+
+      if (!node) {
+
+        return;
+
+      }
+
+      appendAssistantMessage(
+        node.message
+      );
+
+    };
+
+  const handleSubmit =
+    (
+      event:
+        React.FormEvent<HTMLFormElement>
+    ) => {
+
+      event.preventDefault();
+
+      const value =
+        input.trim();
+
+      if (!value) {
+
+        return;
+
+      }
+
+      appendUserMessage(
+        value
+      );
+
+      setInput("");
+
+      setIsTyping(
+        true
+      );
+
+      window.setTimeout(
+        () => {
+
+          setMessages(
+            (
+              previous
+            ) => [
+              ...previous,
+              {
+                id:
+                  messageIdRef.current++,
+                sender:
+                  "assistant",
+                text:
+
+                                  "OpenAI responses will be connected here.",
+              },
+            ]
+          );
+
+          setIsTyping(
+            false
+          );
+
+        },
+        TYPING_DELAY
+      );
+
+    };
 
   return (
 
@@ -221,210 +379,201 @@ Very soon I'll be able to answer automatically using our AI Dental Assistant.`
 
       <button
         className="floating-chat-button"
-        onClick={() => setIsOpen(true)}
-        aria-label="Open AI Dental Assistant"
+        onClick={() =>
+          setIsOpen(
+            !isOpen
+          )
+        }
       >
 
-        <Bot size={22} />
+        {isOpen ? (
 
-        <span>
+          <X size={24} />
 
-          Ask AI
+        ) : (
 
-        </span>
+          <Bot size={24} />
+
+        )}
 
       </button>
 
-      <div
-        className={`floating-chat ${
-          isOpen ? "open" : ""
-        }`}
-      >
+      {isOpen && (
 
-        <div className="floating-chat-header">
+        <div className="floating-chat">
 
-          <div className="chat-title">
+          <div className="floating-chat-header">
 
-            <div className="chat-avatar">
+            <div className="floating-chat-title">
 
-              <Bot size={22} />
-
-            </div>
-
-            <div>
-
-              <h3>
-
-                AI Dental Concierge
-
-              </h3>
+              <Bot size={18} />
 
               <span>
 
-                Here to help 24/7
+                AI Dental Assistant
 
               </span>
 
             </div>
 
-          </div>
-
-          <button
-            className="chat-close"
-            onClick={() =>
-              setIsOpen(false)
-            }
-          >
-
-            <X size={18} />
-
-          </button>
-
-        </div>
-
-        <div className="floating-chat-body">
-
-          {messages.map((message) => (
-
-            <div
-              key={message.id}
-              className={
-                message.sender ===
-                "assistant"
-                  ? "assistant-message"
-                  : "user-message"
+            <button
+              className="floating-chat-close"
+              onClick={() =>
+                setIsOpen(false)
               }
             >
 
-              {message.text
-                .split("\n")
-                .map((line, index) => (
-                  <p key={index}>
-                    {line}
-                  </p>
-                ))}
+              <X size={18} />
 
-            </div>
+            </button>
 
-          ))}
+          </div>
 
-          {isTyping && (
+          <div className="floating-chat-body">
 
-            <div className="assistant-message typing">
+            {messages.map(
+              (message) => (
 
-                            <div className="typing-dots">
+                <div
+                  key={message.id}
+                  className={`chat-message ${message.sender}`}
+                >
 
-                <span></span>
+                  <div className="chat-bubble">
 
-                <span></span>
+                    {message.text}
 
-                <span></span>
+                  </div>
+
+                </div>
+
+              )
+            )}
+
+            {isTyping && (
+
+              <div className="chat-message assistant">
+
+                <div className="chat-bubble typing">
+
+                  <span></span>
+
+                  <span></span>
+
+                  <span></span>
+
+                </div>
 
               </div>
+
+            )}
+
+            <div
+              ref={bottomRef}
+            />
+
+          </div>
+
+          <div className="floating-chat-actions">
+
+            <button
+              type="button"
+              className="chat-nav-button"
+              onClick={handleBack}
+              disabled={
+                history.length ===
+                0
+              }
+            >
+
+              <ChevronLeft size={16} />
+
+              <span>
+
+                Back
+
+              </span>
+
+            </button>
+
+            <button
+              type="button"
+              className="chat-nav-button"
+              onClick={handleMainMenu}
+            >
+
+              <Home size={16} />
+
+              <span>
+
+                Main Menu
+
+              </span>
+
+            </button>
+
+          </div>
+
+          {!!currentNode?.options?.length && (
+
+            <div className="floating-chat-options">
+
+              {currentNode.options.map(
+                (option) => (
+
+                  <button
+                    key={option.id}
+                    type="button"
+                    className="chat-option-button"
+                    onClick={() =>
+                      handleOptionClick(
+                        option
+                      )
+                    }
+                  >
+
+                    {option.label}
+
+                  </button>
+
+                )
+              )}
 
             </div>
 
           )}
 
-          <div className="quick-actions">
-
-            <button
-              onClick={() =>
-                handleQuickAction("Prices")
-              }
-            >
-              <DollarSign size={16} />
-              Prices
-            </button>
-
-            <button
-              onClick={() =>
-                handleQuickAction("Treatments")
-              }
-            >
-              <Smile size={16} />
-              Treatments
-            </button>
-
-            <button
-              onClick={() =>
-                handleQuickAction("Appointment")
-              }
-            >
-              <CalendarDays size={16} />
-              Appointment
-            </button>
-
-            <button
-              onClick={() =>
-                handleQuickAction("Border")
-              }
-            >
-              <Car size={16} />
-              Border
-            </button>
-
-            <button
-              onClick={() =>
-                handleQuickAction("Hotels")
-              }
-            >
-              <Hotel size={16} />
-              Hotels
-            </button>
-
-          </div>
-
-        </div>
-
-        <div className="floating-chat-footer">
-
-          <div className="chat-security">
-
-            <ShieldCheck size={15} />
-
-            <span>
-
-              Private & Secure
-
-            </span>
-
-          </div>
-
-          <div className="chat-input">
+          <form
+            className="floating-chat-input"
+            onSubmit={handleSubmit}
+          >
 
             <input
               type="text"
               value={input}
-              placeholder="Ask me anything..."
-              onChange={(e) =>
-                setInput(e.target.value)
+              placeholder="Type your message..."
+              onChange={(
+                event
+              ) =>
+                setInput(
+                  event.target.value
+                )
               }
-              onKeyDown={(e) => {
-
-                if (e.key === "Enter") {
-
-                  sendMessage();
-
-                }
-
-              }}
             />
 
             <button
-              onClick={sendMessage}
-              aria-label="Send message"
+              type="submit"
             >
 
               <Send size={18} />
 
             </button>
 
-          </div>
+          </form>
 
         </div>
 
-      </div>
+      )}
 
     </>
 
