@@ -5,6 +5,7 @@ import {
   useState,
 } from "react";
 
+
 import {
   Bot,
   ChevronLeft,
@@ -14,21 +15,28 @@ import {
   X,
 } from "lucide-react";
 
+
 import {
   chatData,
 } from "./chatData";
+
 
 import type {
   ChatNode,
   ChatOption,
 } from "./chatData";
 
+
 import "./FloatingChat.css";
 
 
+
 type Sender =
+
   | "assistant"
+
   | "user";
+
 
 
 type Message = {
@@ -42,12 +50,16 @@ type Message = {
 };
 
 
+
 const ROOT_NODE = "welcome";
+
 
 const TYPING_DELAY = 700;
 
 
-export default function FloatingChat() {
+
+export default function FloatingChat(){
+
 
 
   const [
@@ -150,158 +162,120 @@ export default function FloatingChat() {
 
       [
 
-        currentNodeId,
+        currentNodeId
 
       ]
 
     );
 
-
-
-  useEffect(() => {
-
-
-    if (!isOpen) {
-
-      return;
-
-    }
-
-
-    if (initialized.current) {
-
-      return;
-
-    }
-
-
-    initialized.current = true;
-
-
-    const welcome =
-
-      chatData[ROOT_NODE];
-
-
-    if (!welcome) {
-
-      return;
-
-    }
-
-
-    setMessages([
-
-      {
-
-        id:
-
-          messageIdRef.current++,
-
-        sender:
-
-          "assistant",
-
-        text:
-
-          welcome.message,
-
-      },
-
-    ]);
-
-
-  }, [
-
-    isOpen,
-
-  ]);
-
     useEffect(() => {
 
-    if (!isOpen) {
 
-      return;
+  if (messages.length <= 1) {
 
-    }
+    return;
 
-
-    bottomRef.current?.scrollIntoView({
-
-      behavior:
-
-        "smooth",
-
-      block:
-
-        "nearest",
-
-    });
+  }
 
 
-  }, [
+  if (!isOpen) {
 
-    messages,
+    return;
 
-    isTyping,
-
-  ]);
+  }
 
 
+  bottomRef.current?.scrollIntoView({
 
-  function addAssistantMessage(
+    behavior:"smooth",
 
-    text:string
+    block:"nearest",
 
-  ) {
-
-
-    setIsTyping(true);
+  });
 
 
-    window.setTimeout(() => {
+}, [
+
+  messages,
+
+  isTyping,
+
+  isOpen,
+
+]);
 
 
-      setMessages(
-
-        previous => [
-
-          ...previous,
-
-          {
-
-            id:
-
-              messageIdRef.current++,
-
-            sender:
-
-              "assistant",
-
-            text,
-
-          },
-
-        ]
-
-      );
 
 
-      setIsTyping(false);
+useEffect(() => {
 
 
-    }, TYPING_DELAY);
+  if (initialized.current) {
 
+    return;
+
+  }
+
+
+  initialized.current = true;
+
+
+  const welcome =
+
+    chatData[ROOT_NODE];
+
+
+
+  if (!welcome) {
+
+    return;
 
   }
 
 
 
-  function addUserMessage(
+  setMessages([
 
-    text:string
+    {
 
-  ) {
+      id:
+
+        messageIdRef.current++,
+
+
+      sender:
+
+        "assistant",
+
+
+      text:
+
+        welcome.message,
+
+    },
+
+  ]);
+
+
+
+}, []);
+
+
+
+
+
+const addAssistantMessage = (
+
+  text:string
+
+) => {
+
+
+  setIsTyping(true);
+
+
+
+  window.setTimeout(() => {
 
 
     setMessages(
@@ -316,9 +290,11 @@ export default function FloatingChat() {
 
             messageIdRef.current++,
 
+
           sender:
 
-            "user",
+            "assistant",
+
 
           text,
 
@@ -329,375 +305,649 @@ export default function FloatingChat() {
     );
 
 
-  }
+
+    setIsTyping(false);
 
 
 
-  function handleStartConversation() {
-
-
-    setShowOptions(true);
-
-
-  }
+  }, TYPING_DELAY);
 
 
 
-  function navigateToNode(
-
-    nodeId:string
-
-  ) {
-
-
-    const node =
-
-      chatData[nodeId];
+};
 
 
 
-    if (!node) {
-
-      return;
-
-    }
 
 
+const addUserMessage = (
 
-    setHistory(
+  text:string
 
-      previous => [
-
-        ...previous,
-
-        currentNodeId,
-
-      ]
-
-    );
+) => {
 
 
+  setMessages(
 
-    setCurrentNodeId(
+    previous => [
 
-      nodeId
+      ...previous,
 
-    );
+      {
 
+        id:
 
-
-    addAssistantMessage(
-
-      node.message
-
-    );
+          messageIdRef.current++,
 
 
-  }
+        sender:
+
+          "user",
+
+
+        text,
+
+      },
+
+    ]
+
+  );
+
+
+};
 
 
 
-  function handleOptionClick(
-
-    option:ChatOption
-
-  ) {
 
 
-    addUserMessage(
+const navigateToNode = (
 
-      option.label
+  nodeId:string
 
-    );
+) => {
 
 
-    navigateToNode(
+  const node =
 
-      option.id
+    chatData[nodeId];
 
-    );
 
+
+  if (!node) {
+
+    return;
 
   }
 
 
 
-    function handleBack() {
+  setHistory(
 
+    previous => [
 
-    if (
+      ...previous,
 
-      history.length === 0
+      currentNodeId,
 
-    ) {
+    ]
 
-      return;
-
-    }
-
-
-
-    const previousNode =
-
-      history[
-
-        history.length - 1
-
-      ];
+  );
 
 
 
-    const node =
+  setCurrentNodeId(
 
-      chatData[previousNode];
+    nodeId
+
+  );
 
 
 
-    setHistory(
+  addAssistantMessage(
 
-      previous =>
+    node.message
 
-        previous.slice(
+  );
 
-          0,
 
-          -1
+};
+
+const handleOptionClick = (
+
+  option:ChatOption
+
+) => {
+
+
+  addUserMessage(
+
+    option.label
+
+  );
+
+
+  navigateToNode(
+
+    option.id
+
+  );
+
+
+};
+
+
+
+
+
+const handleStartConversation = () => {
+
+
+  setShowOptions(true);
+
+
+};
+
+
+
+
+
+const handleBack = () => {
+
+
+  if (history.length === 0) {
+
+    return;
+
+  }
+
+
+
+  const previousNode =
+
+    history[history.length - 1];
+
+
+
+  const node =
+
+    chatData[previousNode];
+
+
+
+  if (!node) {
+
+    return;
+
+  }
+
+
+
+  setHistory(
+
+    previous =>
+
+      previous.slice(
+
+        0,
+
+        -1
+
+      )
+
+  );
+
+
+
+  setCurrentNodeId(
+
+    previousNode
+
+  );
+
+
+
+  addAssistantMessage(
+
+    node.message
+
+  );
+
+
+};
+
+
+
+
+
+const handleMainMenu = () => {
+
+
+  const node =
+
+    chatData[ROOT_NODE];
+
+
+
+  setHistory([]);
+
+
+
+  setCurrentNodeId(
+
+    ROOT_NODE
+
+  );
+
+
+
+  setShowOptions(true);
+
+
+
+  if (!node) {
+
+    return;
+
+  }
+
+
+
+  addAssistantMessage(
+
+    node.message
+
+  );
+
+
+};
+
+
+
+
+
+const handleSubmit = (
+
+  event:
+
+    React.FormEvent<HTMLFormElement>
+
+) => {
+
+
+  event.preventDefault();
+
+
+
+  const value =
+
+    input.trim();
+
+
+
+  if (!value) {
+
+    return;
+
+  }
+
+
+
+  addUserMessage(
+
+    value
+
+  );
+
+
+
+  setInput("");
+
+
+
+  addAssistantMessage(
+
+    "Thank you for your message. Our team will assist you shortly."
+
+  );
+
+
+};
+
+return (
+
+  <>
+
+
+    <button
+
+      className="floating-chat-button"
+
+      onClick={() =>
+
+        setIsOpen(
+
+          previous => !previous
 
         )
 
-    );
+      }
 
+    >
 
+      {isOpen ? (
 
-    setCurrentNodeId(
+        <X size={24} />
 
-      previousNode
+      ) : (
 
-    );
+        <Bot size={26} />
 
+      )}
 
 
-    if (node) {
+    </button>
 
 
-      addAssistantMessage(
 
-        node.message
 
-      );
+    {isOpen && (
 
 
-    }
+      <div className="floating-chat open">
 
 
-  }
+        <div className="floating-chat-header">
 
 
+          <div className="chat-title">
 
-  function handleMainMenu() {
 
+            <div className="chat-avatar">
 
-    const node =
 
-      chatData[ROOT_NODE];
-
-
-
-    setHistory([]);
-
-
-
-    setCurrentNodeId(
-
-      ROOT_NODE
-
-    );
-
-
-
-    setShowOptions(false);
-
-
-
-    if (node) {
-
-
-      addAssistantMessage(
-
-        node.message
-
-      );
-
-
-    }
-
-
-  }
-
-
-
-  function handleSubmit(
-
-    event:
-
-      React.FormEvent<HTMLFormElement>
-
-  ) {
-
-
-    event.preventDefault();
-
-
-
-    const value =
-
-      input.trim();
-
-
-
-    if (!value) {
-
-      return;
-
-    }
-
-
-
-    addUserMessage(
-
-      value
-
-    );
-
-
-
-    setInput("");
-
-
-
-    addAssistantMessage(
-
-      "OpenAI responses will be connected here."
-
-    );
-
-
-  }
-
-
-
-  return (
-
-    <>
-
-
-
-      <button
-
-        className="floating-chat-button"
-
-        onClick={() =>
-
-          setIsOpen(
-
-            previous =>
-
-              !previous
-
-          )
-
-        }
-
-      >
-
-
-        {isOpen ? (
-
-
-          <X size={26} />
-
-
-        ) : (
-
-
-          <Bot size={28} />
-
-
-        )}
-
-
-      </button>
-
-
-
-
-      {isOpen && (
-
-
-        <div className="floating-chat open">
-
-
-
-          <div className="floating-chat-header">
-
-
-
-            <div className="chat-title">
-
-
-
-              <div className="chat-avatar">
-
-
-                <Bot size={24} />
-
-
-              </div>
-
-
-
-              <div>
-
-
-
-                <h3>
-
-                  AI Dental Assistant
-
-                </h3>
-
-
-
-                <span>
-
-                  Online • Usually replies within 24 hours
-
-                </span>
-
-
-
-              </div>
-
+              <Bot size={20} />
 
 
             </div>
 
 
 
+            <div>
+
+
+              <h3>
+
+                AI Dental Assistant
+
+              </h3>
+
+
+
+              <span>
+
+                Online • Helping patients worldwide
+
+              </span>
+
+
+            </div>
+
+
+          </div>
+
+
+
+
+          <button
+
+            className="chat-close"
+
+            onClick={() =>
+
+              setIsOpen(false)
+
+            }
+
+          >
+
+
+            <X size={16} />
+
+
+          </button>
+
+
+        </div>
+
+
+
+
+
+        <div className="floating-chat-body">
+
+
+          {messages.map(
+
+            message => (
+
+
+              <div
+
+                key={message.id}
+
+                className={
+
+                  message.sender === "assistant"
+
+                    ? "assistant-message"
+
+                    : "user-message"
+
+                }
+
+              >
+
+
+                <p>
+
+                  {message.text}
+
+                </p>
+
+
+              </div>
+
+
+            )
+
+
+          )}
+
+
+
+
+          {isTyping && (
+
+
+            <div className="assistant-message typing">
+
+
+              <div className="typing-dots">
+
+
+                <span />
+
+                <span />
+
+                <span />
+
+
+              </div>
+
+
+            </div>
+
+
+          )}
+
+
+
+
+
+          {!showOptions && (
+
+
             <button
 
-              className="chat-close"
+              type="button"
 
-              onClick={() =>
+              className="chat-start-button"
 
-                setIsOpen(false)
+              onClick={handleStartConversation}
+
+            >
+
+              💬 Start Conversation
+
+            </button>
+
+
+          )}
+
+                    <div ref={bottomRef} />
+
+
+        </div>
+
+
+
+
+        {showOptions && currentNode?.options?.length && (
+
+
+          <div className="floating-chat-options">
+
+
+            {currentNode.options.map(
+
+
+              option => (
+
+
+                <button
+
+
+                  key={option.id}
+
+
+                  type="button"
+
+
+                  className="chat-option-button"
+
+
+                  onClick={() =>
+
+                    handleOptionClick(
+
+                      option
+
+                    )
+
+                  }
+
+
+                >
+
+
+                  {option.label}
+
+
+                </button>
+
+
+              )
+
+
+            )}
+
+
+          </div>
+
+
+        )}
+
+
+
+
+
+        {showOptions && (
+
+
+          <div className="floating-chat-actions">
+
+
+            <button
+
+
+              type="button"
+
+
+              className="chat-nav-button"
+
+
+              onClick={handleBack}
+
+
+              disabled={
+
+                history.length === 0
 
               }
+
 
             >
 
 
-              <X size={18} />
+              <ChevronLeft size={12} />
+
+
+              <span>
+
+                Back
+
+              </span>
+
+
+            </button>
+
+
+
+
+
+            <button
+
+
+              type="button"
+
+
+              className="chat-nav-button"
+
+
+              onClick={handleMainMenu}
+
+
+            >
+
+
+              <Home size={12} />
+
+
+              <span>
+
+                Menu
+
+              </span>
 
 
             </button>
@@ -706,312 +956,98 @@ export default function FloatingChat() {
 
           </div>
 
-                    <div className="floating-chat-body">
 
+        )}
 
-            {messages.map(
+                <div className="floating-chat-footer">
 
-              message => (
 
+          <div className="chat-security">
 
-                <div
 
-                  key={message.id}
+            <ShieldCheck size={12} />
 
-                  className={
 
-                    message.sender === "assistant"
+            <span>
 
-                      ? "assistant-message"
+              Secure & Private Conversation
 
-                      : "user-message"
+            </span>
 
-                  }
 
-                >
+          </div>
 
-                  <p>
 
-                    {message.text}
 
-                  </p>
 
+          <form
 
-                </div>
+            className="chat-input"
 
+            onSubmit={handleSubmit}
 
-              )
+          >
 
-            )}
 
+            <input
 
 
-            {isTyping && (
+              type="text"
 
 
-              <div className="assistant-message typing">
+              value={input}
 
 
-                <div className="typing-dots">
+              placeholder="Type your message..."
 
 
-                  <span />
+              onChange={event =>
 
-                  <span />
+                setInput(
 
-                  <span />
+                  event.target.value
 
+                )
 
-                </div>
+              }
 
-
-              </div>
-
-
-            )}
-
-
-
-            {!showOptions && currentNodeId === ROOT_NODE && (
-
-
-              <button
-
-                type="button"
-
-                className="chat-start-button"
-
-                onClick={handleStartConversation}
-
-              >
-
-                💬 Start Conversation
-
-              </button>
-
-
-            )}
-
-
-
-            {showOptions && !!currentNode?.options?.length && (
-
-
-              <div className="floating-chat-options">
-
-
-                {currentNode.options.map(
-
-
-                  option => (
-
-
-                    <button
-
-
-                      key={option.id}
-
-
-                      type="button"
-
-
-                      className="chat-option-button"
-
-
-                      onClick={() =>
-
-                        handleOptionClick(
-
-                          option
-
-                        )
-
-                      }
-
-
-                    >
-
-
-                      {option.label}
-
-
-                    </button>
-
-
-                  )
-
-
-                )}
-
-
-              </div>
-
-
-            )}
-
-
-
-            <div className="floating-chat-actions">
-
-
-              <button
-
-                type="button"
-
-                className="chat-nav-button"
-
-                onClick={handleBack}
-
-                disabled={
-
-                  history.length === 0
-
-                }
-
-              >
-
-
-                <ChevronLeft size={16} />
-
-
-                <span>
-
-                  Back
-
-                </span>
-
-
-              </button>
-
-
-
-              <button
-
-                type="button"
-
-                className="chat-nav-button"
-
-                onClick={handleMainMenu}
-
-              >
-
-
-                <Home size={16} />
-
-
-                <span>
-
-                  Main Menu
-
-                </span>
-
-
-              </button>
-
-
-            </div>
-
-
-
-            <div
-
-              ref={bottomRef}
 
             />
 
 
-          </div>
 
-                    <div className="floating-chat-footer">
+            <button
 
-
-            <div className="chat-security">
-
-
-              <ShieldCheck size={14} />
-
-
-              <span>
-
-                Secure & Private Conversation
-
-              </span>
-
-
-            </div>
-
-
-
-            <form
-
-              className="chat-input"
-
-              onSubmit={handleSubmit}
+              type="submit"
 
             >
 
 
-              <input
+              <Send size={16} />
 
 
-                type="text"
-
-
-                value={input}
-
-
-                placeholder="Type your message..."
-
-
-                onChange={event =>
-
-                  setInput(
-
-                    event.target.value
-
-                  )
-
-                }
-
-
-              />
+            </button>
 
 
 
-              <button
-
-                type="submit"
-
-                aria-label="Send message"
-
-              >
-
-
-                <Send size={18} />
-
-
-              </button>
-
-
-
-            </form>
-
-
-
-          </div>
+          </form>
 
 
 
         </div>
 
 
-      )}
+
+      </div>
 
 
+    )}
 
-    </>
 
-  );
+  </>
+
+
+);
+
 
 }
-
