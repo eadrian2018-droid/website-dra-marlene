@@ -21,23 +21,9 @@ export const chatData: Record<string, ChatNode> = {
 
 I'm your AI Dental Assistant.
 
-I'm here to answer your questions about:
+I'm here to answer your questions.
 
-🦷 Dental Treatments
-
-💰 Pricing
-
-📅 Appointments
-
-🚗 Border Crossing
-
-🏨 Hotels
-
-💳 Financing
-
-🌎 International Patients
-
-How can I help you today?`,
+How can I help you?`,
 
     options: [
 
