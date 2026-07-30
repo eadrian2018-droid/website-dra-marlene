@@ -25,11 +25,13 @@ import type {
 
 import "./FloatingChat.css";
 
+
 type Sender =
   | "assistant"
   | "user";
 
-interface Message {
+
+type Message = {
 
   id:number;
 
@@ -37,13 +39,16 @@ interface Message {
 
   text:string;
 
-}
+};
+
 
 const ROOT_NODE = "welcome";
 
 const TYPING_DELAY = 700;
 
+
 export default function FloatingChat() {
+
 
   const [
 
@@ -53,6 +58,18 @@ export default function FloatingChat() {
 
   ] = useState(false);
 
+
+
+  const [
+
+    showOptions,
+
+    setShowOptions,
+
+  ] = useState(false);
+
+
+
   const [
 
     input,
@@ -60,6 +77,8 @@ export default function FloatingChat() {
     setInput,
 
   ] = useState("");
+
+
 
   const [
 
@@ -69,6 +88,8 @@ export default function FloatingChat() {
 
   ] = useState(false);
 
+
+
   const [
 
     currentNodeId,
@@ -76,6 +97,8 @@ export default function FloatingChat() {
     setCurrentNodeId,
 
   ] = useState(ROOT_NODE);
+
+
 
   const [
 
@@ -85,6 +108,8 @@ export default function FloatingChat() {
 
   ] = useState<string[]>([]);
 
+
+
   const [
 
     messages,
@@ -93,19 +118,30 @@ export default function FloatingChat() {
 
   ] = useState<Message[]>([]);
 
+
+
   const messageIdRef =
+
     useRef(1);
 
+
+
   const bottomRef =
-    useRef<HTMLDivElement | null>(
-      null
-    );
+
+    useRef<HTMLDivElement | null>(null);
+
+
 
   const initialized =
+
     useRef(false);
 
+
+
   const currentNode:
+
     | ChatNode
+
     | undefined = useMemo(
 
       () =>
@@ -120,61 +156,88 @@ export default function FloatingChat() {
 
     );
 
-  useEffect(() => {
 
-    if (
-
-      !initialized.current
-
-    ) {
-
-      initialized.current =
-        true;
-
-      const welcome =
-        chatData[
-          ROOT_NODE
-        ];
-
-      setMessages([
-
-        {
-
-          id:
-            messageIdRef.current++,
-
-          sender:
-            "assistant",
-
-          text:
-            welcome.message,
-
-        },
-
-      ]);
-
-    }
-
-  }, []);
 
   useEffect(() => {
 
-    if (
 
-      !isOpen
-
-    ) {
+    if (!isOpen) {
 
       return;
 
     }
 
+
+    if (initialized.current) {
+
+      return;
+
+    }
+
+
+    initialized.current = true;
+
+
+    const welcome =
+
+      chatData[ROOT_NODE];
+
+
+    if (!welcome) {
+
+      return;
+
+    }
+
+
+    setMessages([
+
+      {
+
+        id:
+
+          messageIdRef.current++,
+
+        sender:
+
+          "assistant",
+
+        text:
+
+          welcome.message,
+
+      },
+
+    ]);
+
+
+  }, [
+
+    isOpen,
+
+  ]);
+
+    useEffect(() => {
+
+    if (!isOpen) {
+
+      return;
+
+    }
+
+
     bottomRef.current?.scrollIntoView({
 
       behavior:
+
         "smooth",
 
+      block:
+
+        "nearest",
+
     });
+
 
   }, [
 
@@ -182,9 +245,9 @@ export default function FloatingChat() {
 
     isTyping,
 
-    isOpen,
-
   ]);
+
+
 
   function addAssistantMessage(
 
@@ -192,49 +255,54 @@ export default function FloatingChat() {
 
   ) {
 
+
     setIsTyping(true);
 
-    window.setTimeout(
 
-      () => {
+    window.setTimeout(() => {
 
-        setMessages(
 
-          previous => [
+      setMessages(
 
-            ...previous,
+        previous => [
 
-            {
+          ...previous,
 
-              id:
-                messageIdRef.current++,
+          {
 
-              sender:
-                "assistant",
+            id:
 
-              text,
+              messageIdRef.current++,
 
-            },
+            sender:
 
-          ]
+              "assistant",
 
-        );
+            text,
 
-        setIsTyping(false);
+          },
 
-      },
+        ]
 
-      TYPING_DELAY
+      );
 
-    );
+
+      setIsTyping(false);
+
+
+    }, TYPING_DELAY);
+
 
   }
+
+
 
   function addUserMessage(
 
     text:string
 
   ) {
+
 
     setMessages(
 
@@ -245,9 +313,11 @@ export default function FloatingChat() {
         {
 
           id:
+
             messageIdRef.current++,
 
           sender:
+
             "user",
 
           text,
@@ -258,22 +328,41 @@ export default function FloatingChat() {
 
     );
 
+
   }
 
-    function navigateToNode(
+
+
+  function handleStartConversation() {
+
+
+    setShowOptions(true);
+
+
+  }
+
+
+
+  function navigateToNode(
 
     nodeId:string
 
   ) {
 
+
     const node =
+
       chatData[nodeId];
+
+
 
     if (!node) {
 
       return;
 
     }
+
+
 
     setHistory(
 
@@ -287,15 +376,26 @@ export default function FloatingChat() {
 
     );
 
+
+
     setCurrentNodeId(
+
       nodeId
+
     );
+
+
 
     addAssistantMessage(
+
       node.message
+
     );
 
+
   }
+
+
 
   function handleOptionClick(
 
@@ -303,17 +403,27 @@ export default function FloatingChat() {
 
   ) {
 
+
     addUserMessage(
+
       option.label
+
     );
 
+
     navigateToNode(
+
       option.id
+
     );
+
 
   }
 
-  function handleBack() {
+
+
+    function handleBack() {
+
 
     if (
 
@@ -325,22 +435,39 @@ export default function FloatingChat() {
 
     }
 
+
+
     const previousNode =
 
       history[
+
         history.length - 1
+
       ];
+
+
+
+    const node =
+
+      chatData[previousNode];
+
+
 
     setHistory(
 
       previous =>
 
         previous.slice(
+
           0,
+
           -1
+
         )
 
     );
+
+
 
     setCurrentNodeId(
 
@@ -348,17 +475,10 @@ export default function FloatingChat() {
 
     );
 
-    const node =
 
-      chatData[
-        previousNode
-      ];
 
-    if (
+    if (node) {
 
-      node
-
-    ) {
 
       addAssistantMessage(
 
@@ -366,13 +486,26 @@ export default function FloatingChat() {
 
       );
 
+
     }
+
 
   }
 
+
+
   function handleMainMenu() {
 
+
+    const node =
+
+      chatData[ROOT_NODE];
+
+
+
     setHistory([]);
+
+
 
     setCurrentNodeId(
 
@@ -380,47 +513,67 @@ export default function FloatingChat() {
 
     );
 
-    const node =
 
-      chatData[
-        ROOT_NODE
-      ];
 
-    addAssistantMessage(
+    setShowOptions(false);
 
-      node.message
 
-    );
+
+    if (node) {
+
+
+      addAssistantMessage(
+
+        node.message
+
+      );
+
+
+    }
+
 
   }
+
+
 
   function handleSubmit(
 
     event:
+
       React.FormEvent<HTMLFormElement>
 
   ) {
 
+
     event.preventDefault();
 
+
+
     const value =
+
       input.trim();
 
-    if (
 
-      !value
 
-    ) {
+    if (!value) {
 
       return;
 
     }
 
+
+
     addUserMessage(
+
       value
+
     );
 
+
+
     setInput("");
+
+
 
     addAssistantMessage(
 
@@ -428,11 +581,16 @@ export default function FloatingChat() {
 
     );
 
+
   }
+
+
 
   return (
 
     <>
+
+
 
       <button
 
@@ -452,33 +610,55 @@ export default function FloatingChat() {
 
       >
 
+
         {isOpen ? (
+
 
           <X size={26} />
 
+
         ) : (
+
 
           <Bot size={28} />
 
+
         )}
+
 
       </button>
 
+
+
+
       {isOpen && (
+
 
         <div className="floating-chat open">
 
+
+
           <div className="floating-chat-header">
+
+
 
             <div className="chat-title">
 
+
+
               <div className="chat-avatar">
+
 
                 <Bot size={24} />
 
+
               </div>
 
+
+
               <div>
+
+
 
                 <h3>
 
@@ -486,15 +666,23 @@ export default function FloatingChat() {
 
                 </h3>
 
+
+
                 <span>
 
                   Online • Usually replies within 24 hours
 
                 </span>
 
+
+
               </div>
 
+
+
             </div>
+
+
 
             <button
 
@@ -508,17 +696,23 @@ export default function FloatingChat() {
 
             >
 
+
               <X size={18} />
+
 
             </button>
 
+
+
           </div>
 
-          <div className="floating-chat-body">
+                    <div className="floating-chat-body">
 
-                      {messages.map(
+
+            {messages.map(
 
               message => (
+
 
                 <div
 
@@ -526,8 +720,7 @@ export default function FloatingChat() {
 
                   className={
 
-                    message.sender ===
-                    "assistant"
+                    message.sender === "assistant"
 
                       ? "assistant-message"
 
@@ -543,29 +736,182 @@ export default function FloatingChat() {
 
                   </p>
 
+
                 </div>
+
 
               )
 
             )}
 
+
+
             {isTyping && (
+
 
               <div className="assistant-message typing">
 
+
                 <div className="typing-dots">
 
-                  <span />
 
                   <span />
 
                   <span />
+
+                  <span />
+
 
                 </div>
 
+
               </div>
 
+
             )}
+
+
+
+            {!showOptions && currentNodeId === ROOT_NODE && (
+
+
+              <button
+
+                type="button"
+
+                className="chat-start-button"
+
+                onClick={handleStartConversation}
+
+              >
+
+                💬 Start Conversation
+
+              </button>
+
+
+            )}
+
+
+
+            {showOptions && !!currentNode?.options?.length && (
+
+
+              <div className="floating-chat-options">
+
+
+                {currentNode.options.map(
+
+
+                  option => (
+
+
+                    <button
+
+
+                      key={option.id}
+
+
+                      type="button"
+
+
+                      className="chat-option-button"
+
+
+                      onClick={() =>
+
+                        handleOptionClick(
+
+                          option
+
+                        )
+
+                      }
+
+
+                    >
+
+
+                      {option.label}
+
+
+                    </button>
+
+
+                  )
+
+
+                )}
+
+
+              </div>
+
+
+            )}
+
+
+
+            <div className="floating-chat-actions">
+
+
+              <button
+
+                type="button"
+
+                className="chat-nav-button"
+
+                onClick={handleBack}
+
+                disabled={
+
+                  history.length === 0
+
+                }
+
+              >
+
+
+                <ChevronLeft size={16} />
+
+
+                <span>
+
+                  Back
+
+                </span>
+
+
+              </button>
+
+
+
+              <button
+
+                type="button"
+
+                className="chat-nav-button"
+
+                onClick={handleMainMenu}
+
+              >
+
+
+                <Home size={16} />
+
+
+                <span>
+
+                  Main Menu
+
+                </span>
+
+
+              </button>
+
+
+            </div>
+
+
 
             <div
 
@@ -573,103 +919,17 @@ export default function FloatingChat() {
 
             />
 
-          </div>
-
-          <div className="floating-chat-actions">
-
-            <button
-
-              type="button"
-
-              className="chat-nav-button"
-
-              onClick={handleBack}
-
-              disabled={
-
-                history.length === 0
-
-              }
-
-            >
-
-              <ChevronLeft size={16} />
-
-              <span>
-
-                Back
-
-              </span>
-
-            </button>
-
-            <button
-
-              type="button"
-
-              className="chat-nav-button"
-
-              onClick={handleMainMenu}
-
-            >
-
-              <Home size={16} />
-
-              <span>
-
-                Main Menu
-
-              </span>
-
-            </button>
 
           </div>
 
-          {!!currentNode?.options?.length && (
+                    <div className="floating-chat-footer">
 
-            <div className="floating-chat-options">
-
-              {currentNode.options.map(
-
-                option => (
-
-                  <button
-
-                    key={option.id}
-
-                    type="button"
-
-                    className="chat-option-button"
-
-                    onClick={() =>
-
-                      handleOptionClick(
-
-                        option
-
-                      )
-
-                    }
-
-                  >
-
-                    {option.label}
-
-                  </button>
-
-                )
-
-              )}
-
-            </div>
-
-          )}
-
-                      <div className="floating-chat-footer">
 
             <div className="chat-security">
 
+
               <ShieldCheck size={14} />
+
 
               <span>
 
@@ -677,7 +937,10 @@ export default function FloatingChat() {
 
               </span>
 
+
             </div>
+
+
 
             <form
 
@@ -687,13 +950,18 @@ export default function FloatingChat() {
 
             >
 
+
               <input
+
 
                 type="text"
 
+
                 value={input}
 
+
                 placeholder="Type your message..."
+
 
                 onChange={event =>
 
@@ -705,7 +973,10 @@ export default function FloatingChat() {
 
                 }
 
+
               />
+
+
 
               <button
 
@@ -715,20 +986,32 @@ export default function FloatingChat() {
 
               >
 
+
                 <Send size={18} />
+
 
               </button>
 
+
+
             </form>
+
+
 
           </div>
 
-                  </div>
+
+
+        </div>
+
 
       )}
+
+
 
     </>
 
   );
 
 }
+
