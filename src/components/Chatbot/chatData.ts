@@ -3,6 +3,7 @@ export interface ChatOption {
   label: string;
 }
 
+
 export interface ChatNode {
   id: string;
   title?: string;
@@ -10,7 +11,9 @@ export interface ChatNode {
   options?: ChatOption[];
 }
 
+
 export const chatData: Record<string, ChatNode> = {
+
 
   welcome: {
 
@@ -21,2163 +24,1294 @@ export const chatData: Record<string, ChatNode> = {
 
 I'm your AI Dental Assistant.
 
-I'm here to answer your questions.
+I'm here to answer your questions and help you plan your dental visit.
 
-How can I help you?`,
+When you're ready, let's talk about your smile.`,
 
     options: [
 
       {
-        id: "pricesMenu",
-        label: "💰 Prices",
-      },
-
-      {
-        id: "treatmentsMenu",
-        label: "😁 Treatments",
-      },
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Appointment",
-      },
-
-      {
-        id: "borderGuide",
-        label: "🚗 Border Crossing",
-      },
-
-      {
-        id: "hotelGuide",
-        label: "🏨 Hotels",
-      },
-
-      {
-        id: "emergencyInfo",
-        label: "🆘 Emergency",
-      },
-
-      {
-        id: "internationalInfo",
-        label: "🌎 International Patients",
+        id: "startConversation",
+        label: "💬 Start Conversation",
       },
 
     ],
 
   },
 
-  pricesMenu: {
 
-    id: "pricesMenu",
+startConversation: {
+
+  id: "startConversation",
+
+  message:
+`Welcome! I'm happy to help you.
+
+How can I assist you today?`,
+
+  options: [
+
+    {
+      id: "treatments",
+      label: "😁 Treatments & Dental Care",
+    },
+
+
+    {
+      id: "travelPlanning",
+      label: "🚗 Travel Planning",
+    },
+
+
+    {
+      id: "freeSmileConsultation",
+      label: "💬 Free Smile Consultation",
+    },
+
+
+    {
+      id: "generalQuestions",
+      label: "❓ General Questions",
+    },
+
+  ],
+
+},
+
+
+  mainMenu: {
+
+    id: "mainMenu",
 
     message:
-`💰 TREATMENT PRICING
-
-Below are some of our most requested treatments.
-
-Select one to learn more.`,
+`How can I help you today?`,
 
     options: [
 
       {
-        id: "singleImplantPricing",
-        label: "🦷 Dental Implant",
+        id: "treatments",
+        label: "😁 Treatments & Dental Care",
       },
 
-      {
-        id: "allOn4Pricing",
-        label: "⭐⭐⭐⭐⭐ All-on-4",
-      },
 
       {
-        id: "allOn6Pricing",
-        label: "⭐⭐⭐⭐⭐ All-on-6",
+        id: "travelPlanning",
+        label: "🚗 Travel Planning",
       },
 
-      {
-        id: "veneerPricing",
-        label: "😁 Veneers",
-      },
 
       {
-        id: "zirconiaCrownPricing",
-        label: "👑 Zirconia Crowns",
+        id: "freeSmileConsultation",
+        label: "💬 Free Smile Consultation",
       },
 
-      {
-        id: "rootCanalPricing",
-        label: "🦷 Root Canal",
-      },
 
       {
-        id: "whiteningPricing",
-        label: "✨ Teeth Whitening",
-      },
-
-      {
-        id: "consultationPricing",
-        label: "📋 Consultation",
+        id: "generalQuestions",
+        label: "❓ General Questions",
       },
 
     ],
 
   },
 
-  treatmentsMenu: {
+    treatments: {
 
-    id: "treatmentsMenu",
+    id: "treatments",
 
     message:
-`😁 OUR MOST POPULAR TREATMENTS
+`😁 TREATMENTS & DENTAL CARE
 
-Choose a treatment to learn more.`,
+We provide personalized dental care using modern technology and high-quality materials.
+
+I can help you learn more about our treatments.
+
+Which option would you like to explore?`,
 
     options: [
 
       {
-        id: "singleImplantInfo",
-        label: "🦷 Dental Implant",
+        id: "implantInfo",
+        label: "🦷 Dental Implants",
       },
+
 
       {
         id: "allOn4Info",
-        label: "⭐⭐⭐⭐⭐ All-on-4",
+        label: "⭐ Full Arch Implants",
       },
 
-      {
-        id: "allOn6Info",
-        label: "⭐⭐⭐⭐⭐ All-on-6",
-      },
 
       {
         id: "veneerInfo",
-        label: "😁 Veneers",
+        label: "✨ Smile Design & Veneers",
       },
 
+
       {
-        id: "zirconiaCrownInfo",
-        label: "👑 Zirconia Crowns",
+        id: "crownInfo",
+        label: "👑 Crowns & Bridges",
       },
+
 
       {
         id: "rootCanalInfo",
-        label: "🦷 Root Canal",
+        label: "🦷 Root Canal Treatment",
       },
+
 
       {
         id: "whiteningInfo",
         label: "✨ Teeth Whitening",
       },
 
-      {
-        id: "invisalignInfo",
-        label: "😁 Invisalign",
-      },
 
       {
         id: "generalDentistryInfo",
         label: "🪥 General Dentistry",
       },
 
+
+      {
+        id: "freeSmileConsultation",
+        label: "💬 Talk About My Smile",
+      },
+
     ],
 
   },
 
-  singleImplantInfo: {
+implantInfo: {
 
-    id: "singleImplantInfo",
+  id: "implantInfo",
+
+  message:
+`🦷 DENTAL IMPLANTS
+
+Dental implants are one of the most advanced solutions to replace missing teeth.
+
+An implant works as an artificial tooth root that supports a dental crown, helping restore your smile, chewing function, and confidence.
+
+Dental implants may be recommended for patients who:
+
+✔ Have one or more missing teeth
+
+✔ Want a fixed and natural-looking solution
+
+✔ Want to improve chewing ability
+
+✔ Want to preserve bone structure
+
+Every case is unique. During your consultation, we evaluate your oral health, discuss your goals, and create a personalized treatment plan.
+
+Would you like to learn more about your options?`,
+
+  options: [
+
+    {
+      id: "implantEstimate",
+      label: "💰 Get a Treatment Estimate",
+    },
+
+
+    {
+      id: "freeSmileConsultation",
+      label: "💬 Talk About My Smile",
+    },
+
+
+    {
+      id: "treatments",
+      label: "😁 Explore Other Treatments",
+    },
+
+  ],
+
+},
+
+
+  implantEstimate: {
+
+    id: "implantEstimate",
 
     message:
-`🦷 SINGLE DENTAL IMPLANT
+`💰 TREATMENT ESTIMATE
 
-A dental implant is the closest replacement to a natural tooth.
+Every dental case is different, and the final cost depends on:
 
-Treatment includes:
+✔ Number of implants needed
 
-✔ Titanium Implant
+✔ Bone condition
 
-✔ Healing Period
+✔ Type of restoration
 
-✔ Premium Zirconia Crown
+✔ Additional procedures if required
 
-Benefits:
+The best way to receive an accurate estimate is through a personalized consultation.
 
-• Natural appearance
-
-• Restores chewing
-
-• Prevents bone loss
-
-• Long-lasting solution
-
-What would you like to know?`,
+Would you like to tell us more about your smile goals?`,
 
     options: [
 
       {
-        id: "singleImplantPricing",
-        label: "💰 Pricing",
-      },
-
-      {
-        id: "singleImplantTimeline",
-        label: "⏱ Treatment Timeline",
-      },
-
-      {
-        id: "singleImplantCandidate",
-        label: "👨‍⚕️ Am I a Candidate?",
-      },
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Schedule Consultation",
+        id: "freeSmileConsultation",
+        label: "💬 Free Smile Consultation",
       },
 
     ],
 
   },
 
-  singleImplantPricing: {
+ allOn4Info: {
 
-    id: "singleImplantPricing",
+  id: "allOn4Info",
 
-    message:
-`💰 SINGLE DENTAL IMPLANT
+  message:
+`⭐ FULL ARCH IMPLANTS (ALL-ON-4)
 
-Titanium Implant
+Full arch implants are an advanced solution for patients who need to replace an entire arch of missing or failing teeth.
 
-$800 USD
+This treatment uses strategically placed dental implants to support a fixed set of teeth, helping restore:
 
-Premium Zirconia Crown
+✔ A complete smile
 
-$1,400 USD
+✔ Chewing function
 
-Estimated Total
+✔ Confidence when speaking and smiling
 
-$2,200 USD
+✔ A more natural appearance
 
-Your treatment includes:
+Full arch treatment requires a complete evaluation to determine if this option is right for you.
 
-✔ Clinical Evaluation
+During your consultation, we review your oral health, your goals, and create a personalized treatment plan.
 
-✔ Digital Planning
+Would you like to learn more about your options?`,
 
-✔ Implant Placement
+  options: [
 
-✔ Healing Follow-up
+    {
+      id: "implantEstimate",
+      label: "💰 Get a Treatment Estimate",
+    },
 
-✔ Premium Zirconia Crown
 
-✔ Post-operative Instructions`,
+    {
+      id: "freeSmileConsultation",
+      label: "💬 Talk About My Smile",
+    },
 
-    options: [
 
-      {
-        id: "appointmentInfo",
-        label: "📅 Free Consultation",
-      },
+    {
+      id: "treatments",
+      label: "😁 Explore Other Treatments",
+    },
 
-      {
-        id: "pricesMenu",
-        label: "⬅️ More Prices",
-      },
+  ],
 
-    ],
+},
 
-  },
 
-  singleImplantTimeline: {
+allOn6Info: {
 
-    id: "singleImplantTimeline",
+  id: "allOn6Info",
 
-    message:
-`⏱ SINGLE IMPLANT TIMELINE
+  message:
+`⭐ FULL ARCH IMPLANTS (ALL-ON-6)
 
-Step 1
+Full arch implants with six implants are designed to provide additional support and stability for patients who need a complete smile restoration.
 
-Consultation and CT Scan
+By using six strategically placed implants, this treatment may provide a strong foundation for a fixed set of teeth.
 
-↓
+Benefits may include:
 
-Step 2
+✔ Improved stability
 
-Implant Placement
+✔ Natural-looking results
 
-↓
+✔ Better chewing function
 
-Step 3
+✔ Restored confidence
 
-Healing
-(Usually 3–6 months)
+✔ A long-term solution with proper care
 
-↓
+Every patient has different needs. A complete evaluation allows us to determine whether this option is appropriate for your situation.
 
-Step 4
+Would you like to discuss your smile goals with our team?`,
 
-Final Zirconia Crown
+  options: [
 
-Every patient heals differently, so your treatment time may vary.`,
+    {
+      id: "implantEstimate",
+      label: "💰 Get a Treatment Estimate",
+    },
 
-    options: [
 
-      {
-        id: "appointmentInfo",
-        label: "📅 Schedule Consultation",
-      },
+    {
+      id: "freeSmileConsultation",
+      label: "💬 Talk About My Smile",
+    },
 
-    ],
 
-  },
+    {
+      id: "treatments",
+      label: "😁 Explore Other Treatments",
+    },
 
-  singleImplantCandidate: {
+  ],
 
-    id: "singleImplantCandidate",
-
-    message:
-`👨‍⚕️ GOOD CANDIDATES
-
-You may qualify if you:
-
-✔ Are missing one tooth
-
-✔ Have healthy gums
-
-✔ Have adequate bone
-
-✔ Are in good general health
-
-If additional bone is required, we also offer bone grafting procedures.`,
-
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Free Consultation",
-      },
-
-    ],
-
-  },
-
-    allOn4Info: {
-
-    id: "allOn4Info",
-
-    message:
-`⭐⭐⭐⭐⭐ ALL-ON-4
-
-All-on-4 replaces an entire arch of missing teeth using only four strategically placed implants.
-
-Benefits
-
-✔ Fixed teeth
-
-✔ Beautiful smile
-
-✔ Eat comfortably again
-
-✔ No removable dentures
-
-✔ Long-lasting solution
-
-What would you like to know?`,
-
-    options: [
-
-      {
-        id: "allOn4Pricing",
-        label: "💰 Pricing",
-      },
-
-      {
-        id: "allOn4Timeline",
-        label: "⏱ Timeline",
-      },
-
-      {
-        id: "allOn4Candidate",
-        label: "👨‍⚕️ Candidate",
-      },
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Free Consultation",
-      },
-
-    ],
-
-  },
-
-  allOn4Pricing: {
-
-    id: "allOn4Pricing",
-
-    message:
-`💰 ALL-ON-4
-
-Upper Arch
-
-$12,000 USD
-
-Lower Arch
-
-$12,000 USD
-
-Treatment Includes
-
-✔ Four Premium Implants
-
-✔ Temporary Prosthesis
-
-✔ Final Zirconia Prosthesis
-
-✔ Digital Planning
-
-✔ Surgery
-
-✔ Follow-up Visits`,
-
-    options: [
-
-      {
-        id: "allOn4Timeline",
-        label: "⏱ Timeline",
-      },
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Schedule Consultation",
-      },
-
-    ],
-
-  },
-
-  allOn4Timeline: {
-
-    id: "allOn4Timeline",
-
-    message:
-`⏱ ALL-ON-4 TIMELINE
-
-Consultation
-
-↓
-
-CT Scan
-
-↓
-
-Treatment Planning
-
-↓
-
-Implant Surgery
-
-↓
-
-Healing
-
-↓
-
-Final Zirconia Prosthesis
-
-Your exact timeline depends on your individual case.`,
-
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Consultation",
-      },
-
-    ],
-
-  },
-
-  allOn4Candidate: {
-
-    id: "allOn4Candidate",
-
-    message:
-`👨‍⚕️ GOOD CANDIDATES
-
-You may qualify if you:
-
-✔ Wear dentures
-
-✔ Have several missing teeth
-
-✔ Have failing teeth
-
-✔ Want a fixed permanent smile
-
-A CT Scan is required to determine your eligibility.`,
-
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Free Consultation",
-      },
-
-    ],
-
-  },
-
-  allOn6Info: {
-
-    id: "allOn6Info",
-
-    message:
-`⭐⭐⭐⭐⭐ ALL-ON-6
-
-All-on-6 provides additional support using six implants instead of four.
-
-Benefits
-
-✔ Greater stability
-
-✔ Strong chewing ability
-
-✔ Natural appearance
-
-✔ Long-term durability
-
-Choose an option below.`,
-
-    options: [
-
-      {
-        id: "allOn6Pricing",
-        label: "💰 Pricing",
-      },
-
-      {
-        id: "allOn6Timeline",
-        label: "⏱ Timeline",
-      },
-
-      {
-        id: "allOn6Candidate",
-        label: "👨‍⚕️ Candidate",
-      },
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Free Consultation",
-      },
-
-    ],
-
-  },
-
-  allOn6Pricing: {
-
-    id: "allOn6Pricing",
-
-    message:
-`💰 ALL-ON-6
-
-Upper Arch
-
-$14,000 USD
-
-Lower Arch
-
-$14,000 USD
-
-Treatment Includes
-
-✔ Six Premium Implants
-
-✔ Temporary Teeth
-
-✔ Final Zirconia Prosthesis
-
-✔ Digital Planning
-
-✔ Surgery
-
-✔ Follow-up Care`,
-
-    options: [
-
-      {
-        id: "allOn6Timeline",
-        label: "⏱ Timeline",
-      },
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Schedule Consultation",
-      },
-
-    ],
-
-  },
-
-  allOn6Timeline: {
-
-    id: "allOn6Timeline",
-
-    message:
-`⏱ ALL-ON-6 TIMELINE
-
-Consultation
-
-↓
-
-CT Scan
-
-↓
-
-Treatment Planning
-
-↓
-
-Implant Surgery
-
-↓
-
-Healing
-
-↓
-
-Final Zirconia Prosthesis
-
-Treatment time varies for every patient.`,
-
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Consultation",
-      },
-
-    ],
-
-  },
-
-  allOn6Candidate: {
-
-    id: "allOn6Candidate",
-
-    message:
-`👨‍⚕️ GOOD CANDIDATES
-
-You may qualify if you:
-
-✔ Have multiple missing teeth
-
-✔ Wear dentures
-
-✔ Want maximum stability
-
-✔ Desire a fixed permanent smile
-
-We'll determine the ideal treatment after your CT Scan.`,
-
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Free Consultation",
-      },
-
-    ],
-
-  },
-
-  boneGraftInfo: {
-
-    id: "boneGraftInfo",
-
-    message:
-`🦴 BONE GRAFTING
-
-Bone grafting rebuilds lost bone so dental implants can be placed safely.
-
-Benefits
-
-✔ Increases bone volume
-
-✔ Improves implant success
-
-✔ Predictable treatment
-
-✔ Long-term stability
-
-Would you like to learn more?`,
-
-    options: [
-
-      {
-        id: "boneGraftProcedure",
-        label: "📖 Procedure",
-      },
-
-      {
-        id: "boneGraftHealing",
-        label: "⏱ Healing",
-      },
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Consultation",
-      },
-
-    ],
-
-  },
-
-  boneGraftProcedure: {
-
-    id: "boneGraftProcedure",
-
-    message:
-`📖 BONE GRAFT PROCEDURE
-
-Bone graft material is placed in areas where additional support is needed before implant placement.
-
-Healing usually takes several months before implants are placed.`,
-
-    options: [
-
-      {
-        id: "boneGraftHealing",
-        label: "⏱ Healing",
-      },
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Consultation",
-      },
-
-    ],
-
-  },
-
-  boneGraftHealing: {
-
-    id: "boneGraftHealing",
-
-    message:
-`⏱ HEALING TIME
-
-Typical healing ranges from 3 to 6 months depending on your individual case and the amount of grafting required.`,
-
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Free Consultation",
-      },
-
-    ],
-
-  },
-
-    sinusLiftInfo: {
-
-    id: "sinusLiftInfo",
-
-    message:
-`⬆️ SINUS LIFT
-
-A sinus lift is performed when there isn't enough bone in the upper jaw to safely place dental implants.
-
-Benefits
-
-✔ Creates additional bone support
-
-✔ Improves implant success
-
-✔ Very predictable procedure
-
-✔ Long-term stability
-
-What would you like to know?`,
-
-    options: [
-
-      {
-        id: "sinusLiftProcedure",
-        label: "📖 Procedure",
-      },
-
-      {
-        id: "sinusLiftHealing",
-        label: "⏱ Healing",
-      },
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Consultation",
-      },
-
-    ],
-
-  },
-
-  sinusLiftProcedure: {
-
-    id: "sinusLiftProcedure",
-
-    message:
-`📖 SINUS LIFT PROCEDURE
-
-The sinus membrane is gently elevated and bone graft material is placed underneath.
-
-Once healing is complete, dental implants can usually be placed safely.
-
-This procedure is routinely performed with excellent long-term success.`,
-
-    options: [
-
-      {
-        id: "sinusLiftHealing",
-        label: "⏱ Healing Time",
-      },
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Schedule Consultation",
-      },
-
-    ],
-
-  },
-
-  sinusLiftHealing: {
-
-    id: "sinusLiftHealing",
-
-    message:
-`⏱ HEALING TIME
-
-Healing normally takes between 4 and 9 months depending on the amount of bone needed.
-
-Your doctor will determine the ideal moment to place your implants.`,
-
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Free Consultation",
-      },
-
-    ],
-
-  },
+},
 
   veneerInfo: {
 
-    id: "veneerInfo",
+  id: "veneerInfo",
 
-    message:
-`😁 PORCELAIN VENEERS
+  message:
+`✨ SMILE DESIGN & VENEERS
 
-Porcelain veneers are thin ceramic restorations that are permanently bonded to the front of your teeth.
+Veneers are thin, custom-made restorations designed to improve the appearance of your smile.
 
-They're one of the fastest ways to completely transform a smile.
+They can help improve:
 
-Benefits
+✔ Tooth color
 
-✔ Natural appearance
+✔ Tooth shape
 
-✔ Long-lasting
+✔ Minor chips or wear
 
-✔ Stain resistant
+✔ Small spaces between teeth
 
-✔ Beautiful smile design
+✔ Overall smile harmony
 
-What would you like to know?`,
+Every smile is unique. During your consultation, we evaluate your facial features, your goals, and recommend the best option to create natural-looking results.
 
-    options: [
+Our goal is not just a beautiful smile, but a smile that looks natural and fits you.
 
-      {
-        id: "veneerPricing",
-        label: "💰 Pricing",
-      },
+Would you like to learn more about creating your ideal smile?`,
 
-      {
-        id: "veneerProcedure",
-        label: "📖 Procedure",
-      },
+  options: [
 
-      {
-        id: "veneerCandidate",
-        label: "👨‍⚕️ Candidate",
-      },
+    {
+      id: "freeSmileConsultation",
+      label: "💬 Talk About My Smile",
+    },
 
-      {
-        id: "appointmentInfo",
-        label: "📅 Consultation",
-      },
 
-    ],
+    {
+      id: "treatments",
+      label: "😁 Explore Other Treatments",
+    },
 
-  },
+  ],
 
-  veneerPricing: {
+},
 
-    id: "veneerPricing",
 
-    message:
-`💰 PORCELAIN VENEERS
+ crownInfo: {
 
-Premium Porcelain Veneer
+  id: "crownInfo",
 
-$450 USD per tooth
+  message:
+`👑 CROWNS & BRIDGES
 
-Ideal for improving:
+Dental crowns are custom restorations used to protect, strengthen, and restore damaged teeth.
 
-✔ Tooth Color
+Crowns may be recommended for teeth that have:
 
-✔ Shape
-
-✔ Size
-
-✔ Small Spaces
-
-✔ Worn Teeth
-
-We'll create a personalized smile design before treatment begins.`,
-
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Free Consultation",
-      },
-
-    ],
-
-  },
-
-  veneerProcedure: {
-
-    id: "veneerProcedure",
-
-    message:
-`📖 VENEER PROCEDURE
-
-Step 1
-
-Consultation & Smile Design
-
-↓
-
-Step 2
-
-Tooth Preparation
-
-↓
-
-Step 3
-
-Digital Scan
-
-↓
-
-Step 4
-
-Temporary Veneers (if needed)
-
-↓
-
-Step 5
-
-Final Porcelain Veneers
-
-Our goal is a beautiful, natural-looking smile.`,
-
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Consultation",
-      },
-
-    ],
-
-  },
-
-  veneerCandidate: {
-
-    id: "veneerCandidate",
-
-    message:
-`👨‍⚕️ GOOD CANDIDATES
-
-Porcelain veneers are excellent if you have:
-
-✔ Chipped teeth
-
-✔ Stained teeth
-
-✔ Small gaps
-
-✔ Uneven teeth
-
-✔ Worn enamel
-
-We'll evaluate your smile and determine whether veneers are the best treatment for you.`,
-
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Schedule Consultation",
-      },
-
-    ],
-
-  },
-
-  zirconiaCrownInfo: {
-
-    id: "zirconiaCrownInfo",
-
-    message:
-`👑 ZIRCONIA CROWNS
-
-A zirconia crown restores and protects damaged teeth while providing exceptional strength and natural beauty.
-
-Benefits
-
-✔ Extremely strong
-
-✔ Natural appearance
-
-✔ Metal-free
-
-✔ Long-lasting
-
-What would you like to know?`,
-
-    options: [
-
-      {
-        id: "zirconiaCrownPricing",
-        label: "💰 Pricing",
-      },
-
-      {
-        id: "zirconiaCrownProcedure",
-        label: "📖 Procedure",
-      },
-
-      {
-        id: "zirconiaCrownCandidate",
-        label: "👨‍⚕️ Candidate",
-      },
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Consultation",
-      },
-
-    ],
-
-  },
-
-  zirconiaCrownPricing: {
-
-    id: "zirconiaCrownPricing",
-
-    message:
-`💰 PREMIUM ZIRCONIA CROWN
-
-Starting at
-
-$450 USD
-
-Treatment includes:
-
-✔ Examination
-
-✔ Tooth Preparation
-
-✔ Digital Impression
-
-✔ Premium Zirconia Crown
-
-✔ Final Adjustment
-
-Pricing may vary depending on your specific case.`,
-
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Free Consultation",
-      },
-
-    ],
-
-  },
-
-  zirconiaCrownProcedure: {
-
-    id: "zirconiaCrownProcedure",
-
-    message:
-`📖 ZIRCONIA CROWN PROCEDURE
-
-Consultation
-
-↓
-
-Tooth Preparation
-
-↓
-
-Digital Scan
-
-↓
-
-Temporary Crown (if needed)
-
-↓
-
-Final Zirconia Crown
-
-Your new crown is carefully adjusted for comfort, function and aesthetics.`,
-
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Schedule Consultation",
-      },
-
-    ],
-
-  },
-
-  zirconiaCrownCandidate: {
-
-    id: "zirconiaCrownCandidate",
-
-    message:
-`👨‍⚕️ GOOD CANDIDATES
-
-Crowns are recommended for:
-
-✔ Broken teeth
-
-✔ Root canal treated teeth
+✔ Extensive damage or decay
 
 ✔ Large fillings
 
-✔ Cracked teeth
+✔ Fractures or weakening
 
-✔ Severely worn teeth
+✔ Previous root canal treatment
 
-Our doctors will determine whether a zirconia crown is the best solution.`,
+Dental bridges can also help replace missing teeth by using neighboring teeth as support.
 
-    options: [
+Modern crowns are designed to provide:
 
-      {
-        id: "appointmentInfo",
-        label: "📅 Consultation",
-      },
+✔ Natural appearance
 
-    ],
+✔ Strength and durability
 
-  },
+✔ Improved function
 
-  rootCanalInfo: {
+During your consultation, we will evaluate your smile and recommend the best restoration option for your needs.
 
-    id: "rootCanalInfo",
+Would you like to learn more about your options?`,
 
-    message:
-`🦷 ROOT CANAL THERAPY
+  options: [
 
-A root canal removes infection inside the tooth while preserving your natural tooth.
+    {
+      id: "freeSmileConsultation",
+      label: "💬 Talk About My Smile",
+    },
 
-Benefits
 
-✔ Eliminates infection
+    {
+      id: "treatments",
+      label: "😁 Explore Other Treatments",
+    },
 
-✔ Relieves pain
+  ],
 
-✔ Saves your tooth
+},
 
-✔ Prevents extraction
+   rootCanalInfo: {
 
-What would you like to know?`,
+  id: "rootCanalInfo",
 
-    options: [
+  message:
+`🦷 ROOT CANAL TREATMENT
 
-      {
-        id: "rootCanalPricing",
-        label: "💰 Pricing",
-      },
+A root canal treatment is designed to save a tooth that has infected or damaged internal tissue.
 
-      {
-        id: "rootCanalProcedure",
-        label: "📖 Procedure",
-      },
+Instead of removing the tooth, this procedure allows us to preserve your natural tooth while removing infection and relieving discomfort.
 
-      {
-        id: "rootCanalRecovery",
-        label: "⏱ Recovery",
-      },
+A root canal may be recommended if you experience:
 
-      {
-        id: "appointmentInfo",
-        label: "📅 Consultation",
-      },
+✔ Severe tooth pain
 
-    ],
+✔ Sensitivity to hot or cold
 
-  },
+✔ Deep decay
 
-    rootCanalPricing: {
+✔ Dental infection
 
-    id: "rootCanalPricing",
+✔ Tooth damage or trauma
 
-    message:
-`💰 ROOT CANAL TREATMENT
+Our goal is to make the procedure as comfortable as possible while helping you maintain your natural smile.
 
-Starting at
+Would you like to discuss your situation with our team?`,
 
-$3,600 MXN
+  options: [
 
-Treatment Includes
+    {
+      id: "freeSmileConsultation",
+      label: "💬 Talk About My Smile",
+    },
 
-✔ Clinical Examination
 
-✔ Digital X-Rays (if needed)
+    {
+      id: "treatments",
+      label: "😁 Explore Other Treatments",
+    },
 
-✔ Complete Root Canal Therapy
+  ],
 
-✔ Canal Disinfection
+},
 
-✔ Permanent Filling
 
-A zirconia crown is often recommended afterward to strengthen the tooth.`,
+whiteningInfo: {
 
-    options: [
+  id: "whiteningInfo",
 
-      {
-        id: "zirconiaCrownInfo",
-        label: "👑 Zirconia Crown",
-      },
+  message:
+`✨ TEETH WHITENING
 
-      {
-        id: "appointmentInfo",
-        label: "📅 Schedule Consultation",
-      },
+Professional teeth whitening is a simple and effective way to improve the brightness of your smile.
 
-    ],
+Over time, teeth can become darker due to:
 
-  },
+✔ Coffee
 
-  rootCanalProcedure: {
+✔ Tea
 
-    id: "rootCanalProcedure",
+✔ Wine
 
-    message:
-`📖 ROOT CANAL PROCEDURE
+✔ Tobacco
 
-Step 1
+✔ Natural aging
 
-Clinical Examination
+Professional whitening is designed to safely improve your smile while protecting your teeth and gums.
 
-↓
+During your consultation, we can evaluate your smile and recommend the best option based on your goals.
 
-Digital X-Rays
+Would you like to learn more about improving your smile?`,
 
-↓
+  options: [
 
-Local Anesthesia
+    {
+      id: "freeSmileConsultation",
+      label: "💬 Talk About My Smile",
+    },
 
-↓
 
-Removal of Infection
+    {
+      id: "treatments",
+      label: "😁 Explore Other Treatments",
+    },
 
-↓
+  ],
 
-Cleaning & Shaping
-
-↓
-
-Permanent Filling
-
-The procedure is much more comfortable than most people expect.`,
-
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Consultation",
-      },
-
-    ],
-
-  },
-
-  rootCanalRecovery: {
-
-    id: "rootCanalRecovery",
-
-    message:
-`⏱ RECOVERY
-
-Most patients return to normal activities the same day.
-
-Mild soreness for a few days is completely normal.
-
-A zirconia crown is usually recommended afterward to protect the tooth from fracture.`,
-
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Free Consultation",
-      },
-
-    ],
-
-  },
-
-  whiteningInfo: {
-
-    id: "whiteningInfo",
-
-    message:
-`✨ PROFESSIONAL TEETH WHITENING
-
-Professional whitening can dramatically brighten your smile in a single appointment.
-
-Benefits
-
-✔ Brighter Smile
-
-✔ Fast Results
-
-✔ Safe Procedure
-
-✔ Performed by Dental Professionals
-
-What would you like to know?`,
-
-    options: [
-
-      {
-        id: "whiteningPricing",
-        label: "💰 Pricing",
-      },
-
-      {
-        id: "whiteningProcedure",
-        label: "📖 Procedure",
-      },
-
-      {
-        id: "whiteningCandidate",
-        label: "👨‍⚕️ Candidate",
-      },
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Consultation",
-      },
-
-    ],
-
-  },
-
-  whiteningPricing: {
-
-    id: "whiteningPricing",
-
-    message:
-`💰 PROFESSIONAL WHITENING
-
-Starting at
-
-$3,500 MXN
-
-Treatment Includes
-
-✔ Dental Evaluation
-
-✔ Gum Protection
-
-✔ Professional Whitening
-
-✔ Final Instructions
-
-Results vary depending on each patient's teeth and habits.`,
-
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Schedule Consultation",
-      },
-
-    ],
-
-  },
-
-  whiteningProcedure: {
-
-    id: "whiteningProcedure",
-
-    message:
-`📖 WHITENING PROCEDURE
-
-Consultation
-
-↓
-
-Dental Evaluation
-
-↓
-
-Gum Protection
-
-↓
-
-Professional Whitening Gel
-
-↓
-
-Final Evaluation
-
-Most appointments take approximately one hour.`,
-
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Consultation",
-      },
-
-    ],
-
-  },
-
-  whiteningCandidate: {
-
-    id: "whiteningCandidate",
-
-    message:
-`👨‍⚕️ GOOD CANDIDATES
-
-Professional whitening is recommended if you have:
-
-✔ Coffee stains
-
-✔ Tea stains
-
-✔ Tobacco stains
-
-✔ Yellow teeth
-
-✔ Healthy gums
-
-We'll first verify that whitening is the right option for your smile.`,
-
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Free Consultation",
-      },
-
-    ],
-
-  },
+},
 
   invisalignInfo: {
 
-    id: "invisalignInfo",
+  id: "invisalignInfo",
 
-    message:
-`😁 INVISALIGN®
+  message:
+`😁 INVISALIGN
 
-Straighten your teeth with nearly invisible clear aligners.
+Invisalign is a modern orthodontic option that uses clear aligners to gradually improve the position of your teeth.
 
-Benefits
+It is a popular choice for patients who want a more discreet alternative to traditional braces.
 
-✔ Comfortable
+Invisalign may help with:
 
-✔ Removable
+✔ Crowded teeth
 
-✔ Nearly Invisible
+✔ Spaces between teeth
 
-✔ Easy to Clean
+✔ Mild to moderate alignment concerns
 
-✔ No Metal Braces
+✔ Improving overall smile appearance
 
-Choose an option below.`,
+Benefits include:
 
-    options: [
+✔ Nearly invisible aligners
 
-      {
-        id: "invisalignPricing",
-        label: "💰 Pricing",
-      },
+✔ Removable design
 
-      {
-        id: "invisalignProcedure",
-        label: "📖 Procedure",
-      },
+✔ Easier cleaning
 
-      {
-        id: "invisalignCandidate",
-        label: "👨‍⚕️ Candidate",
-      },
+✔ Personalized treatment planning
 
-      {
-        id: "appointmentInfo",
-        label: "📅 Consultation",
-      },
+During your consultation, we can evaluate your smile and determine if Invisalign is a good option for your goals.
 
-    ],
+Would you like to discuss your smile with our team?`,
 
-  },
+  options: [
 
-  invisalignPricing: {
+    {
+      id: "freeSmileConsultation",
+      label: "💬 Talk About My Smile",
+    },
 
-    id: "invisalignPricing",
 
-    message:
-`💰 INVISALIGN®
+    {
+      id: "treatments",
+      label: "😁 Explore Other Treatments",
+    },
 
-Treatment cost depends on:
+  ],
 
-✔ Complexity
+},
 
-✔ Number of Aligners
 
-✔ Treatment Duration
+ generalDentistryInfo: {
 
-After your digital scan we'll provide a personalized quote with no surprises.`,
+  id: "generalDentistryInfo",
 
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Free Consultation",
-      },
-
-    ],
-
-  },
-
-  invisalignProcedure: {
-
-    id: "invisalignProcedure",
-
-    message:
-`📖 INVISALIGN PROCESS
-
-Consultation
-
-↓
-
-Digital Scan
-
-↓
-
-Treatment Planning
-
-↓
-
-Custom Aligners
-
-↓
-
-Progress Visits
-
-↓
-
-Retainers
-
-Your treatment is customized specifically for your smile.`,
-
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Consultation",
-      },
-
-    ],
-
-  },
-
-  invisalignCandidate: {
-
-    id: "invisalignCandidate",
-
-    message:
-`👨‍⚕️ GOOD CANDIDATES
-
-Invisalign may be ideal if you have:
-
-✔ Crowded Teeth
-
-✔ Spaces
-
-✔ Mild Bite Problems
-
-✔ Crooked Teeth
-
-We'll determine if Invisalign is right for you during your consultation.`,
-
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Schedule Consultation",
-      },
-
-    ],
-
-  },
-
-  generalDentistryInfo: {
-
-    id: "generalDentistryInfo",
-
-    message:
+  message:
 `🪥 GENERAL DENTISTRY
 
-We provide comprehensive dental care for the whole family.
+Maintaining a healthy smile starts with prevention, regular checkups, and personalized dental care.
 
-Choose a service below.`,
+Our general dentistry services include:
 
-    options: [
+✔ Dental examinations
 
-      {
-        id: "cleaningInfo",
-        label: "🪥 Dental Cleaning",
-      },
+✔ Professional cleanings
 
-      {
-        id: "fillingsInfo",
-        label: "🦷 Tooth-Colored Fillings",
-      },
+✔ Digital X-rays
 
-      {
-        id: "examInfo",
-        label: "📋 Dental Examination",
-      },
+✔ Tooth-colored fillings
 
-      {
-        id: "xrayInfo",
-        label: "🩻 Digital X-Rays",
-      },
+✔ Preventive care
 
-      {
-        id: "appointmentInfo",
-        label: "📅 Appointment",
-      },
+✔ Treatment planning
 
-    ],
+Regular dental visits help identify problems early and keep your smile healthy for the future.
 
-  },
+Whether you need routine care or have a specific concern, our team is here to help.
 
-    cleaningInfo: {
+How can we assist you with your smile?`,
 
-    id: "cleaningInfo",
+  options: [
+
+    {
+      id: "freeSmileConsultation",
+      label: "💬 Talk About My Smile",
+    },
+
+
+    {
+      id: "treatments",
+      label: "😁 Explore Other Treatments",
+    },
+
+
+    {
+      id: "generalQuestions",
+      label: "❓ Ask Another Question",
+    },
+
+  ],
+
+},
+
+
+ travelPlanning: {
+
+  id: "travelPlanning",
+
+  message:
+`🚗 TRAVEL PLANNING
+
+Planning a dental visit from another city or country can feel overwhelming.
+
+We help our patients make their trip easier by providing guidance with:
+
+✔ Border crossing information
+
+✔ Hotel recommendations
+
+✔ Transportation options
+
+✔ Treatment timelines
+
+✔ Planning your visit around your schedule
+
+What would you like help with?`,
+
+  options: [
+
+    {
+      id: "borderGuide",
+      label: "🚗 Border Crossing Information",
+    },
+
+
+    {
+      id: "hotelGuide",
+      label: "🏨 Hotel Recommendations",
+    },
+
+
+    {
+      id: "transportationInfo",
+      label: "🚕 Transportation Options",
+    },
+
+
+    {
+      id: "treatmentTimeline",
+      label: "⏱ Treatment Timeline",
+    },
+
+
+    {
+      id: "freeSmileConsultation",
+      label: "💬 Talk About My Smile",
+    },
+
+  ],
+
+},
+
+
+ borderGuide: {
+
+  id: "borderGuide",
+
+  message:
+`🚗 BORDER CROSSING INFORMATION
+
+Our office is located in San Luis Río Colorado, Sonora, Mexico, just minutes from the United States border.
+
+Many of our patients travel from Arizona and other areas, and we help make the process easier.
+
+We can guide you with:
+
+✔ General border crossing information
+
+✔ Directions to our office
+
+✔ Parking recommendations
+
+✔ Planning your arrival time
+
+✔ Transportation options
+
+If this is your first dental visit in Mexico, our team will help answer your questions and make your experience comfortable.
+
+What else can I help you with?`,
+
+  options: [
+
+    {
+      id: "hotelGuide",
+      label: "🏨 Hotel Recommendations",
+    },
+
+
+    {
+      id: "transportationInfo",
+      label: "🚕 Transportation Options",
+    },
+
+
+    {
+      id: "treatmentTimeline",
+      label: "⏱ Treatment Timeline",
+    },
+
+
+    {
+      id: "freeSmileConsultation",
+      label: "💬 Talk About My Smile",
+    },
+
+  ],
+
+},
+hotelGuide: {
+
+  id: "hotelGuide",
+
+  message:
+`🏨 HOTEL RECOMMENDATIONS
+
+Many of our patients travel from the United States and Canada for dental care and need a comfortable place to stay during their visit.
+
+We can help guide you with hotel recommendations based on:
+
+✔ Distance from our office
+
+✔ Length of your stay
+
+✔ Comfort and convenience
+
+✔ Your travel plans
+
+Our goal is to make your dental trip simple and stress-free from the moment you arrive.
+
+Would you like help planning another part of your visit?`,
+
+  options: [
+
+    {
+      id: "borderGuide",
+      label: "🚗 Border Crossing Information",
+    },
+
+
+    {
+      id: "transportationInfo",
+      label: "🚕 Transportation Options",
+    },
+
+
+    {
+      id: "treatmentTimeline",
+      label: "⏱ Treatment Timeline",
+    },
+
+
+    {
+      id: "freeSmileConsultation",
+      label: "💬 Talk About My Smile",
+    },
+
+  ],
+
+},
+
+
+ transportationInfo: {
+
+  id: "transportationInfo",
+
+  message:
+`🚕 TRANSPORTATION OPTIONS
+
+We understand that traveling for dental care requires planning.
+
+We can help you prepare your visit with guidance about:
+
+✔ Driving directions
+
+✔ Border arrival planning
+
+✔ Transportation recommendations
+
+✔ Airport transportation information
+
+✔ Coordinating your visit schedule
+
+Our goal is to make your dental journey as comfortable and simple as possible.
+
+What else would you like to know?`,
+
+  options: [
+
+    {
+      id: "borderGuide",
+      label: "🚗 Border Crossing Information",
+    },
+
+
+    {
+      id: "hotelGuide",
+      label: "🏨 Hotel Recommendations",
+    },
+
+
+    {
+      id: "treatmentTimeline",
+      label: "⏱ Treatment Timeline",
+    },
+
+
+    {
+      id: "freeSmileConsultation",
+      label: "💬 Talk About My Smile",
+    },
+
+  ],
+
+},
+
+
+treatmentTimeline: {
+
+  id: "treatmentTimeline",
+
+  message:
+`⏱ TREATMENT TIMELINE
+
+Every treatment plan is personalized because every patient's needs are different.
+
+The time required depends on:
+
+✔ Type of treatment
+
+✔ Number of teeth involved
+
+✔ Complexity of the case
+
+✔ Additional procedures that may be needed
+
+Many patients traveling from the United States and Canada plan their visit in advance so treatment can be organized efficiently.
+
+After reviewing your case, we can provide a better estimate of:
+
+✔ Number of visits
+
+✔ Expected timeline
+
+✔ Treatment steps
+
+Would you like to discuss your specific situation?`,
+
+  options: [
+
+    {
+      id: "freeSmileConsultation",
+      label: "💬 Talk About My Smile",
+    },
+
+
+    {
+      id: "treatments",
+      label: "😁 Explore Treatments",
+    },
+
+
+    {
+      id: "travelPlanning",
+      label: "🚗 Travel Planning",
+    },
+
+  ],
+
+},
+
+
+  freeSmileConsultation: {
+
+    id: "freeSmileConsultation",
 
     message:
-`🪥 PROFESSIONAL DENTAL CLEANING
+`💬 FREE SMILE CONSULTATION
 
-Routine cleanings help prevent cavities, gum disease and bad breath.
+We would love to learn more about your smile goals.
 
-Benefits
+I'll ask you a few questions so our team can better understand your needs.
 
-✔ Removes plaque
+Let's start.
 
-✔ Removes tartar
+What is your full name?`,
 
-✔ Fresh breath
-
-✔ Healthier gums
-
-✔ Brighter smile
-
-We recommend a professional cleaning every 6 months.`,
-
-    options: [
-
-      {
-        id: "cleaningPricing",
-        label: "💰 Pricing",
-      },
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Schedule Cleaning",
-      },
-
-    ],
+    options: [],
 
   },
 
-  cleaningPricing: {
+   consultationPhone: {
 
-    id: "cleaningPricing",
+  id: "consultationPhone",
+
+  message:
+`Nice to meet you!
+
+What is the best phone number or WhatsApp where we can reach you?`,
+
+  options: [],
+
+},
+
+
+ consultationEmail: {
+
+  id: "consultationEmail",
+
+  message:
+`Thank you!
+
+What email address can we use to send you information about your consultation?`,
+
+  options: [],
+
+},
+
+
+ consultationContactMethod: {
+
+  id: "consultationContactMethod",
+
+  message:
+`How would you prefer us to contact you?`,
+
+  options: [
+
+    {
+      id: "whatsappContact",
+      label: "📱 WhatsApp",
+    },
+
+
+    {
+      id: "phoneContact",
+      label: "📞 Phone Call",
+    },
+
+
+    {
+      id: "emailContact",
+      label: "📧 Email",
+    },
+
+
+    {
+      id: "facebookContact",
+      label: "💬 Facebook Messenger",
+    },
+
+  ],
+
+},
+
+
+  consultationFacebook: {
+
+  id: "consultationFacebook",
+
+  message:
+`Perfect!
+
+Please share your Facebook profile or link so our team can contact you there.`,
+
+  options: [],
+
+},
+
+
+ consultationTreatment: {
+
+  id: "consultationTreatment",
+
+  message:
+`Thank you!
+
+What type of dental care are you interested in learning more about?`,
+
+  options: [
+
+    {
+      id: "implantInterest",
+      label: "🦷 Dental Implants",
+    },
+
+
+    {
+      id: "cosmeticInterest",
+      label: "✨ Cosmetic Dentistry",
+    },
+
+
+    {
+      id: "veneerInterest",
+      label: "😁 Smile Design & Veneers",
+    },
+
+
+    {
+      id: "crownInterest",
+      label: "👑 Crowns & Bridges",
+    },
+
+
+    {
+      id: "generalInterest",
+      label: "🪥 General Dentistry",
+    },
+
+
+    {
+      id: "notSureInterest",
+      label: "❓ Not sure yet",
+    },
+
+  ],
+
+},
+
+    consultationMessage: {
+
+  id: "consultationMessage",
+
+  message:
+`Almost done!
+
+Please tell us a little more about your smile goals, concerns, or any questions you have.
+
+This will help our team better understand how we can assist you.`,
+
+  options: [],
+
+},
+
+consultationComplete: {
+
+  id: "consultationComplete",
+
+  message:
+`Thank you for sharing your information! 😊
+
+Your smile consultation request has been received.
+
+Our team will review your information and contact you shortly.
+
+We look forward to helping you achieve the smile you deserve.`,
+
+  options: [
+
+    {
+      id: "treatments",
+      label: "😁 Explore Treatments",
+    },
+
+
+    {
+      id: "travelPlanning",
+      label: "🚗 Travel Planning",
+    },
+
+
+    {
+      id: "generalQuestions",
+      label: "❓ Ask Another Question",
+    },
+
+  ],
+
+},
+
+
+ generalQuestions: {
+
+  id: "generalQuestions",
+
+  message:
+`❓ GENERAL QUESTIONS
+
+I'm here to help answer your questions about our office, treatments, and your dental visit.
+
+What would you like to know more about?`,
+
+  options: [
+
+    {
+      id: "locationInfo",
+      label: "📍 Our Location",
+    },
+
+
+    {
+      id: "technologyInfo",
+      label: "🦷 Dental Technology",
+    },
+
+
+    {
+      id: "paymentInfo",
+      label: "💳 Payment Options",
+    },
+
+
+    {
+      id: "emergencyInfo",
+      label: "🆘 Dental Emergency",
+    },
+
+
+    {
+      id: "freeSmileConsultation",
+      label: "💬 Talk About My Smile",
+    },
+
+  ],
+
+},
+
+    locationInfo: {
+
+    id: "locationInfo",
 
     message:
-`💰 PROFESSIONAL CLEANING
+`📍 OUR LOCATION
 
-Regular Cleaning
+Dra. Marlene Group is located in:
 
-$850 MXN
+San Luis Río Colorado, Sonora, Mexico.
 
-Includes
+Our office is conveniently located near the United States border, making it easier for patients traveling from Arizona and other areas.
 
-✔ Oral Evaluation
-
-✔ Plaque Removal
-
-✔ Tartar Removal
-
-✔ Polishing
-
-✔ Home Care Recommendations`,
+We can help guide you through your visit and answer any questions about traveling for dental care.`,
 
     options: [
 
       {
-        id: "appointmentInfo",
-        label: "📅 Book Appointment",
+        id: "travelPlanning",
+        label: "🚗 Travel Planning",
+      },
+
+
+      {
+        id: "freeSmileConsultation",
+        label: "💬 Free Smile Consultation",
       },
 
     ],
 
   },
 
-  fillingsInfo: {
 
-    id: "fillingsInfo",
+  technologyInfo: {
+
+    id: "technologyInfo",
 
     message:
-`🦷 TOOTH-COLORED FILLINGS
+`🦷 DENTAL TECHNOLOGY
 
-We restore cavities using modern composite fillings.
+We use modern dental technology to provide accurate diagnosis, personalized treatment planning, and comfortable care.
 
-We do NOT use traditional silver amalgam fillings.
+Our approach includes:
 
-Benefits
+✔ Digital imaging
 
-✔ Natural Tooth Color
+✔ Modern restorative materials
 
-✔ Strong Bond
+✔ Personalized treatment plans
 
-✔ Mercury-Free
+✔ Advanced dental techniques
 
-✔ Long Lasting
-
-✔ Conservative Treatment`,
+Every patient receives recommendations based on their specific needs and smile goals.`,
 
     options: [
 
       {
-        id: "fillingPricing",
-        label: "💰 Pricing",
+        id: "treatments",
+        label: "😁 Explore Treatments",
       },
 
+
       {
-        id: "appointmentInfo",
-        label: "📅 Consultation",
+        id: "freeSmileConsultation",
+        label: "💬 Free Smile Consultation",
       },
 
     ],
 
   },
 
-  fillingPricing: {
 
-    id: "fillingPricing",
+  paymentInfo: {
 
-    message:
-`💰 COMPOSITE FILLINGS
-
-Pricing depends on:
-
-✔ Tooth
-
-✔ Size of the cavity
-
-✔ Number of surfaces involved
-
-After your examination we'll provide an exact estimate before beginning treatment.`,
-
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Schedule Appointment",
-      },
-
-    ],
-
-  },
-
-  examInfo: {
-
-    id: "examInfo",
-
-    message:
-`📋 COMPREHENSIVE DENTAL EXAM
-
-Your first visit may include:
-
-✔ Complete Oral Examination
-
-✔ Treatment Recommendations
-
-✔ Digital X-Rays (if needed)
-
-✔ Personalized Treatment Plan
-
-We explain every available treatment option before starting any procedure.`,
-
-    options: [
-
-      {
-        id: "consultationPricing",
-        label: "💰 Consultation Fee",
-      },
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Schedule Consultation",
-      },
-
-    ],
-
-  },
-
-  consultationPricing: {
-
-    id: "consultationPricing",
-
-    message:
-`💰 CONSULTATION
-
-Consultation Fee
-
-$500 MXN
-
-If you begin treatment with us, this fee is commonly applied toward your treatment.
-
-Your consultation includes:
-
-✔ Examination
-
-✔ Treatment Discussion
-
-✔ Personalized Recommendations
-
-✔ Opportunity to ask questions`,
-
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Book Consultation",
-      },
-
-    ],
-
-  },
-
-  xrayInfo: {
-
-    id: "xrayInfo",
-
-    message:
-`🩻 DIGITAL X-RAYS
-
-Digital X-rays help detect problems that cannot be seen during a normal examination.
-
-Benefits
-
-✔ Fast
-
-✔ Comfortable
-
-✔ Low Radiation
-
-✔ Accurate Diagnosis
-
-✔ Better Treatment Planning`,
-
-    options: [
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Schedule Appointment",
-      },
-
-    ],
-
-  },
-
-  appointmentInfo: {
-
-    id: "appointmentInfo",
-
-    message:
-`📅 APPOINTMENTS
-
-Scheduling your visit is simple.
-
-Our team can help you by:
-
-✔ Choosing the best appointment date
-
-✔ Organizing multiple procedures
-
-✔ Planning treatment around your travel schedule
-
-✔ Answering any questions before your visit
-
-International patients are always welcome.`,
-
-    options: [
-
-      {
-        id: "internationalInfo",
-        label: "🌎 International Patients",
-      },
-
-      {
-        id: "borderGuide",
-        label: "🚗 Border Crossing",
-      },
-
-      {
-        id: "hotelGuide",
-        label: "🏨 Hotel Recommendations",
-      },
-
-    ],
-
-  },
-
-  financingInfo: {
-
-    id: "financingInfo",
+    id: "paymentInfo",
 
     message:
 `💳 PAYMENT OPTIONS
 
-We offer several convenient payment methods.
+We understand that dental treatment is an important investment.
 
-Accepted:
+During your consultation, our team can discuss:
 
-✔ Cash
+✔ Available payment methods
 
-✔ Credit Cards
+✔ Treatment options based on your goals
 
-✔ Debit Cards
+✔ Personalized estimates
 
-✔ Bank Transfer
+✔ Planning your dental visit
 
-For larger treatment plans we'll gladly discuss the best payment option during your consultation.`,
+Every treatment plan is different, so we provide information based on your specific needs.`,
 
     options: [
 
       {
-        id: "appointmentInfo",
-        label: "📅 Consultation",
+        id: "freeSmileConsultation",
+        label: "💬 Free Smile Consultation",
       },
 
     ],
 
   },
 
-  borderGuide: {
-
-    id: "borderGuide",
-
-    message:
-`🚗 BORDER CROSSING
-
-Traveling from the United States?
-
-Our office is located only minutes from the border.
-
-We'll gladly help you with:
-
-✔ Which Port of Entry to use
-
-✔ Driving Directions
-
-✔ Parking Information
-
-✔ Typical Crossing Times
-
-✔ Transportation Recommendations
-
-If it's your first visit, don't worry—we'll guide you step by step.`,
-
-    options: [
-
-      {
-        id: "hotelGuide",
-        label: "🏨 Hotels",
-      },
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Plan My Visit",
-      },
-
-    ],
-
-  },
-
-    hotelGuide: {
-
-    id: "hotelGuide",
-
-    message:
-`🏨 HOTEL RECOMMENDATIONS
-
-Many of our patients travel from the United States and Canada.
-
-We're happy to recommend hotels based on:
-
-✔ Budget
-
-✔ Distance from our office
-
-✔ Family accommodations
-
-✔ Extended stays
-
-We'll help you find the best option for a comfortable visit.`,
-
-    options: [
-
-      {
-        id: "internationalInfo",
-        label: "🌎 International Patients",
-      },
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Plan My Trip",
-      },
-
-      {
-        id: "welcome",
-        label: "🏠 Main Menu",
-      },
-
-    ],
-
-  },
-
-  internationalInfo: {
-
-    id: "internationalInfo",
-
-    message:
-`🌎 INTERNATIONAL PATIENTS
-
-Every week we help patients travel to Mexico for affordable, high-quality dental care.
-
-Our team can assist you with:
-
-✔ Treatment Planning
-
-✔ Appointment Scheduling
-
-✔ Hotel Recommendations
-
-✔ Border Crossing Information
-
-✔ English & Spanish Assistance
-
-✔ Personalized Treatment Plans
-
-We'll do everything possible to make your dental trip simple, comfortable and stress-free.`,
-
-    options: [
-
-      {
-        id: "borderGuide",
-        label: "🚗 Border Crossing",
-      },
-
-      {
-        id: "hotelGuide",
-        label: "🏨 Hotels",
-      },
-
-      {
-        id: "appointmentInfo",
-        label: "📅 Schedule Consultation",
-      },
-
-      {
-        id: "welcome",
-        label: "🏠 Main Menu",
-      },
-
-    ],
-
-  },
 
   emergencyInfo: {
 
     id: "emergencyInfo",
 
     message:
-`🆘 DENTAL EMERGENCIES
+`🆘 DENTAL EMERGENCY
 
-If you're experiencing:
+If you are experiencing a dental emergency, please contact our office as soon as possible.
 
-🚨 Severe Tooth Pain
+Examples include:
+
+🚨 Severe tooth pain
+
+🚨 Dental infection
 
 🚨 Swelling
 
-🚨 Broken Tooth
+🚨 Broken tooth
 
-🚨 Knocked-Out Tooth
+🚨 Lost filling or crown
 
-🚨 Lost Crown
-
-🚨 Lost Filling
-
-🚨 Dental Infection
-
-Please contact our office as soon as possible.
-
-Whenever possible, we'll make every effort to see emergency patients the same day.`,
+We will do our best to guide you and determine the best next step.`,
 
     options: [
 
       {
-        id: "appointmentInfo",
-        label: "📅 Emergency Appointment",
-      },
-
-      {
-        id: "welcome",
-        label: "🏠 Main Menu",
+        id: "freeSmileConsultation",
+        label: "💬 Contact Our Team",
       },
 
     ],
 
   },
+
 
 };

@@ -1,6 +1,5 @@
 import {
   useEffect,
-  useMemo,
   useRef,
   useState,
 } from "react";
@@ -8,8 +7,6 @@ import {
 
 import {
   Bot,
-  ChevronLeft,
-  Home,
   Send,
   ShieldCheck,
   X,
@@ -22,9 +19,13 @@ import {
 
 
 import type {
-  ChatNode,
   ChatOption,
 } from "./chatData";
+
+
+import {
+  sendContactEmail,
+} from "../../services/email";
 
 
 import "./FloatingChat.css";
@@ -47,14 +48,60 @@ type Message = {
 
   text:string;
 
+  options?:ChatOption[];
+
 };
+
+
+
+
+type ConsultationStep =
+
+  | "none"
+
+  | "name"
+
+  | "phone"
+
+  | "email"
+
+  | "contactMethod"
+
+  | "facebook"
+
+  | "treatment"
+
+  | "message";
+
+
+
+
+type LeadData = {
+
+  name:string;
+
+  phone:string;
+
+  email:string;
+
+  contactMethod:string;
+
+  facebookProfile:string;
+
+  treatment:string;
+
+  message:string;
+
+};
+
 
 
 
 const ROOT_NODE = "welcome";
 
 
-const TYPING_DELAY = 700;
+const TYPING_DELAY = 600;
+
 
 
 
@@ -72,15 +119,6 @@ export default function FloatingChat(){
 
 
 
-  const [
-
-    showOptions,
-
-    setShowOptions,
-
-  ] = useState(false);
-
-
 
   const [
 
@@ -89,6 +127,7 @@ export default function FloatingChat(){
     setInput,
 
   ] = useState("");
+
 
 
 
@@ -102,25 +141,6 @@ export default function FloatingChat(){
 
 
 
-  const [
-
-    currentNodeId,
-
-    setCurrentNodeId,
-
-  ] = useState(ROOT_NODE);
-
-
-
-  const [
-
-    history,
-
-    setHistory,
-
-  ] = useState<string[]>([]);
-
-
 
   const [
 
@@ -132,9 +152,49 @@ export default function FloatingChat(){
 
 
 
+
+  const [
+
+    consultationStep,
+
+    setConsultationStep,
+
+  ] = useState<ConsultationStep>("none");
+
+
+
+
+  const [
+
+    leadData,
+
+    setLeadData,
+
+  ] = useState<LeadData>({
+
+    name:"",
+
+    phone:"",
+
+    email:"",
+
+    contactMethod:"",
+
+    facebookProfile:"",
+
+    treatment:"",
+
+    message:"",
+
+  });
+
+
+
+
   const messageIdRef =
 
     useRef(1);
+
 
 
 
@@ -144,145 +204,137 @@ export default function FloatingChat(){
 
 
 
+
   const initialized =
 
     useRef(false);
 
+      useEffect(() => {
 
 
-  const currentNode:
+    if (!isOpen) {
 
-    | ChatNode
+      return;
 
-    | undefined = useMemo(
-
-      () =>
-
-        chatData[currentNodeId],
-
-      [
-
-        currentNodeId
-
-      ]
-
-    );
-
-    useEffect(() => {
-
-
-  if (messages.length <= 1) {
-
-    return;
-
-  }
-
-
-  if (!isOpen) {
-
-    return;
-
-  }
-
-
-  bottomRef.current?.scrollIntoView({
-
-    behavior:"smooth",
-
-    block:"nearest",
-
-  });
-
-
-}, [
-
-  messages,
-
-  isTyping,
-
-  isOpen,
-
-]);
+    }
 
 
 
+    bottomRef.current?.scrollIntoView({
 
-useEffect(() => {
+      behavior:"smooth",
 
+      block:"end",
 
-  if (initialized.current) {
-
-    return;
-
-  }
-
-
-  initialized.current = true;
-
-
-  const welcome =
-
-    chatData[ROOT_NODE];
+    });
 
 
 
-  if (!welcome) {
+  }, [
 
-    return;
+    messages,
 
-  }
+    isTyping,
 
-
-
-  setMessages([
-
-    {
-
-      id:
-
-        messageIdRef.current++,
-
-
-      sender:
-
-        "assistant",
-
-
-      text:
-
-        welcome.message,
-
-    },
+    isOpen,
 
   ]);
 
 
 
-}, []);
+
+
+
+
+  useEffect(() => {
+
+
+    if (initialized.current) {
+
+      return;
+
+    }
+
+
+
+    initialized.current = true;
+
+
+
+    const node =
+
+      chatData[ROOT_NODE];
+
+
+
+    if (!node) {
+
+      return;
+
+    }
+
+
+
+    setMessages([
+
+      {
+
+        id:
+
+          messageIdRef.current++,
+
+
+        sender:
+
+          "assistant",
+
+
+        text:
+
+          node.message,
+
+
+        options:
+
+          node.options,
+
+      },
+
+    ]);
+
+
+
+  }, []);
 
 
 
 
 
-const addAssistantMessage = (
-
-  text:string
-
-) => {
-
-
-  setIsTyping(true);
 
 
 
-  window.setTimeout(() => {
+
+  const addAssistantMessage = (
+
+    text:string,
+
+    options?:ChatOption[]
+
+  ) => {
 
 
-    setMessages(
+    setIsTyping(true);
 
-      previous => [
+
+
+    window.setTimeout(() => {
+
+
+      setMessages(previous => [
+
 
         ...previous,
+
 
         {
 
@@ -298,40 +350,46 @@ const addAssistantMessage = (
 
           text,
 
+
+          options,
+
         },
 
-      ]
 
-    );
-
-
-
-    setIsTyping(false);
+      ]);
 
 
 
-  }, TYPING_DELAY);
+      setIsTyping(false);
 
 
 
-};
+    }, TYPING_DELAY);
 
+
+
+  };
 
 
 
 
-const addUserMessage = (
-
-  text:string
-
-) => {
 
 
-  setMessages(
 
-    previous => [
+
+
+  const addUserMessage = (
+
+    text:string
+
+  ) => {
+
+
+    setMessages(previous => [
+
 
       ...previous,
+
 
       {
 
@@ -349,70 +407,63 @@ const addUserMessage = (
 
       },
 
-    ]
 
-  );
-
-
-};
+    ]);
 
 
 
-
-
-const navigateToNode = (
-
-  nodeId:string
-
-) => {
-
-
-  const node =
-
-    chatData[nodeId];
+  };
 
 
 
-  if (!node) {
-
-    return;
-
-  }
 
 
 
-  setHistory(
-
-    previous => [
-
-      ...previous,
-
-      currentNodeId,
-
-    ]
-
-  );
 
 
 
-  setCurrentNodeId(
+  const navigateToNode = (
 
-    nodeId
+    nodeId:string
 
-  );
-
-
-
-  addAssistantMessage(
-
-    node.message
-
-  );
+  ) => {
 
 
-};
+    const node =
 
-const handleOptionClick = (
+      chatData[nodeId];
+
+
+
+    if (!node) {
+
+      return;
+
+    }
+
+
+
+    addAssistantMessage(
+
+      node.message,
+
+      node.options
+
+    );
+
+
+
+  };
+
+
+
+
+
+
+
+
+
+ const handleOptionClick = (
 
   option:ChatOption
 
@@ -426,6 +477,26 @@ const handleOptionClick = (
   );
 
 
+
+  if (option.id === "freeSmileConsultation") {
+
+
+    setConsultationStep("name");
+
+
+    addAssistantMessage(
+
+      chatData.freeSmileConsultation.message
+
+    );
+
+
+    return;
+
+  }
+
+
+
   navigateToNode(
 
     option.id
@@ -435,262 +506,582 @@ const handleOptionClick = (
 
 };
 
+    const handleConsultationFlow = (
 
+    value:string
 
+  ) => {
 
 
-const handleStartConversation = () => {
+    switch(consultationStep){
 
 
-  setShowOptions(true);
+      case "name":
 
+        setLeadData(previous => ({
 
-};
+          ...previous,
 
+          name:value,
 
+        }));
 
 
+        setConsultationStep("phone");
 
-const handleBack = () => {
 
+        addAssistantMessage(
 
-  if (history.length === 0) {
+          chatData.consultationPhone.message
 
-    return;
+        );
 
-  }
 
+        break;
 
 
-  const previousNode =
 
-    history[history.length - 1];
 
 
+      case "phone":
 
-  const node =
+        setLeadData(previous => ({
 
-    chatData[previousNode];
+          ...previous,
 
+          phone:value,
 
+        }));
 
-  if (!node) {
 
-    return;
+        setConsultationStep("email");
 
-  }
 
+        addAssistantMessage(
 
+          chatData.consultationEmail.message
 
-  setHistory(
+        );
 
-    previous =>
 
-      previous.slice(
+        break;
 
-        0,
 
-        -1
 
-      )
 
-  );
 
+      case "email":
 
+        setLeadData(previous => ({
 
-  setCurrentNodeId(
+          ...previous,
 
-    previousNode
+          email:value,
 
-  );
+        }));
 
 
+        setConsultationStep("contactMethod");
 
-  addAssistantMessage(
 
-    node.message
+        addAssistantMessage(
 
-  );
+          chatData.consultationContactMethod.message,
 
+          chatData.consultationContactMethod.options
 
-};
+        );
 
 
+        break;
 
 
 
-const handleMainMenu = () => {
 
 
-  const node =
+      case "facebook":
 
-    chatData[ROOT_NODE];
+        setLeadData(previous => ({
 
+          ...previous,
 
+          facebookProfile:value,
 
-  setHistory([]);
+        }));
 
 
+        setConsultationStep("treatment");
 
-  setCurrentNodeId(
 
-    ROOT_NODE
+        addAssistantMessage(
 
-  );
+          chatData.consultationTreatment.message,
 
+          chatData.consultationTreatment.options
 
+        );
 
-  setShowOptions(true);
 
+        break;
 
 
-  if (!node) {
 
-    return;
 
-  }
 
+      case "message":
 
+        setLeadData(previous => ({
 
-  addAssistantMessage(
+          ...previous,
 
-    node.message
+          message:value,
 
-  );
+        }));
 
 
-};
+        sendConsultationEmail({
 
+          ...leadData,
 
+          message:value,
 
+        });
 
 
-const handleSubmit = (
+        break;
 
-  event:
 
-    React.FormEvent<HTMLFormElement>
+
+      default:
+
+        break;
+
+
+    }
+
+
+  };
+
+
+
+
+
+
+
+
+
+const handleConsultationOption = async (
+
+  option:ChatOption
 
 ) => {
 
 
-  event.preventDefault();
+  addUserMessage(
+
+    option.label
+
+  );
 
 
 
-  const value =
 
-    input.trim();
-
+  switch(option.id){
 
 
-  if (!value) {
 
-    return;
+    case "freeSmileConsultation":
+
+
+      setConsultationStep("name");
+
+
+      addAssistantMessage(
+
+        chatData.consultationName.message
+
+      );
+
+
+      break;
+
+
+
+
+
+    case "whatsappContact":
+
+    case "phoneContact":
+
+    case "emailContact":
+
+
+
+      setLeadData(previous => ({
+
+
+        ...previous,
+
+
+        contactMethod:option.label,
+
+
+      }));
+
+
+
+      setConsultationStep("treatment");
+
+
+
+      addAssistantMessage(
+
+        chatData.consultationTreatment.message,
+
+        chatData.consultationTreatment.options
+
+      );
+
+
+
+      break;
+
+
+
+
+
+    case "facebookContact":
+
+
+
+      setLeadData(previous => ({
+
+
+        ...previous,
+
+
+        contactMethod:option.label,
+
+
+      }));
+
+
+
+      setConsultationStep("facebook");
+
+
+
+      addAssistantMessage(
+
+        chatData.consultationFacebook.message
+
+      );
+
+
+
+      break;
+
+
+
+
+
+case "implantInterest":
+
+case "cosmeticInterest":
+
+case "veneerInterest":
+
+case "crownInterest":
+
+case "generalInterest":
+
+case "notSureInterest":
+
+
+  setLeadData(previous => {
+
+
+    const finalLead = {
+
+      ...previous,
+
+      treatment: option.label,
+
+      message:
+        "Patient requested a free smile consultation.",
+
+    };
+
+
+    sendConsultationEmail(finalLead);
+
+
+    return finalLead;
+
+
+  });
+
+
+
+  break;
+
+    default:
+
+
+
+      navigateToNode(
+
+        option.id
+
+      );
+
+
+      break;
+
+
 
   }
 
 
-
-  addUserMessage(
-
-    value
-
-  );
-
-
-
-  setInput("");
-
-
-
-  addAssistantMessage(
-
-    "Thank you for your message. Our team will assist you shortly."
-
-  );
-
-
 };
 
-return (
-
-  <>
-
-
-    <button
-
-      className="floating-chat-button"
-
-      onClick={() =>
-
-        setIsOpen(
-
-          previous => !previous
-
-        )
-
-      }
-
-    >
-
-      {isOpen ? (
-
-        <X size={24} />
-
-      ) : (
-
-        <Bot size={26} />
-
-      )}
-
-
-    </button>
 
 
 
 
-    {isOpen && (
 
 
-      <div className="floating-chat open">
+  const sendConsultationEmail = async (
+
+    data:LeadData
+
+  ) => {
 
 
-        <div className="floating-chat-header">
+   await sendContactEmail({
+
+  name:data.name,
+
+  email:data.email,
+
+  phone:data.phone,
+
+  contactMethod:data.contactMethod,
+
+  facebookProfile:data.facebookProfile,
+
+  treatment:data.treatment,
+
+  message:data.message,
+
+});
 
 
-          <div className="chat-title">
+
+    addAssistantMessage(
+
+      chatData.consultationComplete.message,
+
+      chatData.consultationComplete.options
+
+    );
 
 
-            <div className="chat-avatar">
+    setConsultationStep("none");
 
 
-              <Bot size={20} />
+  };
+
+    const handleSubmit = (
+
+    event:
+
+      React.FormEvent<HTMLFormElement>
+
+  ) => {
+
+
+    event.preventDefault();
+
+
+
+    const value =
+
+      input.trim();
+
+
+
+    if (!value) {
+
+      return;
+
+    }
+
+
+
+    addUserMessage(
+
+      value
+
+    );
+
+
+
+    setInput("");
+
+
+
+
+    if (consultationStep !== "none") {
+
+
+      handleConsultationFlow(
+
+        value
+
+      );
+
+
+      return;
+
+    }
+
+
+
+
+
+    addAssistantMessage(
+
+      "Thank you for your message. I'll be happy to help you."
+
+    );
+
+
+  };
+
+
+
+
+
+  return (
+
+    <>
+
+
+
+      <button
+
+        className="floating-chat-button"
+
+        onClick={() =>
+
+          setIsOpen(
+
+            previous => !previous
+
+          )
+
+        }
+
+      >
+
+        {isOpen ? (
+
+          <X size={24} />
+
+        ) : (
+
+          <Bot size={26} />
+
+        )}
+
+      </button>
+
+
+
+
+
+
+
+      {isOpen && (
+
+
+
+        <div className="floating-chat open">
+
+
+
+
+
+          <div className="floating-chat-header">
+
+
+
+            <div className="chat-title">
+
+
+
+              <div className="chat-avatar">
+
+
+
+                <Bot size={20} />
+
+
+
+              </div>
+
+
+
+
+              <div>
+
+
+
+                <h3>
+
+                  AI Dental Assistant
+
+                </h3>
+
+
+
+                <span>
+
+                  Online • Helping patients worldwide
+
+                </span>
+
+
+
+              </div>
+
 
 
             </div>
 
 
 
-            <div>
-
-
-              <h3>
-
-                AI Dental Assistant
-
-              </h3>
 
 
 
-              <span>
+            <button
 
-                Online • Helping patients worldwide
+              className="chat-close"
 
-              </span>
+              onClick={() =>
+
+                setIsOpen(false)
+
+              }
+
+            >
+
+              <X size={17} />
+
+            </button>
 
 
-            </div>
 
 
           </div>
@@ -698,172 +1089,136 @@ return (
 
 
 
-          <button
 
-            className="chat-close"
 
-            onClick={() =>
 
-              setIsOpen(false)
+          <div className="floating-chat-body">
 
-            }
 
-          >
 
+            {messages.map(
 
-            <X size={16} />
 
 
-          </button>
+              message => (
 
 
-        </div>
 
+                <div
 
+                  key={message.id}
 
+                  className={
 
+                    message.sender === "assistant"
 
-        <div className="floating-chat-body">
+                      ? "assistant-message"
 
-
-          {messages.map(
-
-            message => (
-
-
-              <div
-
-                key={message.id}
-
-                className={
-
-                  message.sender === "assistant"
-
-                    ? "assistant-message"
-
-                    : "user-message"
-
-                }
-
-              >
-
-
-                <p>
-
-                  {message.text}
-
-                </p>
-
-
-              </div>
-
-
-            )
-
-
-          )}
-
-
-
-
-          {isTyping && (
-
-
-            <div className="assistant-message typing">
-
-
-              <div className="typing-dots">
-
-
-                <span />
-
-                <span />
-
-                <span />
-
-
-              </div>
-
-
-            </div>
-
-
-          )}
-
-
-
-
-
-          {!showOptions && (
-
-
-            <button
-
-              type="button"
-
-              className="chat-start-button"
-
-              onClick={handleStartConversation}
-
-            >
-
-              💬 Start Conversation
-
-            </button>
-
-
-          )}
-
-                    <div ref={bottomRef} />
-
-
-        </div>
-
-
-
-
-        {showOptions && currentNode?.options?.length && (
-
-
-          <div className="floating-chat-options">
-
-
-            {currentNode.options.map(
-
-
-              option => (
-
-
-                <button
-
-
-                  key={option.id}
-
-
-                  type="button"
-
-
-                  className="chat-option-button"
-
-
-                  onClick={() =>
-
-                    handleOptionClick(
-
-                      option
-
-                    )
+                      : "user-message"
 
                   }
-
 
                 >
 
 
-                  {option.label}
+
+                  <p>
+
+                    {message.text}
+
+                  </p>
 
 
-                </button>
+
+
+                  {message.options && (
+
+                    <div className="chat-message-options">
+
+
+
+                      {message.options.map(
+
+
+
+                        option => (
+
+
+
+                          <button
+
+
+                            key={option.id}
+
+
+                            type="button"
+
+
+                            className="chat-option-button"
+
+
+
+                          onClick={() => {
+
+
+  if (
+
+    consultationStep === "contactMethod" ||
+
+    consultationStep === "treatment"
+
+  ) {
+
+
+    handleConsultationOption(
+
+      option
+
+    );
+
+
+  } else {
+
+
+    handleOptionClick(
+
+      option
+
+    );
+
+
+  }
+
+
+
+}}
+
+
+                          >
+
+
+                            {option.label}
+
+
+                          </button>
+
+
+
+                        )
+
+
+                      )}
+
+
+
+                    </div>
+
+                  )}
+
+
+
+                </div>
+
 
 
               )
@@ -871,166 +1226,151 @@ return (
 
             )}
 
+                        {isTyping && (
+
+
+              <div className="assistant-message typing">
+
+
+                <div className="typing-dots">
+
+
+                  <span />
+
+                  <span />
+
+                  <span />
+
+
+                </div>
+
+
+              </div>
+
+
+            )}
+
+
+
+
+
+            <div ref={bottomRef} />
+
+
 
           </div>
 
 
-        )}
 
 
 
 
 
-        {showOptions && (
+          <div className="floating-chat-footer">
 
 
-          <div className="floating-chat-actions">
+
+            <div className="chat-security">
 
 
-            <button
 
+              <ShieldCheck size={13} />
 
-              type="button"
-
-
-              className="chat-nav-button"
-
-
-              onClick={handleBack}
-
-
-              disabled={
-
-                history.length === 0
-
-              }
-
-
-            >
-
-
-              <ChevronLeft size={12} />
 
 
               <span>
 
-                Back
+                Secure & Private Conversation
 
               </span>
 
 
-            </button>
+
+            </div>
 
 
 
 
 
-            <button
 
 
-              type="button"
+            <form
 
 
-              className="chat-nav-button"
+              className="chat-input"
 
 
-              onClick={handleMainMenu}
+              onSubmit={handleSubmit}
 
 
             >
 
 
-              <Home size={12} />
+
+              <input
 
 
-              <span>
 
-                Menu
-
-              </span>
+                type="text"
 
 
-            </button>
+
+                value={input}
+
+
+
+                placeholder="Type your message..."
+
+
+
+                onChange={(event) =>
+
+
+
+                  setInput(
+
+                    event.target.value
+
+                  )
+
+
+
+                }
+
+
+
+              />
+
+
+
+
+
+
+
+              <button type="submit">
+
+
+
+                <Send size={17} />
+
+
+
+              </button>
+
+
+
+
+
+            </form>
+
 
 
 
           </div>
 
 
-        )}
-
-                <div className="floating-chat-footer">
 
 
-          <div className="chat-security">
-
-
-            <ShieldCheck size={12} />
-
-
-            <span>
-
-              Secure & Private Conversation
-
-            </span>
-
-
-          </div>
-
-
-
-
-          <form
-
-            className="chat-input"
-
-            onSubmit={handleSubmit}
-
-          >
-
-
-            <input
-
-
-              type="text"
-
-
-              value={input}
-
-
-              placeholder="Type your message..."
-
-
-              onChange={event =>
-
-                setInput(
-
-                  event.target.value
-
-                )
-
-              }
-
-
-            />
-
-
-
-            <button
-
-              type="submit"
-
-            >
-
-
-              <Send size={16} />
-
-
-            </button>
-
-
-
-          </form>
 
 
 
@@ -1038,16 +1378,14 @@ return (
 
 
 
-      </div>
+      )}
 
 
-    )}
+
+    </>
 
 
-  </>
-
-
-);
+  );
 
 
 }
