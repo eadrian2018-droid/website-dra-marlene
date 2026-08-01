@@ -109,12 +109,15 @@ const en = {
       "Personalized care plans for complex dental needs and full-mouth rehabilitation.",
   },
 
-  about: {
+    about: {
     tag: "Meet Dr. Marlene",
+
     title:
       "Professional dental care with a personal and compassionate approach.",
-   paragraphOne:
-  "At Dr. Marlene Group, every patient receives honest guidance, excellent care, and a treatment plan designed specifically for their needs.",
+
+    paragraphOne:
+      "At Dr. Marlene Group, every patient receives honest guidance, excellent care, and a treatment plan designed specifically for their needs.",
+
     paragraphTwo:
       "Our clinic combines modern technology, high-quality materials, and personalized attention to help patients feel comfortable and confident throughout their dental journey.",
 
@@ -135,6 +138,13 @@ const en = {
       "We assist patients traveling from the United States throughout their visit.",
 
     button: "Schedule Your Visit",
+
+    stats: {
+      experience: "Years of Experience",
+      patients: "Happy Patients",
+      education: "Continuing Education",
+      language: "English & Spanish Care",
+    },
   },
 
   testimonials: {
@@ -176,26 +186,38 @@ const en = {
     email: "dra.marlene.v@gmail.com",
 
     hoursTitle: "Office Hours",
+
     weekdayHours:
       "Monday–Friday: 9:00 AM–1:00 PM / 4:00 PM–8:00 PM",
+
     saturdayHours: "Saturday: 9:00 AM–2:00 PM",
+
     sundayHours: "Sunday: Closed",
 
     namePlaceholder: "Full name",
+
     emailPlaceholder: "Email address",
+
     phonePlaceholder: "Phone number",
+
     messagePlaceholder: "How can we help you?",
 
     sendButton: "Send Message",
+
     sendingButton: "Sending...",
-    successMessage: "Your message was sent successfully.",
+
+    successMessage:
+      "Your message was sent successfully.",
+
     errorMessage:
       "We could not send your message. Please try again or contact us through WhatsApp.",
   },
 
   map: {
     tag: "Our Location",
+
     title: "Visit us in San Luis Río Colorado.",
+
     description:
       "Our clinic is conveniently located just minutes from the Arizona border.",
   },
@@ -203,16 +225,21 @@ const en = {
   footer: {
     description:
       "Modern dental care, advanced technology, and personalized attention for patients from Mexico and the United States.",
+
     navigationTitle: "Navigation",
+
     contactTitle: "Contact",
+
     mapsButton: "View on Google Maps",
+
     rights: "All rights reserved.",
   },
 
   whatsapp: {
     tooltip: "Book your appointment",
-   message:
-  "Hello, I would like more information and to schedule an appointment with Dr. Marlene Group.",
+
+    message:
+      "Hello, I would like more information and to schedule an appointment with Dr. Marlene Group.",
   },
 };
 

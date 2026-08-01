@@ -4,7 +4,6 @@ import {
   useState,
 } from "react";
 
-
 import {
   Bot,
   Send,
@@ -28,14 +27,17 @@ import {
 } from "../../services/email";
 
 
+import {
+  useLanguage,
+} from "../../context/LanguageContext";
+
+
 import "./FloatingChat.css";
 
 
 
 type Sender =
-
   | "assistant"
-
   | "user";
 
 
@@ -51,7 +53,6 @@ type Message = {
   options?:ChatOption[];
 
 };
-
 
 
 
@@ -105,71 +106,61 @@ const TYPING_DELAY = 600;
 
 
 
+
 export default function FloatingChat(){
 
 
 
+  const {
+    language,
+  } = useLanguage();
+
+
+
+
   const [
-
     isOpen,
-
     setIsOpen,
-
   ] = useState(false);
 
 
 
 
   const [
-
     input,
-
     setInput,
-
   ] = useState("");
 
 
 
 
   const [
-
     isTyping,
-
     setIsTyping,
-
   ] = useState(false);
 
 
 
 
   const [
-
     messages,
-
     setMessages,
-
   ] = useState<Message[]>([]);
 
 
 
 
   const [
-
     consultationStep,
-
     setConsultationStep,
-
   ] = useState<ConsultationStep>("none");
 
 
 
 
   const [
-
     leadData,
-
     setLeadData,
-
   ] = useState<LeadData>({
 
     name:"",
@@ -187,6 +178,7 @@ export default function FloatingChat(){
     message:"",
 
   });
+
 
 
 
@@ -209,7 +201,11 @@ export default function FloatingChat(){
 
     useRef(false);
 
-      useEffect(() => {
+
+
+
+
+  useEffect(() => {
 
 
     if (!isOpen) {
@@ -239,8 +235,6 @@ export default function FloatingChat(){
     isOpen,
 
   ]);
-
-
 
 
 
@@ -291,7 +285,7 @@ export default function FloatingChat(){
 
         text:
 
-          node.message,
+          node.message[language],
 
 
         options:
@@ -304,17 +298,10 @@ export default function FloatingChat(){
 
 
 
-  }, []);
+  }, [language]);
 
 
-
-
-
-
-
-
-
-  const addAssistantMessage = (
+    const addAssistantMessage = (
 
     text:string,
 
@@ -369,7 +356,6 @@ export default function FloatingChat(){
 
 
   };
-
 
 
 
@@ -445,12 +431,11 @@ export default function FloatingChat(){
 
     addAssistantMessage(
 
-      node.message,
+      node.message[language],
 
       node.options
 
     );
-
 
 
   };
@@ -463,50 +448,58 @@ export default function FloatingChat(){
 
 
 
- const handleOptionClick = (
+  const handleOptionClick = (
 
-  option:ChatOption
+    option:ChatOption
 
-) => {
-
-
-  addUserMessage(
-
-    option.label
-
-  );
+  ) => {
 
 
+    addUserMessage(
 
-  if (option.id === "freeSmileConsultation") {
-
-
-    setConsultationStep("name");
-
-
-    addAssistantMessage(
-
-      chatData.freeSmileConsultation.message
+      option.label[language]
 
     );
 
 
-    return;
 
-  }
-
+    if (option.id === "freeSmileConsultation") {
 
 
-  navigateToNode(
-
-    option.id
-
-  );
+      setConsultationStep("name");
 
 
-};
+      addAssistantMessage(
 
-    const handleConsultationFlow = (
+        chatData.freeSmileConsultation.message[language]
+
+      );
+
+
+      return;
+
+    }
+
+
+
+    navigateToNode(
+
+      option.id
+
+    );
+
+
+  };
+
+
+
+
+
+
+
+
+
+  const handleConsultationFlow = (
 
     value:string
 
@@ -516,23 +509,30 @@ export default function FloatingChat(){
     switch(consultationStep){
 
 
+
       case "name":
+
 
         setLeadData(previous => ({
 
+
           ...previous,
+
 
           name:value,
 
+
         }));
+
 
 
         setConsultationStep("phone");
 
 
+
         addAssistantMessage(
 
-          chatData.consultationPhone.message
+          chatData.consultationPhone.message[language]
 
         );
 
@@ -545,21 +545,27 @@ export default function FloatingChat(){
 
       case "phone":
 
+
         setLeadData(previous => ({
+
 
           ...previous,
 
+
           phone:value,
 
+
         }));
+
 
 
         setConsultationStep("email");
 
 
+
         addAssistantMessage(
 
-          chatData.consultationEmail.message
+          chatData.consultationEmail.message[language]
 
         );
 
@@ -572,21 +578,27 @@ export default function FloatingChat(){
 
       case "email":
 
+
         setLeadData(previous => ({
+
 
           ...previous,
 
+
           email:value,
 
+
         }));
+
 
 
         setConsultationStep("contactMethod");
 
 
+
         addAssistantMessage(
 
-          chatData.consultationContactMethod.message,
+          chatData.consultationContactMethod.message[language],
 
           chatData.consultationContactMethod.options
 
@@ -601,21 +613,27 @@ export default function FloatingChat(){
 
       case "facebook":
 
+
         setLeadData(previous => ({
+
 
           ...previous,
 
+
           facebookProfile:value,
 
+
         }));
+
 
 
         setConsultationStep("treatment");
 
 
+
         addAssistantMessage(
 
-          chatData.consultationTreatment.message,
+          chatData.consultationTreatment.message[language],
 
           chatData.consultationTreatment.options
 
@@ -630,13 +648,18 @@ export default function FloatingChat(){
 
       case "message":
 
+
         setLeadData(previous => ({
+
 
           ...previous,
 
+
           message:value,
 
+
         }));
+
 
 
         sendConsultationEmail({
@@ -670,180 +693,181 @@ export default function FloatingChat(){
 
 
 
-const handleConsultationOption = async (
+  const handleConsultationOption = (
 
-  option:ChatOption
+    option:ChatOption
 
-) => {
+  ) => {
 
 
-  addUserMessage(
 
-    option.label
+    addUserMessage(
 
-  );
+      option.label[language]
 
+    );
 
 
 
-  switch(option.id){
 
 
+    switch(option.id){
 
-    case "freeSmileConsultation":
 
 
-      setConsultationStep("name");
+      case "whatsappContact":
 
+      case "phoneContact":
 
-      addAssistantMessage(
+      case "emailContact":
 
-        chatData.consultationName.message
 
-      );
 
+        setLeadData(previous => ({
 
-      break;
 
+          ...previous,
 
 
+          contactMethod:
 
+            option.label[language],
 
-    case "whatsappContact":
 
-    case "phoneContact":
+        }));
 
-    case "emailContact":
 
 
+        setConsultationStep("treatment");
 
-      setLeadData(previous => ({
 
 
-        ...previous,
+        addAssistantMessage(
 
+          chatData.consultationTreatment.message[language],
 
-        contactMethod:option.label,
+          chatData.consultationTreatment.options
 
+        );
 
-      }));
 
 
+        break;
 
-      setConsultationStep("treatment");
 
 
 
-      addAssistantMessage(
 
-        chatData.consultationTreatment.message,
+      case "facebookContact":
 
-        chatData.consultationTreatment.options
 
-      );
 
+        setLeadData(previous => ({
 
 
-      break;
+          ...previous,
 
 
+          contactMethod:
 
+            option.label[language],
 
 
-    case "facebookContact":
+        }));
 
 
 
-      setLeadData(previous => ({
+        setConsultationStep("facebook");
 
 
-        ...previous,
 
+        addAssistantMessage(
 
-        contactMethod:option.label,
+          chatData.consultationFacebook.message[language]
 
+        );
 
-      }));
 
 
+        break;
 
-      setConsultationStep("facebook");
 
 
 
-      addAssistantMessage(
 
-        chatData.consultationFacebook.message
+      case "implantInterest":
 
-      );
+      case "cosmeticInterest":
 
+      case "veneerInterest":
 
+      case "crownInterest":
 
-      break;
+      case "generalInterest":
 
+      case "notSureInterest":
 
 
 
+        setLeadData(previous => {
 
-case "implantInterest":
 
-case "cosmeticInterest":
+          const finalLead = {
 
-case "veneerInterest":
 
-case "crownInterest":
+            ...previous,
 
-case "generalInterest":
 
-case "notSureInterest":
+            treatment:
 
+              option.label[language],
 
-  setLeadData(previous => {
 
+            message:
 
-    const finalLead = {
+              "Patient requested a free smile consultation.",
 
-      ...previous,
 
-      treatment: option.label,
+          };
 
-      message:
-        "Patient requested a free smile consultation.",
 
-    };
 
+          sendConsultationEmail(finalLead);
 
-    sendConsultationEmail(finalLead);
 
 
-    return finalLead;
+          return finalLead;
 
 
-  });
+        });
 
 
 
-  break;
+        break;
 
-    default:
 
 
 
-      navigateToNode(
 
-        option.id
+      default:
 
-      );
 
+        navigateToNode(
 
-      break;
+          option.id
 
+        );
 
 
-  }
+        break;
 
 
-};
+    }
+
+
+  };
+
+
 
 
 
@@ -858,33 +882,34 @@ case "notSureInterest":
   ) => {
 
 
-   await sendContactEmail({
+    await sendContactEmail({
 
-  name:data.name,
+      name:data.name,
 
-  email:data.email,
+      email:data.email,
 
-  phone:data.phone,
+      phone:data.phone,
 
-  contactMethod:data.contactMethod,
+      contactMethod:data.contactMethod,
 
-  facebookProfile:data.facebookProfile,
+      facebookProfile:data.facebookProfile,
 
-  treatment:data.treatment,
+      treatment:data.treatment,
 
-  message:data.message,
+      message:data.message,
 
-});
+    });
 
 
 
     addAssistantMessage(
 
-      chatData.consultationComplete.message,
+      chatData.consultationComplete.message[language],
 
       chatData.consultationComplete.options
 
     );
+
 
 
     setConsultationStep("none");
@@ -894,9 +919,7 @@ case "notSureInterest":
 
     const handleSubmit = (
 
-    event:
-
-      React.FormEvent<HTMLFormElement>
+    event:React.FormEvent<HTMLFormElement>
 
   ) => {
 
@@ -931,7 +954,6 @@ case "notSureInterest":
 
 
 
-
     if (consultationStep !== "none") {
 
 
@@ -948,11 +970,13 @@ case "notSureInterest":
 
 
 
-
-
     addAssistantMessage(
 
-      "Thank you for your message. I'll be happy to help you."
+      language === "en"
+
+        ? "Thank you for your message. I'll be happy to help you."
+
+        : "Gracias por tu mensaje. Será un gusto ayudarte."
 
     );
 
@@ -963,10 +987,12 @@ case "notSureInterest":
 
 
 
+
+
+
   return (
 
     <>
-
 
 
       <button
@@ -1024,9 +1050,7 @@ case "notSureInterest":
               <div className="chat-avatar">
 
 
-
                 <Bot size={20} />
-
 
 
               </div>
@@ -1034,8 +1058,8 @@ case "notSureInterest":
 
 
 
-              <div>
 
+              <div>
 
 
                 <h3>
@@ -1045,13 +1069,17 @@ case "notSureInterest":
                 </h3>
 
 
-
                 <span>
 
-                  Online • Helping patients worldwide
+                  {language === "en"
+
+                    ? "Online • Helping patients worldwide"
+
+                    : "En línea • Ayudando pacientes internacionales"
+
+                  }
 
                 </span>
-
 
 
               </div>
@@ -1131,7 +1159,9 @@ case "notSureInterest":
 
 
 
+
                   {message.options && (
+
 
                     <div className="chat-message-options">
 
@@ -1158,46 +1188,46 @@ case "notSureInterest":
 
 
 
-                          onClick={() => {
+                            onClick={() => {
 
 
-  if (
+                              if (
 
-    consultationStep === "contactMethod" ||
+                                consultationStep === "contactMethod" ||
 
-    consultationStep === "treatment"
+                                consultationStep === "treatment"
 
-  ) {
-
-
-    handleConsultationOption(
-
-      option
-
-    );
+                              ) {
 
 
-  } else {
+                                handleConsultationOption(
+
+                                  option
+
+                                );
 
 
-    handleOptionClick(
-
-      option
-
-    );
+                              } else {
 
 
-  }
+                                handleOptionClick(
+
+                                  option
+
+                                );
+
+
+                              }
 
 
 
-}}
+                            }}
 
 
                           >
 
 
-                            {option.label}
+                            {option.label[language]}
 
 
                           </button>
@@ -1226,27 +1256,24 @@ case "notSureInterest":
 
             )}
 
-                        {isTyping && (
 
+            {isTyping && (
 
               <div className="assistant-message typing">
 
 
                 <div className="typing-dots">
 
-
                   <span />
 
                   <span />
 
                   <span />
-
 
                 </div>
 
 
               </div>
-
 
             )}
 
@@ -1255,7 +1282,6 @@ case "notSureInterest":
 
 
             <div ref={bottomRef} />
-
 
 
           </div>
@@ -1280,7 +1306,13 @@ case "notSureInterest":
 
               <span>
 
-                Secure & Private Conversation
+                {language === "en"
+
+                  ? "Secure & Private Conversation"
+
+                  : "Conversación Segura y Privada"
+
+                }
 
               </span>
 
@@ -1319,7 +1351,15 @@ case "notSureInterest":
 
 
 
-                placeholder="Type your message..."
+                placeholder={
+
+                  language === "en"
+
+                    ? "Type your message..."
+
+                    : "Escribe tu mensaje..."
+
+                }
 
 
 

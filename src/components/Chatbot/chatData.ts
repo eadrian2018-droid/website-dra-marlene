@@ -1,15 +1,28 @@
 export interface ChatOption {
   id: string;
-  label: string;
+
+  label: {
+    en: string;
+    es: string;
+  };
 }
 
 
 export interface ChatNode {
+
   id: string;
+
   title?: string;
-  message: string;
+
+  message: {
+    en: string;
+    es: string;
+  };
+
   options?: ChatOption[];
+
 }
+
 
 
 export const chatData: Record<string, ChatNode> = {
@@ -19,7 +32,9 @@ export const chatData: Record<string, ChatNode> = {
 
     id: "welcome",
 
-    message:
+    message: {
+
+      en:
 `👋 Welcome to Dra. Marlene Group!
 
 I'm your AI Dental Assistant.
@@ -28,11 +43,32 @@ I'm here to answer your questions and help you plan your dental visit.
 
 When you're ready, let's talk about your smile.`,
 
+      es:
+`👋 ¡Bienvenido a Dra. Marlene Group!
+
+Soy tu Asistente Dental con Inteligencia Artificial.
+
+Estoy aquí para responder tus preguntas y ayudarte a planear tu visita dental.
+
+Cuando estés listo, hablemos sobre tu sonrisa.`,
+
+    },
+
+
     options: [
 
       {
+
         id: "startConversation",
-        label: "💬 Start Conversation",
+
+        label: {
+
+          en: "💬 Start Conversation",
+
+          es: "💬 Iniciar Conversación",
+
+        },
+
       },
 
     ],
@@ -40,75 +76,174 @@ When you're ready, let's talk about your smile.`,
   },
 
 
-startConversation: {
 
-  id: "startConversation",
 
-  message:
+  startConversation: {
+
+
+    id: "startConversation",
+
+
+    message: {
+
+      en:
 `Welcome! I'm happy to help you.
 
 How can I assist you today?`,
 
-  options: [
+      es:
+`¡Bienvenido! Estoy aquí para ayudarte.
 
-    {
-      id: "treatments",
-      label: "😁 Treatments & Dental Care",
+¿Cómo puedo ayudarte hoy?`,
+
     },
 
-
-    {
-      id: "travelPlanning",
-      label: "🚗 Travel Planning",
-    },
-
-
-    {
-      id: "freeSmileConsultation",
-      label: "💬 Free Smile Consultation",
-    },
-
-
-    {
-      id: "generalQuestions",
-      label: "❓ General Questions",
-    },
-
-  ],
-
-},
-
-
-  mainMenu: {
-
-    id: "mainMenu",
-
-    message:
-`How can I help you today?`,
 
     options: [
 
       {
+
         id: "treatments",
-        label: "😁 Treatments & Dental Care",
+
+        label: {
+
+          en: "😁 Treatments & Dental Care",
+
+          es: "😁 Tratamientos y Atención Dental",
+
+        },
+
       },
 
 
       {
+
         id: "travelPlanning",
-        label: "🚗 Travel Planning",
+
+        label: {
+
+          en: "🚗 Travel Planning",
+
+          es: "🚗 Planeación de Viaje",
+
+        },
+
       },
 
 
       {
+
         id: "freeSmileConsultation",
-        label: "💬 Free Smile Consultation",
+
+        label: {
+
+          en: "💬 Free Smile Consultation",
+
+          es: "💬 Consulta Gratuita de Sonrisa",
+
+        },
+
       },
 
 
       {
+
         id: "generalQuestions",
-        label: "❓ General Questions",
+
+        label: {
+
+          en: "❓ General Questions",
+
+          es: "❓ Preguntas Generales",
+
+        },
+
+      },
+
+    ],
+
+  },
+
+
+
+
+
+  mainMenu: {
+
+
+    id: "mainMenu",
+
+
+    message: {
+
+      en:
+`How can I help you today?`,
+
+      es:
+`¿Cómo puedo ayudarte hoy?`,
+
+    },
+
+
+    options: [
+
+      {
+
+        id: "treatments",
+
+        label: {
+
+          en: "😁 Treatments & Dental Care",
+
+          es: "😁 Tratamientos y Atención Dental",
+
+        },
+
+      },
+
+
+      {
+
+        id: "travelPlanning",
+
+        label: {
+
+          en: "🚗 Travel Planning",
+
+          es: "🚗 Planeación de Viaje",
+
+        },
+
+      },
+
+
+      {
+
+        id: "freeSmileConsultation",
+
+        label: {
+
+          en: "💬 Free Smile Consultation",
+
+          es: "💬 Consulta Gratuita de Sonrisa",
+
+        },
+
+      },
+
+
+      {
+
+        id: "generalQuestions",
+
+        label: {
+
+          en: "❓ General Questions",
+
+          es: "❓ Preguntas Generales",
+
+        },
+
       },
 
     ],
@@ -119,7 +254,9 @@ How can I assist you today?`,
 
     id: "treatments",
 
-    message:
+    message: {
+
+      en:
 `😁 TREATMENTS & DENTAL CARE
 
 We provide personalized dental care using modern technology and high-quality materials.
@@ -128,1190 +265,1179 @@ I can help you learn more about our treatments.
 
 Which option would you like to explore?`,
 
+      es:
+`😁 TRATAMIENTOS Y ATENCIÓN DENTAL
+
+Ofrecemos atención dental personalizada utilizando tecnología moderna y materiales de alta calidad.
+
+Puedo ayudarte a conocer más sobre nuestros tratamientos.
+
+¿Qué opción te gustaría explorar?`,
+
+    },
+
+
     options: [
 
       {
+
         id: "implantInfo",
-        label: "🦷 Dental Implants",
+
+        label: {
+
+          en: "🦷 Dental Implants",
+
+          es: "🦷 Implantes Dentales",
+
+        },
+
       },
 
 
       {
+
         id: "allOn4Info",
-        label: "⭐ Full Arch Implants",
+
+        label: {
+
+          en: "⭐ Full Arch Implants",
+
+          es: "⭐ Implantes de Arcada Completa",
+
+        },
+
       },
 
 
       {
+
         id: "veneerInfo",
-        label: "✨ Smile Design & Veneers",
+
+        label: {
+
+          en: "✨ Smile Design & Veneers",
+
+          es: "✨ Diseño de Sonrisa y Carillas",
+
+        },
+
       },
 
 
       {
+
         id: "crownInfo",
-        label: "👑 Crowns & Bridges",
+
+        label: {
+
+          en: "👑 Crowns & Bridges",
+
+          es: "👑 Coronas y Puentes",
+
+        },
+
       },
 
 
       {
+
         id: "rootCanalInfo",
-        label: "🦷 Root Canal Treatment",
+
+        label: {
+
+          en: "🦷 Root Canal Treatment",
+
+          es: "🦷 Tratamiento de Endodoncia",
+
+        },
+
       },
 
 
       {
+
         id: "whiteningInfo",
-        label: "✨ Teeth Whitening",
+
+        label: {
+
+          en: "✨ Teeth Whitening",
+
+          es: "✨ Blanqueamiento Dental",
+
+        },
+
       },
 
 
       {
+
         id: "generalDentistryInfo",
-        label: "🪥 General Dentistry",
+
+        label: {
+
+          en: "🪥 General Dentistry",
+
+          es: "🪥 Odontología General",
+
+        },
+
       },
 
 
       {
+
         id: "freeSmileConsultation",
-        label: "💬 Talk About My Smile",
+
+        label: {
+
+          en: "💬 Talk About My Smile",
+
+          es: "💬 Hablar Sobre Mi Sonrisa",
+
+        },
+
       },
 
     ],
 
   },
 
-implantInfo: {
+    implantInfo: {
 
-  id: "implantInfo",
+    id: "implantInfo",
 
-  message:
+    message: {
+
+      en:
 `🦷 DENTAL IMPLANTS
 
-Dental implants are one of the most advanced solutions to replace missing teeth.
+Dental implants are a long-term solution to replace missing teeth.
 
-An implant works as an artificial tooth root that supports a dental crown, helping restore your smile, chewing function, and confidence.
+They look, feel, and function like natural teeth.
 
-Dental implants may be recommended for patients who:
+Our implant treatment includes:
 
-✔ Have one or more missing teeth
+• Digital evaluation
+• Personalized treatment planning
+• High-quality implant systems
+• Natural-looking crowns
 
-✔ Want a fixed and natural-looking solution
+Would you like more information or a free consultation?`,
 
-✔ Want to improve chewing ability
+      es:
+`🦷 IMPLANTES DENTALES
 
-✔ Want to preserve bone structure
+Los implantes dentales son una solución a largo plazo para reemplazar dientes perdidos.
 
-Every case is unique. During your consultation, we evaluate your oral health, discuss your goals, and create a personalized treatment plan.
+Se ven, se sienten y funcionan como dientes naturales.
 
-Would you like to learn more about your options?`,
+Nuestro tratamiento de implantes incluye:
 
-  options: [
+• Evaluación digital
+• Plan de tratamiento personalizado
+• Sistemas de implantes de alta calidad
+• Coronas con apariencia natural
 
-    {
-      id: "implantEstimate",
-      label: "💰 Get a Treatment Estimate",
+¿Te gustaría recibir más información o una consulta gratuita?`,
+
     },
 
-
-    {
-      id: "freeSmileConsultation",
-      label: "💬 Talk About My Smile",
-    },
-
-
-    {
-      id: "treatments",
-      label: "😁 Explore Other Treatments",
-    },
-
-  ],
-
-},
-
-
-  implantEstimate: {
-
-    id: "implantEstimate",
-
-    message:
-`💰 TREATMENT ESTIMATE
-
-Every dental case is different, and the final cost depends on:
-
-✔ Number of implants needed
-
-✔ Bone condition
-
-✔ Type of restoration
-
-✔ Additional procedures if required
-
-The best way to receive an accurate estimate is through a personalized consultation.
-
-Would you like to tell us more about your smile goals?`,
 
     options: [
 
       {
+
         id: "freeSmileConsultation",
-        label: "💬 Free Smile Consultation",
+
+        label: {
+
+          en: "💬 Free Smile Consultation",
+
+          es: "💬 Consulta Gratuita de Sonrisa",
+
+        },
+
+      },
+
+      {
+
+        id: "mainMenu",
+
+        label: {
+
+          en: "⬅ Back to Menu",
+
+          es: "⬅ Regresar al Menú",
+
+        },
+
       },
 
     ],
 
   },
 
- allOn4Info: {
 
-  id: "allOn4Info",
 
-  message:
-`⭐ FULL ARCH IMPLANTS (ALL-ON-4)
 
-Full arch implants are an advanced solution for patients who need to replace an entire arch of missing or failing teeth.
 
-This treatment uses strategically placed dental implants to support a fixed set of teeth, helping restore:
+  allOn4Info: {
 
-✔ A complete smile
+    id: "allOn4Info",
 
-✔ Chewing function
+    message: {
 
-✔ Confidence when speaking and smiling
+      en:
+`⭐ FULL ARCH IMPLANTS
 
-✔ A more natural appearance
-
-Full arch treatment requires a complete evaluation to determine if this option is right for you.
-
-During your consultation, we review your oral health, your goals, and create a personalized treatment plan.
-
-Would you like to learn more about your options?`,
-
-  options: [
-
-    {
-      id: "implantEstimate",
-      label: "💰 Get a Treatment Estimate",
-    },
-
-
-    {
-      id: "freeSmileConsultation",
-      label: "💬 Talk About My Smile",
-    },
-
-
-    {
-      id: "treatments",
-      label: "😁 Explore Other Treatments",
-    },
-
-  ],
-
-},
-
-
-allOn6Info: {
-
-  id: "allOn6Info",
-
-  message:
-`⭐ FULL ARCH IMPLANTS (ALL-ON-6)
-
-Full arch implants with six implants are designed to provide additional support and stability for patients who need a complete smile restoration.
-
-By using six strategically placed implants, this treatment may provide a strong foundation for a fixed set of teeth.
-
-Benefits may include:
-
-✔ Improved stability
-
-✔ Natural-looking results
-
-✔ Better chewing function
-
-✔ Restored confidence
-
-✔ A long-term solution with proper care
-
-Every patient has different needs. A complete evaluation allows us to determine whether this option is appropriate for your situation.
-
-Would you like to discuss your smile goals with our team?`,
-
-  options: [
-
-    {
-      id: "implantEstimate",
-      label: "💰 Get a Treatment Estimate",
-    },
-
-
-    {
-      id: "freeSmileConsultation",
-      label: "💬 Talk About My Smile",
-    },
-
-
-    {
-      id: "treatments",
-      label: "😁 Explore Other Treatments",
-    },
-
-  ],
-
-},
-
-  veneerInfo: {
-
-  id: "veneerInfo",
-
-  message:
-`✨ SMILE DESIGN & VENEERS
-
-Veneers are thin, custom-made restorations designed to improve the appearance of your smile.
-
-They can help improve:
-
-✔ Tooth color
-
-✔ Tooth shape
-
-✔ Minor chips or wear
-
-✔ Small spaces between teeth
-
-✔ Overall smile harmony
-
-Every smile is unique. During your consultation, we evaluate your facial features, your goals, and recommend the best option to create natural-looking results.
-
-Our goal is not just a beautiful smile, but a smile that looks natural and fits you.
-
-Would you like to learn more about creating your ideal smile?`,
-
-  options: [
-
-    {
-      id: "freeSmileConsultation",
-      label: "💬 Talk About My Smile",
-    },
-
-
-    {
-      id: "treatments",
-      label: "😁 Explore Other Treatments",
-    },
-
-  ],
-
-},
-
-
- crownInfo: {
-
-  id: "crownInfo",
-
-  message:
-`👑 CROWNS & BRIDGES
-
-Dental crowns are custom restorations used to protect, strengthen, and restore damaged teeth.
-
-Crowns may be recommended for teeth that have:
-
-✔ Extensive damage or decay
-
-✔ Large fillings
-
-✔ Fractures or weakening
-
-✔ Previous root canal treatment
-
-Dental bridges can also help replace missing teeth by using neighboring teeth as support.
-
-Modern crowns are designed to provide:
-
-✔ Natural appearance
-
-✔ Strength and durability
-
-✔ Improved function
-
-During your consultation, we will evaluate your smile and recommend the best restoration option for your needs.
-
-Would you like to learn more about your options?`,
-
-  options: [
-
-    {
-      id: "freeSmileConsultation",
-      label: "💬 Talk About My Smile",
-    },
-
-
-    {
-      id: "treatments",
-      label: "😁 Explore Other Treatments",
-    },
-
-  ],
-
-},
-
-   rootCanalInfo: {
-
-  id: "rootCanalInfo",
-
-  message:
-`🦷 ROOT CANAL TREATMENT
-
-A root canal treatment is designed to save a tooth that has infected or damaged internal tissue.
-
-Instead of removing the tooth, this procedure allows us to preserve your natural tooth while removing infection and relieving discomfort.
-
-A root canal may be recommended if you experience:
-
-✔ Severe tooth pain
-
-✔ Sensitivity to hot or cold
-
-✔ Deep decay
-
-✔ Dental infection
-
-✔ Tooth damage or trauma
-
-Our goal is to make the procedure as comfortable as possible while helping you maintain your natural smile.
-
-Would you like to discuss your situation with our team?`,
-
-  options: [
-
-    {
-      id: "freeSmileConsultation",
-      label: "💬 Talk About My Smile",
-    },
-
-
-    {
-      id: "treatments",
-      label: "😁 Explore Other Treatments",
-    },
-
-  ],
-
-},
-
-
-whiteningInfo: {
-
-  id: "whiteningInfo",
-
-  message:
-`✨ TEETH WHITENING
-
-Professional teeth whitening is a simple and effective way to improve the brightness of your smile.
-
-Over time, teeth can become darker due to:
-
-✔ Coffee
-
-✔ Tea
-
-✔ Wine
-
-✔ Tobacco
-
-✔ Natural aging
-
-Professional whitening is designed to safely improve your smile while protecting your teeth and gums.
-
-During your consultation, we can evaluate your smile and recommend the best option based on your goals.
-
-Would you like to learn more about improving your smile?`,
-
-  options: [
-
-    {
-      id: "freeSmileConsultation",
-      label: "💬 Talk About My Smile",
-    },
-
-
-    {
-      id: "treatments",
-      label: "😁 Explore Other Treatments",
-    },
-
-  ],
-
-},
-
-  invisalignInfo: {
-
-  id: "invisalignInfo",
-
-  message:
-`😁 INVISALIGN
-
-Invisalign is a modern orthodontic option that uses clear aligners to gradually improve the position of your teeth.
-
-It is a popular choice for patients who want a more discreet alternative to traditional braces.
-
-Invisalign may help with:
-
-✔ Crowded teeth
-
-✔ Spaces between teeth
-
-✔ Mild to moderate alignment concerns
-
-✔ Improving overall smile appearance
+Full arch implant treatment can restore an entire upper or lower arch with a fixed solution.
 
 Benefits include:
 
-✔ Nearly invisible aligners
+• Improved chewing ability
+• Better confidence
+• Natural appearance
+• Fixed teeth instead of removable dentures
 
-✔ Removable design
+Each case requires a personalized evaluation.`,
 
-✔ Easier cleaning
+      es:
+`⭐ IMPLANTES DE ARCADA COMPLETA
 
-✔ Personalized treatment planning
+El tratamiento de implantes de arcada completa puede restaurar una arcada superior o inferior completa con una solución fija.
 
-During your consultation, we can evaluate your smile and determine if Invisalign is a good option for your goals.
+Beneficios:
 
-Would you like to discuss your smile with our team?`,
+• Mejor capacidad para masticar
+• Mayor confianza
+• Apariencia natural
+• Dientes fijos en lugar de dentaduras removibles
 
-  options: [
+Cada caso requiere una evaluación personalizada.`,
 
-    {
-      id: "freeSmileConsultation",
-      label: "💬 Talk About My Smile",
     },
 
 
-    {
-      id: "treatments",
-      label: "😁 Explore Other Treatments",
-    },
+    options: [
 
-  ],
+      {
 
-},
+        id: "freeSmileConsultation",
 
+        label: {
 
- generalDentistryInfo: {
+          en: "💬 Request Free Consultation",
 
-  id: "generalDentistryInfo",
+          es: "💬 Solicitar Consulta Gratuita",
 
-  message:
-`🪥 GENERAL DENTISTRY
+        },
 
-Maintaining a healthy smile starts with prevention, regular checkups, and personalized dental care.
+      },
 
-Our general dentistry services include:
+      {
 
-✔ Dental examinations
+        id: "mainMenu",
 
-✔ Professional cleanings
+        label: {
 
-✔ Digital X-rays
+          en: "⬅ Back to Menu",
 
-✔ Tooth-colored fillings
+          es: "⬅ Regresar al Menú",
 
-✔ Preventive care
+        },
 
-✔ Treatment planning
+      },
 
-Regular dental visits help identify problems early and keep your smile healthy for the future.
-
-Whether you need routine care or have a specific concern, our team is here to help.
-
-How can we assist you with your smile?`,
-
-  options: [
-
-    {
-      id: "freeSmileConsultation",
-      label: "💬 Talk About My Smile",
-    },
-
-
-    {
-      id: "treatments",
-      label: "😁 Explore Other Treatments",
-    },
-
-
-    {
-      id: "generalQuestions",
-      label: "❓ Ask Another Question",
-    },
-
-  ],
-
-},
-
-
- travelPlanning: {
-
-  id: "travelPlanning",
-
-  message:
-`🚗 TRAVEL PLANNING
-
-Planning a dental visit from another city or country can feel overwhelming.
-
-We help our patients make their trip easier by providing guidance with:
-
-✔ Border crossing information
-
-✔ Hotel recommendations
-
-✔ Transportation options
-
-✔ Treatment timelines
-
-✔ Planning your visit around your schedule
-
-What would you like help with?`,
-
-  options: [
-
-    {
-      id: "borderGuide",
-      label: "🚗 Border Crossing Information",
-    },
-
-
-    {
-      id: "hotelGuide",
-      label: "🏨 Hotel Recommendations",
-    },
-
-
-    {
-      id: "transportationInfo",
-      label: "🚕 Transportation Options",
-    },
-
-
-    {
-      id: "treatmentTimeline",
-      label: "⏱ Treatment Timeline",
-    },
-
-
-    {
-      id: "freeSmileConsultation",
-      label: "💬 Talk About My Smile",
-    },
-
-  ],
-
-},
-
-
- borderGuide: {
-
-  id: "borderGuide",
-
-  message:
-`🚗 BORDER CROSSING INFORMATION
-
-Our office is located in San Luis Río Colorado, Sonora, Mexico, just minutes from the United States border.
-
-Many of our patients travel from Arizona and other areas, and we help make the process easier.
-
-We can guide you with:
-
-✔ General border crossing information
-
-✔ Directions to our office
-
-✔ Parking recommendations
-
-✔ Planning your arrival time
-
-✔ Transportation options
-
-If this is your first dental visit in Mexico, our team will help answer your questions and make your experience comfortable.
-
-What else can I help you with?`,
-
-  options: [
-
-    {
-      id: "hotelGuide",
-      label: "🏨 Hotel Recommendations",
-    },
-
-
-    {
-      id: "transportationInfo",
-      label: "🚕 Transportation Options",
-    },
-
-
-    {
-      id: "treatmentTimeline",
-      label: "⏱ Treatment Timeline",
-    },
-
-
-    {
-      id: "freeSmileConsultation",
-      label: "💬 Talk About My Smile",
-    },
-
-  ],
-
-},
-hotelGuide: {
-
-  id: "hotelGuide",
-
-  message:
-`🏨 HOTEL RECOMMENDATIONS
-
-Many of our patients travel from the United States and Canada for dental care and need a comfortable place to stay during their visit.
-
-We can help guide you with hotel recommendations based on:
-
-✔ Distance from our office
-
-✔ Length of your stay
-
-✔ Comfort and convenience
-
-✔ Your travel plans
-
-Our goal is to make your dental trip simple and stress-free from the moment you arrive.
-
-Would you like help planning another part of your visit?`,
-
-  options: [
-
-    {
-      id: "borderGuide",
-      label: "🚗 Border Crossing Information",
-    },
-
-
-    {
-      id: "transportationInfo",
-      label: "🚕 Transportation Options",
-    },
-
-
-    {
-      id: "treatmentTimeline",
-      label: "⏱ Treatment Timeline",
-    },
-
-
-    {
-      id: "freeSmileConsultation",
-      label: "💬 Talk About My Smile",
-    },
-
-  ],
-
-},
-
-
- transportationInfo: {
-
-  id: "transportationInfo",
-
-  message:
-`🚕 TRANSPORTATION OPTIONS
-
-We understand that traveling for dental care requires planning.
-
-We can help you prepare your visit with guidance about:
-
-✔ Driving directions
-
-✔ Border arrival planning
-
-✔ Transportation recommendations
-
-✔ Airport transportation information
-
-✔ Coordinating your visit schedule
-
-Our goal is to make your dental journey as comfortable and simple as possible.
-
-What else would you like to know?`,
-
-  options: [
-
-    {
-      id: "borderGuide",
-      label: "🚗 Border Crossing Information",
-    },
-
-
-    {
-      id: "hotelGuide",
-      label: "🏨 Hotel Recommendations",
-    },
-
-
-    {
-      id: "treatmentTimeline",
-      label: "⏱ Treatment Timeline",
-    },
-
-
-    {
-      id: "freeSmileConsultation",
-      label: "💬 Talk About My Smile",
-    },
-
-  ],
-
-},
-
-
-treatmentTimeline: {
-
-  id: "treatmentTimeline",
-
-  message:
-`⏱ TREATMENT TIMELINE
-
-Every treatment plan is personalized because every patient's needs are different.
-
-The time required depends on:
-
-✔ Type of treatment
-
-✔ Number of teeth involved
-
-✔ Complexity of the case
-
-✔ Additional procedures that may be needed
-
-Many patients traveling from the United States and Canada plan their visit in advance so treatment can be organized efficiently.
-
-After reviewing your case, we can provide a better estimate of:
-
-✔ Number of visits
-
-✔ Expected timeline
-
-✔ Treatment steps
-
-Would you like to discuss your specific situation?`,
-
-  options: [
-
-    {
-      id: "freeSmileConsultation",
-      label: "💬 Talk About My Smile",
-    },
-
-
-    {
-      id: "treatments",
-      label: "😁 Explore Treatments",
-    },
-
-
-    {
-      id: "travelPlanning",
-      label: "🚗 Travel Planning",
-    },
-
-  ],
-
-},
-
-
-  freeSmileConsultation: {
-
-    id: "freeSmileConsultation",
-
-    message:
-`💬 FREE SMILE CONSULTATION
-
-We would love to learn more about your smile goals.
-
-I'll ask you a few questions so our team can better understand your needs.
-
-Let's start.
-
-What is your full name?`,
-
-    options: [],
+    ],
 
   },
 
-   consultationPhone: {
-
-  id: "consultationPhone",
-
-  message:
-`Nice to meet you!
-
-What is the best phone number or WhatsApp where we can reach you?`,
-
-  options: [],
-
-},
 
 
- consultationEmail: {
 
-  id: "consultationEmail",
 
-  message:
+  veneerInfo: {
+
+    id: "veneerInfo",
+
+    message: {
+
+      en:
+`✨ SMILE DESIGN & VENEERS
+
+Veneers can improve the appearance of your smile by correcting:
+
+• Tooth shape
+• Color
+• Minor imperfections
+• Smile harmony
+
+Every smile design is customized for each patient.`,
+
+      es:
+`✨ DISEÑO DE SONRISA Y CARILLAS
+
+Las carillas pueden mejorar la apariencia de tu sonrisa corrigiendo:
+
+• Forma dental
+• Color
+• Pequeñas imperfecciones
+• Armonía de la sonrisa
+
+Cada diseño de sonrisa es personalizado para cada paciente.`,
+
+    },
+
+
+    options: [
+
+      {
+
+        id: "freeSmileConsultation",
+
+        label: {
+
+          en: "💬 Talk About My Smile",
+
+          es: "💬 Hablar Sobre Mi Sonrisa",
+
+        },
+
+      },
+
+      {
+
+        id: "mainMenu",
+
+        label: {
+
+          en: "⬅ Back to Menu",
+
+          es: "⬅ Regresar al Menú",
+
+        },
+
+      },
+
+    ],
+
+  },
+
+
+
+
+
+  crownInfo: {
+
+    id: "crownInfo",
+
+    message: {
+
+      en:
+`👑 CROWNS & BRIDGES
+
+Crowns and bridges help restore damaged or missing teeth.
+
+They can improve:
+
+• Function
+• Strength
+• Appearance
+
+Treatment recommendations depend on each patient's needs.`,
+
+      es:
+`👑 CORONAS Y PUENTES
+
+Las coronas y puentes ayudan a restaurar dientes dañados o ausentes.
+
+Pueden mejorar:
+
+• Función
+• Resistencia
+• Apariencia
+
+La recomendación del tratamiento depende de las necesidades de cada paciente.`,
+
+    },
+
+
+    options: [
+
+      {
+
+        id: "freeSmileConsultation",
+
+        label: {
+
+          en: "💬 Free Smile Consultation",
+
+          es: "💬 Consulta Gratuita de Sonrisa",
+
+        },
+
+      },
+
+      {
+
+        id: "mainMenu",
+
+        label: {
+
+          en: "⬅ Back to Menu",
+
+          es: "⬅ Regresar al Menú",
+
+        },
+
+      },
+
+    ],
+
+  },
+
+    rootCanalInfo: {
+
+    id: "rootCanalInfo",
+
+    message: {
+
+      en:
+`🦷 ROOT CANAL TREATMENT
+
+Root canal treatment helps save a tooth that has an infected or damaged nerve.
+
+The procedure focuses on:
+
+• Removing infection
+• Relieving pain
+• Preserving your natural tooth
+
+Our team uses modern techniques for comfortable treatment.`,
+
+      es:
+`🦷 TRATAMIENTO DE ENDODONCIA
+
+La endodoncia ayuda a salvar un diente con un nervio infectado o dañado.
+
+El procedimiento se enfoca en:
+
+• Eliminar la infección
+• Aliviar el dolor
+• Conservar tu diente natural
+
+Nuestro equipo utiliza técnicas modernas para un tratamiento cómodo.`,
+
+    },
+
+
+    options: [
+
+      {
+
+        id: "freeSmileConsultation",
+
+        label: {
+
+          en: "💬 Free Smile Consultation",
+
+          es: "💬 Consulta Gratuita de Sonrisa",
+
+        },
+
+      },
+
+      {
+
+        id: "mainMenu",
+
+        label: {
+
+          en: "⬅ Back to Menu",
+
+          es: "⬅ Regresar al Menú",
+
+        },
+
+      },
+
+    ],
+
+  },
+
+
+
+
+
+  whiteningInfo: {
+
+    id: "whiteningInfo",
+
+    message: {
+
+      en:
+`✨ TEETH WHITENING
+
+Professional teeth whitening can brighten your smile safely and effectively.
+
+Benefits:
+
+• Brighter smile
+• Professional results
+• Personalized recommendations
+
+Ask us about the best option for your smile.`,
+
+      es:
+`✨ BLANQUEAMIENTO DENTAL
+
+El blanqueamiento dental profesional puede mejorar el brillo de tu sonrisa de manera segura y efectiva.
+
+Beneficios:
+
+• Sonrisa más blanca
+• Resultados profesionales
+• Recomendaciones personalizadas
+
+Pregúntanos cuál es la mejor opción para tu sonrisa.`,
+
+    },
+
+
+    options: [
+
+      {
+
+        id: "freeSmileConsultation",
+
+        label: {
+
+          en: "💬 Talk About My Smile",
+
+          es: "💬 Hablar Sobre Mi Sonrisa",
+
+        },
+
+      },
+
+      {
+
+        id: "mainMenu",
+
+        label: {
+
+          en: "⬅ Back to Menu",
+
+          es: "⬅ Regresar al Menú",
+
+        },
+
+      },
+
+    ],
+
+  },
+
+
+
+
+
+  generalDentistryInfo: {
+
+    id: "generalDentistryInfo",
+
+    message: {
+
+      en:
+`🪥 GENERAL DENTISTRY
+
+We provide comprehensive dental care including:
+
+• Dental cleanings
+• Exams
+• Fillings
+• Preventive care
+• Restorative treatments
+
+Our goal is to keep your smile healthy for the long term.`,
+
+      es:
+`🪥 ODONTOLOGÍA GENERAL
+
+Ofrecemos atención dental integral incluyendo:
+
+• Limpiezas dentales
+• Revisiones
+• Restauraciones
+• Atención preventiva
+• Tratamientos restaurativos
+
+Nuestro objetivo es mantener tu sonrisa saludable a largo plazo.`,
+
+    },
+
+
+    options: [
+
+      {
+
+        id: "freeSmileConsultation",
+
+        label: {
+
+          en: "💬 Free Smile Consultation",
+
+          es: "💬 Consulta Gratuita de Sonrisa",
+
+        },
+
+      },
+
+      {
+
+        id: "mainMenu",
+
+        label: {
+
+          en: "⬅ Back to Menu",
+
+          es: "⬅ Regresar al Menú",
+
+        },
+
+      },
+
+    ],
+
+  },
+
+
+
+
+
+  travelPlanning: {
+
+    id: "travelPlanning",
+
+    message: {
+
+      en:
+`🚗 TRAVEL PLANNING
+
+Planning dental care in Mexico?
+
+We help international patients with:
+
+• Treatment planning
+• Appointment scheduling
+• Hotel recommendations
+• Border crossing guidance
+• English and Spanish assistance
+
+We make your dental journey simple and comfortable.`,
+
+      es:
+`🚗 PLANEACIÓN DE VIAJE
+
+¿Estás planeando recibir atención dental en México?
+
+Ayudamos a pacientes internacionales con:
+
+• Planeación de tratamientos
+• Programación de citas
+• Recomendaciones de hoteles
+• Orientación para cruzar la frontera
+• Atención en inglés y español
+
+Hacemos tu experiencia dental simple y cómoda.`,
+
+    },
+
+
+    options: [
+
+      {
+
+        id: "freeSmileConsultation",
+
+        label: {
+
+          en: "💬 Start Free Consultation",
+
+          es: "💬 Iniciar Consulta Gratuita",
+
+        },
+
+      },
+
+      {
+
+        id: "mainMenu",
+
+        label: {
+
+          en: "⬅ Back to Menu",
+
+          es: "⬅ Regresar al Menú",
+
+        },
+
+      },
+
+    ],
+
+  },
+
+    freeSmileConsultation: {
+
+    id: "freeSmileConsultation",
+
+    message: {
+
+      en:
+`💬 FREE SMILE CONSULTATION
+
+Let's get some information so our team can better assist you.
+
+What is your name?`,
+
+      es:
+`💬 CONSULTA GRATUITA DE SONRISA
+
+Vamos a recopilar algunos datos para que nuestro equipo pueda ayudarte mejor.
+
+¿Cuál es tu nombre?`,
+
+    },
+
+  },
+
+
+
+
+  consultationName: {
+
+    id: "consultationName",
+
+    message: {
+
+      en:
+`Nice to meet you! 😊
+
+What is the best phone number to contact you?`,
+
+      es:
+`¡Mucho gusto! 😊
+
+¿Cuál es el mejor número de teléfono para contactarte?`,
+
+    },
+
+  },
+
+
+
+
+  consultationPhone: {
+
+    id: "consultationPhone",
+
+    message: {
+
+      en:
 `Thank you!
 
-What email address can we use to send you information about your consultation?`,
+What is your email address?`,
 
-  options: [],
+      es:
+`¡Gracias!
 
-},
+¿Cuál es tu correo electrónico?`,
+
+    },
+
+  },
 
 
- consultationContactMethod: {
 
-  id: "consultationContactMethod",
 
-  message:
-`How would you prefer us to contact you?`,
+  consultationEmail: {
 
-  options: [
+    id: "consultationEmail",
 
-    {
-      id: "whatsappContact",
-      label: "📱 WhatsApp",
+    message: {
+
+      en:
+`Great!
+
+How would you prefer to be contacted?`,
+
+      es:
+`¡Excelente!
+
+¿Cómo prefieres que te contactemos?`,
+
+    },
+
+  },
+
+
+
+
+  consultationContactMethod: {
+
+    id: "consultationContactMethod",
+
+    message: {
+
+      en:
+`Please select your preferred contact method:`,
+
+      es:
+`Selecciona tu método de contacto preferido:`,
+
     },
 
 
-    {
-      id: "phoneContact",
-      label: "📞 Phone Call",
-    },
+    options: [
+
+      {
+
+        id: "whatsappContact",
+
+        label: {
+
+          en: "📱 WhatsApp",
+
+          es: "📱 WhatsApp",
+
+        },
+
+      },
 
 
-    {
-      id: "emailContact",
-      label: "📧 Email",
-    },
+      {
+
+        id: "phoneContact",
+
+        label: {
+
+          en: "☎️ Phone Call",
+
+          es: "☎️ Llamada Telefónica",
+
+        },
+
+      },
 
 
-    {
-      id: "facebookContact",
-      label: "💬 Facebook Messenger",
-    },
+      {
 
-  ],
+        id: "emailContact",
 
-},
+        label: {
+
+          en: "✉️ Email",
+
+          es: "✉️ Correo Electrónico",
+
+        },
+
+      },
+
+
+      {
+
+        id: "facebookContact",
+
+        label: {
+
+          en: "📘 Facebook Messenger",
+
+          es: "📘 Facebook Messenger",
+
+        },
+
+      },
+
+
+    ],
+
+  },
+
+
 
 
   consultationFacebook: {
 
-  id: "consultationFacebook",
+    id: "consultationFacebook",
 
-  message:
-`Perfect!
+    message: {
 
-Please share your Facebook profile or link so our team can contact you there.`,
+      en:
+`Please enter your Facebook profile or link.`,
 
-  options: [],
+      es:
+`Por favor escribe tu perfil o enlace de Facebook.`,
 
-},
+    },
+
+  },
 
 
- consultationTreatment: {
 
-  id: "consultationTreatment",
 
-  message:
-`Thank you!
+  consultationTreatment: {
 
-What type of dental care are you interested in learning more about?`,
+    id: "consultationTreatment",
 
-  options: [
+    message: {
 
-    {
-      id: "implantInterest",
-      label: "🦷 Dental Implants",
+      en:
+`Thank you! 😊
+
+What treatment are you interested in?`,
+
+      es:
+`¡Gracias! 😊
+
+¿Qué tratamiento te interesa?`,
+
     },
 
 
-    {
-      id: "cosmeticInterest",
-      label: "✨ Cosmetic Dentistry",
-    },
+    options: [
+
+      {
+
+        id: "implantInterest",
+
+        label: {
+
+          en: "🦷 Dental Implants",
+
+          es: "🦷 Implantes Dentales",
+
+        },
+
+      },
 
 
-    {
-      id: "veneerInterest",
-      label: "😁 Smile Design & Veneers",
-    },
+      {
+
+        id: "cosmeticInterest",
+
+        label: {
+
+          en: "✨ Cosmetic Dentistry",
+
+          es: "✨ Odontología Estética",
+
+        },
+
+      },
 
 
-    {
-      id: "crownInterest",
-      label: "👑 Crowns & Bridges",
-    },
+      {
+
+        id: "veneerInterest",
+
+        label: {
+
+          en: "😁 Veneers / Smile Design",
+
+          es: "😁 Carillas / Diseño de Sonrisa",
+
+        },
+
+      },
 
 
-    {
-      id: "generalInterest",
-      label: "🪥 General Dentistry",
-    },
+      {
+
+        id: "crownInterest",
+
+        label: {
+
+          en: "👑 Crowns",
+
+          es: "👑 Coronas",
+
+        },
+
+      },
 
 
-    {
-      id: "notSureInterest",
-      label: "❓ Not sure yet",
-    },
+      {
 
-  ],
+        id: "generalInterest",
 
-},
+        label: {
 
-    consultationMessage: {
+          en: "🪥 General Dentistry",
 
-  id: "consultationMessage",
+          es: "🪥 Odontología General",
 
-  message:
+        },
+
+      },
+
+
+      {
+
+        id: "notSureInterest",
+
+        label: {
+
+          en: "❓ Not Sure Yet",
+
+          es: "❓ Aún No Estoy Seguro",
+
+        },
+
+      },
+
+
+    ],
+
+  },
+
+
+
+
+  consultationMessage: {
+
+    id: "consultationMessage",
+
+    message: {
+
+      en:
 `Almost done!
 
-Please tell us a little more about your smile goals, concerns, or any questions you have.
+Is there anything else you would like us to know about your dental needs?`,
 
-This will help our team better understand how we can assist you.`,
+      es:
+`¡Casi terminamos!
 
-  options: [],
+¿Hay algo más que te gustaría contarnos sobre tus necesidades dentales?`,
 
-},
-
-consultationComplete: {
-
-  id: "consultationComplete",
-
-  message:
-`Thank you for sharing your information! 😊
-
-Your smile consultation request has been received.
-
-Our team will review your information and contact you shortly.
-
-We look forward to helping you achieve the smile you deserve.`,
-
-  options: [
-
-    {
-      id: "treatments",
-      label: "😁 Explore Treatments",
     },
 
+  },
 
-    {
-      id: "travelPlanning",
-      label: "🚗 Travel Planning",
+
+
+
+  consultationComplete: {
+
+    id: "consultationComplete",
+
+    message: {
+
+      en:
+`Thank you! 😊
+
+Your consultation request has been received.
+
+Our team will contact you shortly.`,
+
+      es:
+`¡Gracias! 😊
+
+Hemos recibido tu solicitud de consulta.
+
+Nuestro equipo se pondrá en contacto contigo pronto.`,
+
     },
 
+  },
 
-    {
-      id: "generalQuestions",
-      label: "❓ Ask Another Question",
-    },
+    generalQuestions: {
 
-  ],
+    id: "generalQuestions",
 
-},
+    message: {
 
-
- generalQuestions: {
-
-  id: "generalQuestions",
-
-  message:
+      en:
 `❓ GENERAL QUESTIONS
 
-I'm here to help answer your questions about our office, treatments, and your dental visit.
+I can help you with information about:
 
-What would you like to know more about?`,
+• Dental treatments
+• Prices and estimates
+• Travel planning
+• Appointments
+• International patient assistance
 
-  options: [
+What would you like to know?`,
 
-    {
-      id: "locationInfo",
-      label: "📍 Our Location",
+      es:
+`❓ PREGUNTAS GENERALES
+
+Puedo ayudarte con información sobre:
+
+• Tratamientos dentales
+• Precios y estimados
+• Planeación de viaje
+• Citas
+• Atención para pacientes internacionales
+
+¿Qué te gustaría saber?`,
+
     },
 
-
-    {
-      id: "technologyInfo",
-      label: "🦷 Dental Technology",
-    },
-
-
-    {
-      id: "paymentInfo",
-      label: "💳 Payment Options",
-    },
-
-
-    {
-      id: "emergencyInfo",
-      label: "🆘 Dental Emergency",
-    },
-
-
-    {
-      id: "freeSmileConsultation",
-      label: "💬 Talk About My Smile",
-    },
-
-  ],
-
-},
-
-    locationInfo: {
-
-    id: "locationInfo",
-
-    message:
-`📍 OUR LOCATION
-
-Dra. Marlene Group is located in:
-
-San Luis Río Colorado, Sonora, Mexico.
-
-Our office is conveniently located near the United States border, making it easier for patients traveling from Arizona and other areas.
-
-We can help guide you through your visit and answer any questions about traveling for dental care.`,
 
     options: [
 
       {
-        id: "travelPlanning",
-        label: "🚗 Travel Planning",
-      },
 
-
-      {
-        id: "freeSmileConsultation",
-        label: "💬 Free Smile Consultation",
-      },
-
-    ],
-
-  },
-
-
-  technologyInfo: {
-
-    id: "technologyInfo",
-
-    message:
-`🦷 DENTAL TECHNOLOGY
-
-We use modern dental technology to provide accurate diagnosis, personalized treatment planning, and comfortable care.
-
-Our approach includes:
-
-✔ Digital imaging
-
-✔ Modern restorative materials
-
-✔ Personalized treatment plans
-
-✔ Advanced dental techniques
-
-Every patient receives recommendations based on their specific needs and smile goals.`,
-
-    options: [
-
-      {
         id: "treatments",
-        label: "😁 Explore Treatments",
+
+        label: {
+
+          en: "😁 Treatments",
+
+          es: "😁 Tratamientos",
+
+        },
+
       },
 
 
       {
-        id: "freeSmileConsultation",
-        label: "💬 Free Smile Consultation",
+
+        id: "travelPlanning",
+
+        label: {
+
+          en: "🚗 Travel Planning",
+
+          es: "🚗 Planeación de Viaje",
+
+        },
+
       },
+
+
+      {
+
+        id: "freeSmileConsultation",
+
+        label: {
+
+          en: "💬 Free Consultation",
+
+          es: "💬 Consulta Gratuita",
+
+        },
+
+      },
+
 
     ],
 
   },
 
-
-  paymentInfo: {
-
-    id: "paymentInfo",
-
-    message:
-`💳 PAYMENT OPTIONS
-
-We understand that dental treatment is an important investment.
-
-During your consultation, our team can discuss:
-
-✔ Available payment methods
-
-✔ Treatment options based on your goals
-
-✔ Personalized estimates
-
-✔ Planning your dental visit
-
-Every treatment plan is different, so we provide information based on your specific needs.`,
-
-    options: [
-
-      {
-        id: "freeSmileConsultation",
-        label: "💬 Free Smile Consultation",
-      },
-
-    ],
-
-  },
-
-
-  emergencyInfo: {
-
-    id: "emergencyInfo",
-
-    message:
-`🆘 DENTAL EMERGENCY
-
-If you are experiencing a dental emergency, please contact our office as soon as possible.
-
-Examples include:
-
-🚨 Severe tooth pain
-
-🚨 Dental infection
-
-🚨 Swelling
-
-🚨 Broken tooth
-
-🚨 Lost filling or crown
-
-We will do our best to guide you and determine the best next step.`,
-
-    options: [
-
-      {
-        id: "freeSmileConsultation",
-        label: "💬 Contact Our Team",
-      },
-
-    ],
-
-  },
 
 
 };

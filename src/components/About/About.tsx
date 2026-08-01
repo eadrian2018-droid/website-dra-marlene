@@ -1,23 +1,21 @@
 import "./About.css";
 
 import {
-
   Award,
-
   GraduationCap,
-
   Globe,
-
   ShieldCheck,
-
   CheckCircle2,
-
 } from "lucide-react";
+
+import { useLanguage } from "../../context/LanguageContext";
 
 import doctorImage from "../../assets/images/about/dr-marlene-about.jpg";
 import doctorPortrait from "../../assets/images/about/dr-marlene-portrait.jpg";
 
 export default function About() {
+
+  const { t } = useLanguage();
 
   return (
 
@@ -31,9 +29,10 @@ export default function About() {
 
             <span className="section-tag">
 
-              Meet The Doctor
+              {t.about.tag}
 
             </span>
+
 
             <h2>
 
@@ -45,24 +44,24 @@ export default function About() {
 
             </h2>
 
-            <p className="about-intro">
-
-              With more than a decade of experience, Dr. Marlene
-              combines advanced clinical training with a genuine
-              passion for helping patients smile with confidence.
-
-            </p>
 
             <p className="about-intro">
 
-              Every treatment is planned with honesty,
-              precision, and personalized attention,
-              creating a comfortable experience for local
-              and international patients alike.
+              {t.about.paragraphOne}
 
             </p>
+
+
+            <p className="about-intro">
+
+              {t.about.paragraphTwo}
+
+            </p>
+
+
 
             <div className="about-stats">
+
 
               <div className="about-stat">
 
@@ -72,19 +71,21 @@ export default function About() {
 
                   <strong>
 
-                    10+ Years
+                    10+
 
                   </strong>
 
                   <span>
 
-                    Experience
+                    {t.about.stats.experience}
 
                   </span>
 
                 </div>
 
               </div>
+
+
 
               <div className="about-stat">
 
@@ -100,13 +101,15 @@ export default function About() {
 
                   <span>
 
-                    Happy Patients
+                    {t.about.stats.patients}
 
                   </span>
 
                 </div>
 
               </div>
+
+
 
               <div className="about-stat">
 
@@ -122,13 +125,15 @@ export default function About() {
 
                   <span>
 
-                    Education
+                    {t.about.stats.education}
 
                   </span>
 
                 </div>
 
               </div>
+
+
 
               <div className="about-stat">
 
@@ -144,7 +149,7 @@ export default function About() {
 
                   <span>
 
-                    & Spanish Care
+                    {t.about.stats.language}
 
                   </span>
 
@@ -152,9 +157,13 @@ export default function About() {
 
               </div>
 
+
             </div>
 
+
           </div>
+
+
 
           <div className="about-hero-image">
 
@@ -170,9 +179,13 @@ export default function About() {
 
           </div>
 
+
         </div>
 
+
+
         <div className="about-story">
+
 
           <div className="about-story-image">
 
@@ -186,42 +199,45 @@ export default function About() {
 
           </div>
 
+
+
           <div className="about-story-content">
+
 
             <span className="section-tag">
 
-              About Dr. Marlene
+              {t.about.tag}
 
             </span>
 
+
+
             <h2>
 
-              Committed to Excellence
-
-              <br />
-
-              in Every Smile
+              {t.about.title}
 
             </h2>
 
-            <p>
 
-              Dr. Marlene believes outstanding dentistry begins
-              with listening. Every patient receives a customized
-              treatment plan designed around their goals,
-              comfort, and long-term oral health.
-
-            </p>
 
             <p>
 
-              By combining modern technology, continuing education,
-              and a conservative approach, she focuses on creating
-              healthy, natural-looking smiles that last.
+              {t.about.personalizedText}
 
             </p>
 
-                        <div className="about-signature">
+
+
+            <p>
+
+              {t.about.technologyText}
+
+            </p>
+
+
+
+            <div className="about-signature">
+
 
               <strong>
 
@@ -229,17 +245,25 @@ export default function About() {
 
               </strong>
 
+
               <span>
 
                 General & Cosmetic Dentist
 
               </span>
 
+
             </div>
+
+
 
           </div>
 
+
+
+
           <div className="about-education-card">
+
 
             <span className="education-tag">
 
@@ -247,23 +271,30 @@ export default function About() {
 
             </span>
 
+
+
             <h3>
 
               Always Learning.
+
+              <br />
+
               Always Improving.
 
             </h3>
 
+
+
             <p>
 
-              Continuing education allows Dr. Marlene to
-              provide modern, predictable and minimally
-              invasive treatments using the latest
-              techniques and technology.
+              {t.about.technologyText}
 
             </p>
 
+
+
             <ul>
+
 
               <li>
 
@@ -277,6 +308,8 @@ export default function About() {
 
               </li>
 
+
+
               <li>
 
                 <CheckCircle2 size={18} />
@@ -288,6 +321,8 @@ export default function About() {
                 </span>
 
               </li>
+
+
 
               <li>
 
@@ -301,6 +336,8 @@ export default function About() {
 
               </li>
 
+
+
               <li>
 
                 <CheckCircle2 size={18} />
@@ -313,15 +350,21 @@ export default function About() {
 
               </li>
 
+
             </ul>
+
 
           </div>
 
+
         </div>
+
 
       </div>
 
+
     </section>
+
 
   );
 

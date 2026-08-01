@@ -12,7 +12,7 @@ const es = {
     about: "Conoce a la Dra. Marlene",
     testimonials: "Reseñas",
     contact: "Contacto",
-    appointment: "Agendar Cita",
+    appointment: "Consulta Gratuita",
     openMenu: "Abrir menú de navegación",
     closeMenu: "Cerrar menú de navegación",
   },
@@ -29,7 +29,7 @@ const es = {
     whatsappButton: "Contáctanos por WhatsApp",
 
     featureOne: "Tecnología Dental Moderna",
-    featureTwo: "Tratamientos Personalizados",
+    featureTwo: "Planes de Tratamiento Personalizados",
     featureThree: "Pacientes de EE. UU. Bienvenidos",
 
     ratingValue: "5.0",
@@ -47,9 +47,9 @@ const es = {
   },
 
   trustBar: {
-    firstTitle: "Atención Dental de Calidad",
+    firstTitle: "Atención Dental de Alta Calidad",
     firstText:
-      "Tratamientos profesionales con materiales confiables y protocolos clínicos modernos.",
+      "Tratamientos profesionales utilizando materiales confiables y protocolos clínicos modernos.",
 
     secondTitle: "Tecnología Moderna",
     secondText:
@@ -57,7 +57,7 @@ const es = {
 
     thirdTitle: "Atención Personalizada",
     thirdText:
-      "Cada plan de tratamiento se diseña según tus necesidades dentales.",
+      "Cada plan de tratamiento está diseñado según tus necesidades dentales.",
 
     fourthTitle: "Ubicación Cerca de la Frontera",
     fourthText:
@@ -67,16 +67,19 @@ const es = {
   stats: {
     experienceNumber: "10+",
     experienceLabel: "Años de Experiencia",
+
     patientsNumber: "5,000+",
     patientsLabel: "Pacientes Atendidos",
+
     satisfactionNumber: "98%",
     satisfactionLabel: "Pacientes Satisfechos",
+
     responseNumber: "24h",
     responseLabel: "Respuesta por WhatsApp",
   },
 
   services: {
-    tag: "Nuestros Tratamientos",
+    tag: "Nuestros Tratamientos Dentales",
     title: "Atención integral para una sonrisa saludable y segura.",
     description:
       "Tratamientos dentales modernos enfocados en comodidad, calidad y resultados duraderos.",
@@ -87,7 +90,7 @@ const es = {
 
     cosmeticTitle: "Odontología Estética",
     cosmeticDescription:
-      "Blanqueamiento, carillas y diseño de sonrisa con resultados naturales.",
+      "Blanqueamientos, carillas y diseño de sonrisa con resultados naturales.",
 
     implantsTitle: "Implantes Dentales",
     implantsDescription:
@@ -99,7 +102,7 @@ const es = {
 
     preventiveTitle: "Odontología Preventiva",
     preventiveDescription:
-      "Limpiezas, revisiones y cuidados preventivos para una salud bucal duradera.",
+      "Limpiezas profesionales, revisiones y cuidados preventivos para una salud bucal duradera.",
 
     specializedTitle: "Tratamientos Especializados",
     specializedDescription:
@@ -108,10 +111,13 @@ const es = {
 
   about: {
     tag: "Conoce a la Dra. Marlene",
+
     title:
       "Atención dental profesional con un trato humano y personalizado.",
+
     paragraphOne:
       "En Dra. Marlene Group, cada paciente recibe orientación honesta, atención de excelencia y un plan diseñado específicamente para sus necesidades.",
+
     paragraphTwo:
       "Nuestra clínica combina tecnología moderna, materiales de alta calidad y atención personalizada para brindar una experiencia cómoda y segura.",
 
@@ -132,6 +138,13 @@ const es = {
       "Acompañamos a pacientes que viajan desde Estados Unidos durante toda su visita.",
 
     button: "Agenda tu Visita",
+
+    stats: {
+      experience: "Años de Experiencia",
+      patients: "Pacientes Satisfechos",
+      education: "Educación Continua",
+      language: "Atención en Inglés y Español",
+    },
   },
 
   testimonials: {
@@ -175,7 +188,9 @@ const es = {
     hoursTitle: "Horario",
     weekdayHours:
       "Lunes a Viernes: 9:00 AM–1:00 PM / 4:00 PM–8:00 PM",
+
     saturdayHours: "Sábado: 9:00 AM–2:00 PM",
+
     sundayHours: "Domingo: Cerrado",
 
     namePlaceholder: "Nombre completo",
@@ -185,7 +200,10 @@ const es = {
 
     sendButton: "Enviar Mensaje",
     sendingButton: "Enviando...",
-    successMessage: "Tu mensaje fue enviado correctamente.",
+
+    successMessage:
+      "Tu mensaje fue enviado correctamente.",
+
     errorMessage:
       "No pudimos enviar tu mensaje. Inténtalo nuevamente o contáctanos por WhatsApp.",
   },
@@ -194,20 +212,25 @@ const es = {
     tag: "Nuestra Ubicación",
     title: "Visítanos en San Luis Río Colorado.",
     description:
-      "Nuestra clínica se encuentra a minutos de la frontera con Arizona.",
+      "Nuestra clínica se encuentra convenientemente ubicada a minutos de la frontera con Arizona.",
   },
 
   footer: {
     description:
       "Odontología moderna, tecnología avanzada y atención personalizada para pacientes de México y Estados Unidos.",
+
     navigationTitle: "Navegación",
+
     contactTitle: "Contacto",
+
     mapsButton: "Ver en Google Maps",
+
     rights: "Todos los derechos reservados.",
   },
 
   whatsapp: {
     tooltip: "Agenda tu cita",
+
     message:
       "Hola, me gustaría recibir más información y agendar una cita con Dra. Marlene Group.",
   },
