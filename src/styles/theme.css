@@ -1,5 +1,6 @@
 :root{
 
+
   /* ========= COLORS ========= */
 
   --primary:#173b63;
@@ -20,6 +21,8 @@
 
   --border:#e6edf5;
 
+
+
   /* ========= SHADOWS ========= */
 
   --shadow-sm:
@@ -31,6 +34,8 @@
   --shadow-lg:
       0 35px 75px rgba(18,56,94,.12);
 
+
+
   /* ========= RADIUS ========= */
 
   --radius-sm:12px;
@@ -41,12 +46,66 @@
 
   --radius-xl:40px;
 
+
+
   /* ========= CONTAINER ========= */
 
   --container:1240px;
 
+
+
+   /* ========= TYPOGRAPHY ========= */
+
+
+  --font-base:16px;
+
+
+  --heading-xl:2.8rem;
+
+  --heading-lg:2.2rem;
+
+  --heading-md:1.55rem;
+
+
+  --text-xl:1.05rem;
+
+  --text-lg:1rem;
+
+  --text-md:.92rem;
+
+
+
+  /* ========= SPACING ========= */
+
+
+  --section-padding:55px;
+
+  --section-padding-small:40px;
+
+
+  --gap-xs:8px;
+
+  --gap-sm:18px;
+
+  --gap-md:28px;
+
+  --gap-lg:45px;
+
+
+
+  /* ========= BUTTONS ========= */
+
+
+  --button-height:48px;
+
+  --button-radius:14px;
+
+
+
   /* ========= TRANSITIONS ========= */
 
+
   --transition:.28s ease;
+
 
 }

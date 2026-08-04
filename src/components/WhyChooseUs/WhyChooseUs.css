@@ -2,302 +2,900 @@
    WHY CHOOSE US
 =========================================== */
 
-.why{
-    padding: 80px 24px 120px;
-    background:#f8fbfd;
+
+.why {
+
+  padding:
+
+    var(--section-padding)
+
+    24px;
+
+
+  background:#f8fbfd;
+
 }
 
+
+
 .why .container {
-  max-width: 1180px;
-  margin: 0 auto;
+
+  max-width:1180px;
+
+  margin:0 auto;
+
 }
+
+
+
+
 
 /* ===========================================
    HEADER
 =========================================== */
 
+
 .why-header {
-  max-width: 760px;
-  margin: 0 auto 70px;
-  text-align: center;
+
+
+  max-width:720px;
+
+
+  margin:
+
+    0 auto
+
+    45px;
+
+
+  text-align:center;
+
 }
+
+
+
+
 
 .why-label {
-  display: inline-block;
-  padding: 8px 18px;
-  border-radius: 999px;
-  background: rgba(0, 167, 157, 0.12);
-  color: #009688;
-  font-size: .82rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 22px;
+
+
+  display:inline-block;
+
+
+  padding:
+
+    6px
+
+    15px;
+
+
+  border-radius:999px;
+
+
+  background:
+
+    rgba(0,167,157,.12);
+
+
+  color:#009688;
+
+
+  font-size:.72rem;
+
+
+  font-weight:700;
+
+
+  letter-spacing:1.5px;
+
+
+  text-transform:uppercase;
+
+
+  margin-bottom:16px;
+
 }
+
+
+
+
 
 .why-header h2 {
-  font-size: clamp(2.3rem, 5vw, 3.8rem);
-  line-height: 1.1;
-  font-weight: 800;
-  color: #0f172a;
-  margin-bottom: 26px;
+
+
+  font-size:
+
+    clamp(2rem,4vw,3rem);
+
+
+  line-height:1.1;
+
+
+  font-weight:800;
+
+
+  color:#0f172a;
+
+
+  margin-bottom:18px;
+
 }
+
+
+
+
 
 .why-header h2 span {
-  color: #009688;
+
+
+  color:#009688;
+
 }
 
+
+
+
+
 .why-description {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #64748b;
+
+
+  font-size:1rem;
+
+
+  line-height:1.7;
+
+
+  color:#64748b;
+
 }
+
+
+
+
 
 /* ===========================================
    CARDS
 =========================================== */
 
+
 .why-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 26px;
-  margin-bottom: 65px;
+
+
+  display:grid;
+
+
+  grid-template-columns:
+
+    repeat(3,1fr);
+
+
+  gap:20px;
+
+
+  margin-bottom:45px;
+
 }
+
+
+
+
 
 .why-card {
-  background: white;
-  border-radius: 28px;
-  padding: 38px 34px;
-  text-align: center;
-  transition: .35s;
-  border: 1px solid #edf2f7;
-  box-shadow: 0 12px 35px rgba(15, 23, 42, .05);
+
+
+  background:white;
+
+
+  border-radius:22px;
+
+
+  padding:28px 24px;
+
+
+  text-align:center;
+
+
+  transition:.35s;
+
+
+  border:
+
+    1px solid #edf2f7;
+
+
+  box-shadow:
+
+    var(--shadow-sm);
+
 }
+
+
+
+
 
 .why-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 22px 55px rgba(15, 23, 42, .10);
+
+
+  transform:translateY(-6px);
+
+
+  box-shadow:
+
+    var(--shadow-md);
+
 }
+
+
+
+
 
 .why-card-icon {
-  width: 72px;
-  height: 72px;
-  margin: 0 auto 22px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #00b8aa, #00897b);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
+
+
+  width:58px;
+
+
+  height:58px;
+
+
+  margin:
+
+    0 auto
+
+    18px;
+
+
+  border-radius:50%;
+
+
+  background:
+
+    linear-gradient(
+
+      135deg,
+
+      #00b8aa,
+
+      #00897b
+
+    );
+
+
+  display:flex;
+
+
+  align-items:center;
+
+
+  justify-content:center;
+
+
+  color:white;
+
 }
+
+
+
+
 
 .why-card h3 {
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 16px;
+
+
+  font-size:1.15rem;
+
+
+  font-weight:700;
+
+
+  color:#0f172a;
+
+
+  margin-bottom:10px;
+
 }
 
+
+
+
+
 .why-card p {
-  color: #64748b;
-  line-height: 1.75;
+
+
+  color:#64748b;
+
+
+  line-height:1.65;
+
+
+  font-size:.92rem;
+
 }
+
+
+
+
 
 /* ===========================================
    LOCATION BAR
 =========================================== */
 
+
 .why-location {
-  background: white;
-  border-radius: 26px;
-  padding: 34px 42px;
-  margin-bottom: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 40px;
-  border: 1px solid #edf2f7;
-  box-shadow: 0 12px 35px rgba(15, 23, 42, .05);
+
+
+  background:white;
+
+
+  border-radius:22px;
+
+
+  padding:
+
+    25px
+
+    32px;
+
+
+  margin-bottom:40px;
+
+
+  display:flex;
+
+
+  justify-content:space-between;
+
+
+  align-items:center;
+
+
+  gap:30px;
+
+
+  border:
+
+    1px solid #edf2f7;
+
+
+  box-shadow:
+
+    var(--shadow-sm);
+
 }
+
+
+
+
 
 .why-location-left {
-  display: flex;
-  gap: 22px;
-  align-items: center;
+
+
+  display:flex;
+
+
+  gap:18px;
+
+
+  align-items:center;
+
 }
+
+
+
+
 
 .why-location-icon {
-  width: 66px;
-  height: 66px;
-  border-radius: 18px;
-  background: linear-gradient(135deg, #00b8aa, #00897b);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  flex-shrink: 0;
+
+
+  width:56px;
+
+
+  height:56px;
+
+
+  border-radius:16px;
+
+
+  background:
+
+    linear-gradient(
+
+      135deg,
+
+      #00b8aa,
+
+      #00897b
+
+    );
+
+
+  display:flex;
+
+
+  justify-content:center;
+
+
+  align-items:center;
+
+
+  color:white;
+
+
+  flex-shrink:0;
+
 }
+
+
+
+
 
 .why-location h3 {
-  font-size: 1.4rem;
-  color: #0f172a;
-  margin-bottom: 10px;
+
+
+  font-size:1.2rem;
+
+
+  color:#0f172a;
+
+
+  margin-bottom:6px;
+
 }
+
+
+
+
 
 .why-location p {
-  color: #64748b;
-  line-height: 1.7;
-  max-width: 700px;
+
+
+  color:#64748b;
+
+
+  line-height:1.6;
+
+
+  max-width:700px;
+
 }
+
+/* ===========================================
+   LOCATION DETAILS
+=========================================== */
+
 
 .why-location-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
+
+  display:flex;
+
+
+  align-items:center;
+
+
+  gap:10px;
+
+
+  flex-shrink:0;
+
 }
+
+
 
 .location-dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #cbd5e1;
+
+  width:12px;
+
+
+  height:12px;
+
+
+  border-radius:50%;
+
+
+  background:#cbd5e1;
+
 }
+
+
 
 .location-dot.active {
-  background: #00a79d;
+
+  background:#00a79d;
+
 }
 
+
+
 .location-line {
-  width: 70px;
-  height: 4px;
-  border-radius: 99px;
-  background: linear-gradient(to right, #cbd5e1, #00a79d);
+
+  width:60px;
+
+
+  height:3px;
+
+
+  border-radius:99px;
+
+
+  background:
+
+    linear-gradient(
+
+      to right,
+
+      #cbd5e1,
+
+      #00a79d
+
+    );
+
 }
+
+
+
+
+
+
 
 /* ===========================================
    CTA
 =========================================== */
 
+
 .why-cta {
-  background: linear-gradient(135deg, #0f2740, #123a5a);
-  color: white;
-  border-radius: 34px;
-  padding: 50px 60px;
-  text-align: center;
-  overflow: hidden;
-  position: relative;
+
+
+  background:
+
+    linear-gradient(
+
+      135deg,
+
+      #0f2740,
+
+      #123a5a
+
+    );
+
+
+  color:white;
+
+
+  border-radius:28px;
+
+
+  padding:
+
+    38px
+
+    45px;
+
+
+  text-align:center;
+
+
+  overflow:hidden;
+
+
+  position:relative;
+
 }
+
+
+
+
 
 .why-cta::before {
-  content: "";
-  position: absolute;
-  inset: 0;
+
+
+  content:"";
+
+
+  position:absolute;
+
+
+  inset:0;
+
+
   background:
-    radial-gradient(circle at top right,
+
+
+    radial-gradient(
+
+      circle at top right,
+
       rgba(255,255,255,.08),
-      transparent 45%);
-  pointer-events: none;
+
+      transparent 45%
+
+    );
+
+
+  pointer-events:none;
+
 }
+
+
+
+
 
 .why-cta>* {
-  position: relative;
-  z-index: 2;
+
+
+  position:relative;
+
+
+  z-index:2;
+
 }
+
+
+
+
 
 .why-cta-badge {
-  display: inline-block;
-  background: rgba(255,255,255,.12);
-  color: white;
-  padding: 8px 18px;
-  border-radius: 999px;
-  font-size: .8rem;
-  letter-spacing: 2px;
-  font-weight: 700;
-  margin-bottom: 22px;
+
+
+  display:inline-block;
+
+
+  background:
+
+    rgba(255,255,255,.12);
+
+
+  color:white;
+
+
+  padding:
+
+    6px
+
+    15px;
+
+
+  border-radius:999px;
+
+
+  font-size:.72rem;
+
+
+  letter-spacing:1.5px;
+
+
+  font-weight:700;
+
+
+  margin-bottom:16px;
+
 }
+
+
+
+
 
 .why-cta h3 {
-  font-size: clamp(2rem,4vw,3.4rem);
-  line-height: 1.15;
-  margin-bottom: 22px;
-  font-weight: 800;
+
+
+  font-size:
+
+    clamp(1.8rem,3vw,2.8rem);
+
+
+  line-height:1.15;
+
+
+  margin-bottom:16px;
+
+
+  font-weight:800;
+
 }
+
+
+
+
 
 .why-cta p {
-  max-width: 700px;
-  margin: 0 auto 36px;
-  color: rgba(255,255,255,.85);
-  line-height: 1.8;
-  font-size: 1.05rem;
+
+
+  max-width:650px;
+
+
+  margin:
+
+    0 auto
+
+    28px;
+
+
+  color:
+
+    rgba(255,255,255,.85);
+
+
+  line-height:1.7;
+
+
+  font-size:.95rem;
+
 }
+
+
+
+
 
 .why-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-  background: #00a79d;
-  color: white;
-  padding: 17px 34px;
-  border-radius: 999px;
-  font-weight: 700;
-  transition: .3s;
+
+
+  display:inline-flex;
+
+
+  align-items:center;
+
+
+  gap:10px;
+
+
+  text-decoration:none;
+
+
+  background:#00a79d;
+
+
+  color:white;
+
+
+  padding:
+
+    13px
+
+    28px;
+
+
+  border-radius:999px;
+
+
+  font-weight:700;
+
+
+  transition:.3s;
+
 }
 
+
+
+
+
 .why-button:hover {
-  background: #00897b;
-  transform: translateY(-3px);
+
+
+  background:#00897b;
+
+
+  transform:translateY(-3px);
+
 }
+
+
+
+
+
+
 
 /* ===========================================
    RESPONSIVE
 =========================================== */
 
-@media (max-width: 992px) {
+
+@media(max-width:992px){
+
 
   .why {
-    padding: 90px 20px;
+
+
+    padding:
+
+      70px
+
+      20px;
+
   }
+
+
 
   .why-cards {
-    grid-template-columns: 1fr;
+
+
+    grid-template-columns:1fr;
+
   }
+
+
 
   .why-location {
-    flex-direction: column;
-    align-items: flex-start;
+
+
+    flex-direction:column;
+
+
+    align-items:flex-start;
+
   }
+
+
 
   .why-location-right {
-    width: 100%;
-    justify-content: center;
+
+
+    width:100%;
+
+
+    justify-content:center;
+
   }
 
+
+
   .why-cta {
-    padding: 55px 32px;
+
+
+    padding:
+
+      40px
+
+      25px;
+
   }
+
 
 }
 
-@media (max-width: 768px) {
+
+
+
+
+@media(max-width:768px){
+
 
   .why-header h2 {
-    font-size: 2.4rem;
+
+
+    font-size:2.2rem;
+
   }
+
+
 
   .why-location {
-    padding: 30px;
+
+
+    padding:25px;
+
   }
+
+
 
   .why-location-left {
-    flex-direction: column;
-    text-align: center;
-    width: 100%;
+
+
+    flex-direction:column;
+
+
+    text-align:center;
+
+
+    width:100%;
+
   }
 
+
+
   .why-location p {
-    max-width: 100%;
+
+
+    max-width:100%;
+
   }
+
 
 }
