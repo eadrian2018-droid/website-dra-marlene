@@ -1,4 +1,4 @@
-:root{
+:root {
 
 
   /* ========= COLORS ========= */
@@ -54,17 +54,23 @@
 
 
 
-   /* ========= TYPOGRAPHY ========= */
+  /* ========= TYPOGRAPHY ========= */
 
 
   --font-base:16px;
 
 
-  --heading-xl:2.8rem;
+  --heading-xl:
+    clamp(2.1rem,5vw,2.8rem);
 
-  --heading-lg:2.2rem;
 
-  --heading-md:1.55rem;
+  --heading-lg:
+    clamp(1.8rem,4vw,2.2rem);
+
+
+  --heading-md:
+    clamp(1.3rem,3vw,1.55rem);
+
 
 
   --text-xl:1.05rem;
@@ -78,9 +84,13 @@
   /* ========= SPACING ========= */
 
 
-  --section-padding:55px;
+  --section-padding:
+    clamp(40px,6vw,55px);
 
-  --section-padding-small:40px;
+
+  --section-padding-small:
+    clamp(30px,5vw,40px);
+
 
 
   --gap-xs:8px;
@@ -106,6 +116,108 @@
 
 
   --transition:.28s ease;
+
+
+}
+
+
+
+/* ==========================================
+   GLOBAL RESET
+========================================== */
+
+
+*,
+*::before,
+*::after {
+
+  box-sizing:border-box;
+
+}
+
+
+
+html {
+
+  scroll-behavior:smooth;
+
+}
+
+
+
+body {
+
+  margin:0;
+
+  font-size:var(--font-base);
+
+}
+
+
+
+img {
+
+  max-width:100%;
+
+  height:auto;
+
+  display:block;
+
+}
+
+
+
+/* ==========================================
+   RESPONSIVE GLOBAL SETTINGS
+========================================== */
+
+
+@media(max-width:768px){
+
+
+  :root{
+
+
+    --font-base:15px;
+
+
+    --gap-lg:32px;
+
+
+    --gap-md:22px;
+
+
+    --section-padding:40px;
+
+
+  }
+
+
+}
+
+
+
+
+
+@media(max-width:480px){
+
+
+  :root{
+
+
+    --font-base:14px;
+
+
+    --gap-lg:25px;
+
+
+    --gap-md:18px;
+
+
+    --section-padding:32px;
+
+
+  }
 
 
 }
