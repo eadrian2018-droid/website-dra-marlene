@@ -6,6 +6,9 @@ import {
   Mail,
   MapPin,
   Phone,
+  Plane,
+  Hotel,
+  Navigation,
 } from "lucide-react";
 
 import { useLanguage } from "../../context/LanguageContext";
@@ -16,11 +19,13 @@ import { content } from "./contact.content";
 
 import "./Contact.css";
 
+
 export default function Contact() {
 
   const { language } = useLanguage();
 
   const t = content[language];
+
 
   const {
 
@@ -44,21 +49,28 @@ export default function Contact() {
 
   } = useContactForm();
 
+
+
   async function handleSubmit(
     e: React.FormEvent<HTMLFormElement>
   ) {
 
     e.preventDefault();
 
+
     if (!validate()) return;
+
 
     try {
 
       setLoading(true);
 
+
       await sendContactEmail(form);
 
+
       setSuccess(true);
+
 
       setForm({
 
@@ -78,11 +90,13 @@ export default function Contact() {
 
       });
 
+
       setTimeout(() => {
 
         setSuccess(false);
 
       }, 5000);
+
 
     } finally {
 
@@ -91,6 +105,8 @@ export default function Contact() {
     }
 
   }
+
+
 
   return (
 
@@ -101,7 +117,13 @@ export default function Contact() {
 
       <div className="container contact-container">
 
+
+
+        {/* LEFT SIDE */}
+
+
         <div className="contact-info">
+
 
           <span className="section-tag">
 
@@ -109,11 +131,19 @@ export default function Contact() {
 
           </span>
 
+
+
           <h2>
 
-            {t.title}
+            Let's Plan Your
+
+            <br />
+
+            Dental Journey
 
           </h2>
+
+
 
           <p className="contact-description">
 
@@ -121,16 +151,22 @@ export default function Contact() {
 
           </p>
 
+
+
+
           <div className="contact-benefits">
 
+
             {t.benefits.map((benefit) => (
+
 
               <div
                 key={benefit}
                 className="benefit"
               >
 
-                <CheckCircle2 size={18} />
+                <CheckCircle2 size={18}/>
+
 
                 <span>
 
@@ -138,186 +174,374 @@ export default function Contact() {
 
                 </span>
 
+
               </div>
+
 
             ))}
 
+
           </div>
+
+
+
+
+
+          {/* TRAVEL SUPPORT */}
+
+
+
+          <div className="travel-support">
+
+
+            <div className="travel-support-card">
+
+
+              <Plane />
+
+
+              <div>
+
+                <h4>
+
+                  Planning Your Dental Trip?
+
+                </h4>
+
+
+                <p>
+
+                  Personalized guidance before traveling
+                  to Mexico.
+
+                </p>
+
+              </div>
+
+
+            </div>
+
+
+
+
+            <div className="travel-support-card">
+
+
+              <Hotel />
+
+
+              <div>
+
+                <h4>
+
+                  Travel Assistance
+
+                </h4>
+
+
+                <p>
+
+                  Hotel recommendations and border
+                  crossing guidance.
+
+                </p>
+
+
+              </div>
+
+
+            </div>
+
+
+
+
+            <div className="travel-support-card">
+
+
+              <Navigation />
+
+
+              <div>
+
+                <h4>
+
+                  Easy Access From Arizona
+
+                </h4>
+
+
+                <p>
+
+                  Located minutes away from the
+                  United States border.
+
+                </p>
+
+
+              </div>
+
+
+            </div>
+
+
+
+          </div>
+
+
+
+
+
+          {/* CONTACT DETAILS */}
+
+
 
           <div className="contact-details-wrapper">
 
+
             <div className="contact-details">
 
-                          <div className="contact-item">
 
-              <div className="contact-top">
 
-                <MapPin
-                  size={20}
-                  className="contact-icon"
-                />
 
-                <h4>
 
-                  {t.address}
+              <div className="contact-item">
 
-                </h4>
 
-              </div>
+                <div className="contact-top">
 
-              <p>
 
-                {site.address.street}
+                  <MapPin
+                    size={20}
+                    className="contact-icon"
+                  />
 
-                <br />
 
-                {site.address.neighborhood}
+                  <h4>
 
-                <br />
+                    {t.address}
 
-                {site.address.city},{" "}
+                  </h4>
 
-                {site.address.state}
 
-                <br />
+                </div>
 
-                {site.address.country}
 
-              </p>
+                <p>
 
-            </div>
+                  {site.address.street}
 
-            <div className="contact-item">
+                  <br/>
 
-              <div className="contact-top">
+                  {site.address.neighborhood}
 
-                <Phone
-                  size={20}
-                  className="contact-icon"
-                />
+                  <br/>
 
-                <h4>
+                  {site.address.city},{" "}
 
-                  {t.phone}
+                  {site.address.state}
 
-                </h4>
+                  <br/>
+
+                  {site.address.country}
+
+                </p>
+
 
               </div>
 
-              <a href={`tel:${site.phoneLink}`}>
 
-                {site.phone}
 
-              </a>
 
-            </div>
 
-            <div className="contact-item">
 
-              <div className="contact-top">
 
-                <Mail
-                  size={20}
-                  className="contact-icon"
-                />
+              <div className="contact-item">
 
-                <h4>
 
-                  {t.email}
+                <div className="contact-top">
 
-                </h4>
 
-              </div>
+                  <Phone
+                    size={20}
+                    className="contact-icon"
+                  />
 
-              <a href={`mailto:${site.email}`}>
 
-                {site.email}
+                  <h4>
 
-              </a>
+                    {t.phone}
 
-            </div>
+                  </h4>
 
-            <div className="contact-item">
 
-              <div className="contact-top">
+                </div>
 
-                <Clock
-                  size={20}
-                  className="contact-icon"
-                />
 
-                <h4>
+                <a href={`tel:${site.phoneLink}`}>
 
-                  {t.hours}
+                  {site.phone}
 
-                </h4>
+                </a>
+
 
               </div>
 
-              <p>
 
-                <strong>
 
-                  {t.weekdays}
 
-                </strong>
 
-                <br />
 
-                {site.officeHours.mondayFriday}
+              <div className="contact-item">
 
-                <br />
 
-                <br />
+                <div className="contact-top">
 
-                <strong>
 
-                  {t.saturday}
+                  <Mail
+                    size={20}
+                    className="contact-icon"
+                  />
 
-                </strong>
 
-                <br />
+                  <h4>
 
-                {site.officeHours.saturday}
+                    {t.email}
 
-                <br />
+                  </h4>
 
-                <br />
 
-                <strong>
+                </div>
 
-                  {t.sunday}
 
-                </strong>
+                <a href={`mailto:${site.email}`}>
 
-                <br />
+                  {site.email}
 
-                {t.closed}
+                </a>
 
-              </p>
+
+              </div>
+
+
+
+
+
+
+              <div className="contact-item">
+
+
+                <div className="contact-top">
+
+
+                  <Clock
+                    size={20}
+                    className="contact-icon"
+                  />
+
+
+                  <h4>
+
+                    {t.hours}
+
+                  </h4>
+
+
+                </div>
+
+
+                <p>
+
+
+                  <strong>
+
+                    {t.weekdays}
+
+                  </strong>
+
+
+                  <br/>
+
+                  {site.officeHours.mondayFriday}
+
+
+                  <br/><br/>
+
+
+                  <strong>
+
+                    {t.saturday}
+
+                  </strong>
+
+
+                  <br/>
+
+                  {site.officeHours.saturday}
+
+
+                  <br/><br/>
+
+
+                  <strong>
+
+                    {t.sunday}
+
+                  </strong>
+
+
+                  <br/>
+
+                  {t.closed}
+
+
+                </p>
+
+
+              </div>
+
+
+
+
 
             </div>
 
-            </div>
 
           </div>
 
+
+
         </div>
+
+
+
+
+
+        {/* FORM */}
+
+
 
         <form
           className="contact-form"
           onSubmit={handleSubmit}
         >
 
+
+
           <div className="form-header">
+
 
             <div className="form-icon">
 
-              <CalendarDays size={24} />
+
+              <CalendarDays size={24}/>
+
 
             </div>
 
+
+
             <div>
+
 
               <h3>
 
@@ -325,15 +549,20 @@ export default function Contact() {
 
               </h3>
 
+
               <p>
 
                 {t.formSubtitle}
 
               </p>
 
+
             </div>
 
+
           </div>
+
+
 
           <input
             type="text"
@@ -343,9 +572,13 @@ export default function Contact() {
             onChange={handleChange}
           />
 
+
           {errors.name && (
             <small>{errors.name}</small>
           )}
+
+
+
 
           <input
             type="email"
@@ -355,9 +588,13 @@ export default function Contact() {
             onChange={handleChange}
           />
 
+
           {errors.email && (
             <small>{errors.email}</small>
           )}
+
+
+
 
           <input
             type="tel"
@@ -367,51 +604,103 @@ export default function Contact() {
             onChange={handleChange}
           />
 
+
           {errors.phone && (
             <small>{errors.phone}</small>
           )}
 
+
+          {errors.phone && (
+            <small>{errors.phone}</small>
+          )}
+
+
+
+
+
           <select
+
             name="contactMethod"
+
             value={form.contactMethod}
+
             onChange={handleChange}
+
           >
 
+
             <option value="">
+
               {t.contactMethod}
+
             </option>
+
+
 
             {t.contactMethods.map((method) => (
 
+
               <option
+
                 key={method}
+
                 value={method}
+
               >
+
                 {method}
+
               </option>
+
 
             ))}
 
+
           </select>
 
+
+
           {errors.contactMethod && (
-            <small>{errors.contactMethod}</small>
+
+            <small>
+
+              {errors.contactMethod}
+
+            </small>
+
           )}
 
+
+
+
+
+
           {form.contactMethod ===
+
             "Facebook Messenger" && (
+
 
             <>
 
+
               <input
+
                 type="text"
+
                 name="facebookProfile"
+
                 placeholder={t.facebookProfile}
+
                 value={form.facebookProfile}
+
                 onChange={handleChange}
+
               />
 
+
+
               {errors.facebookProfile && (
+
 
                 <small>
 
@@ -419,66 +708,157 @@ export default function Contact() {
 
                 </small>
 
+
               )}
+
+
 
             </>
 
+
           )}
 
+
+
+
+
+
           <select
+
             name="treatment"
+
             value={form.treatment}
+
             onChange={handleChange}
+
           >
 
+
+
             <option value="">
+
+
               {t.treatment}
+
+
             </option>
+
+
+
+
 
             {t.treatments.map((treatment) => (
 
+
+
               <option
+
                 key={treatment}
+
                 value={treatment}
+
               >
+
                 {treatment}
+
               </option>
+
 
             ))}
 
+
+
           </select>
 
+
+
+
+
           {errors.treatment && (
-            <small>{errors.treatment}</small>
+
+
+            <small>
+
+              {errors.treatment}
+
+            </small>
+
+
           )}
+
+
+
+
+
 
           <textarea
+
             rows={6}
+
             name="message"
+
             placeholder={t.messagePlaceholder}
+
             value={form.message}
+
             onChange={handleChange}
+
           />
 
+
+
+
+
           {errors.message && (
-            <small>{errors.message}</small>
+
+
+            <small>
+
+              {errors.message}
+
+            </small>
+
+
           )}
 
+
+
+
+
+
           <button
+
             className="primary-btn"
+
             type="submit"
+
             disabled={loading}
+
           >
 
+
+
             {loading
+
               ? t.sending
+
               : t.button}
+
+
 
           </button>
 
+
+
+
+
+
           <div className="form-privacy">
 
+
             <Lock size={16} />
+
+
 
             <span>
 
@@ -486,24 +866,46 @@ export default function Contact() {
 
             </span>
 
+
+
           </div>
+
+
+
+
+
+
 
           {success && (
 
+
             <p className="contact-success">
+
 
               {t.success}
 
+
             </p>
+
 
           )}
 
+
+
+
         </form>
+
+
 
       </div>
 
+
+
     </section>
 
+
+
   );
+
 
 }

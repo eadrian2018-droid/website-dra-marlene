@@ -89,6 +89,20 @@ const services = [
   },
 
   {
+  icon: <FaTeethOpen />,
+  title: "Braces & Orthodontics",
+  description:
+    "Straighten your teeth and improve your bite with personalized orthodontic treatment.",
+},
+
+{
+  icon: <FaHeartbeat />,
+  title: "Gum Treatment (Periodontics)",
+  description:
+    "Protect your oral health with personalized periodontal care for healthier gums.",
+},
+
+  {
     icon: <FaTooth />,
     title: "Wisdom Teeth Removal",
     description:

@@ -1,13 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 
 import MainLayout from "./layouts/MainLayout";
-
 import Home from "./pages/Home";
 import MeetDrMarlene from "./pages/MeetDrMarlene";
 import Treatments from "./pages/Treatments";
 import Reviews from "./pages/Reviews";
 import ContactPage from "./pages/ContactPage";
-
 import FloatingChat from "./components/Chatbot";
 
 import "./App.css";

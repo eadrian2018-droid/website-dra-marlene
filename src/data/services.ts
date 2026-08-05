@@ -5,9 +5,13 @@ import {
   Smile,
   Sparkles,
   Stethoscope,
+  SmilePlus,
+  HeartPulse,
 } from "lucide-react";
 
+
 export const services = [
+
   {
     icon: Smile,
 
@@ -21,6 +25,7 @@ export const services = [
       es: "Prevención, restauración y atención dental integral para todas las etapas de la vida.",
     },
   },
+
 
   {
     icon: Sparkles,
@@ -36,6 +41,7 @@ export const services = [
     },
   },
 
+
   {
     icon: Gem,
 
@@ -49,6 +55,37 @@ export const services = [
       es: "Recupera tu sonrisa con implantes dentales de alta calidad.",
     },
   },
+
+
+  {
+    icon: SmilePlus,
+
+    title: {
+      en: "Braces & Orthodontics",
+      es: "Ortodoncia y Brackets",
+    },
+
+    description: {
+      en: "Straighten your teeth and improve your bite with personalized orthodontic treatment.",
+      es: "Corrige la posición de tus dientes y mejora tu mordida con tratamientos de ortodoncia personalizados.",
+    },
+  },
+
+
+  {
+    icon: HeartPulse,
+
+    title: {
+      en: "Gum Treatment (Periodontics)",
+      es: "Tratamiento de Encías (Periodoncia)",
+    },
+
+    description: {
+      en: "Protect your oral health with personalized periodontal care for healthy gums.",
+      es: "Protege tu salud oral con tratamientos personalizados para mantener encías sanas.",
+    },
+  },
+
 
   {
     icon: ScanLine,
@@ -64,6 +101,7 @@ export const services = [
     },
   },
 
+
   {
     icon: ShieldCheck,
 
@@ -78,6 +116,7 @@ export const services = [
     },
   },
 
+
   {
     icon: Stethoscope,
 
@@ -91,4 +130,5 @@ export const services = [
       es: "Planes de tratamiento personalizados para cada paciente.",
     },
   },
+
 ];

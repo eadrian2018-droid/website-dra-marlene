@@ -7,29 +7,27 @@
 
   padding:
 
-    9rem
+    8rem
 
     0
 
-    3rem;
+    4rem;
 
 
   background:
 
     linear-gradient(
 
-      rgba(8,34,58,.75),
+      135deg,
 
-      rgba(8,34,58,.75)
+      #0b4736,
 
-    ),
+      #127358
 
-    url("/images/hero-bg.jpg")
-
-    center/cover no-repeat;
+    );
 
 
-  color:#fff;
+  color:white;
 
 
   text-align:center;
@@ -40,7 +38,8 @@
 
 
 
-.page-hero::after {
+.page-hero::before {
+
 
   content:"";
 
@@ -53,15 +52,25 @@
 
   background:
 
+
     radial-gradient(
 
-      circle at top,
+      circle at top right,
 
-      transparent 0%,
+      rgba(255,255,255,.14),
 
-      rgba(0,0,0,.15)
+      transparent 35%
 
-      100%
+    ),
+
+
+    radial-gradient(
+
+      circle at bottom left,
+
+      rgba(216,179,106,.12),
+
+      transparent 35%
 
     );
 
@@ -71,12 +80,93 @@
 
 
 
+.page-hero-glow {
+
+
+  position:absolute;
+
+
+  width:500px;
+
+
+  height:500px;
+
+
+  right:-200px;
+
+
+  top:-250px;
+
+
+  border-radius:50%;
+
+
+  background:
+
+    rgba(255,255,255,.05);
+
+
+}
+
+
+
+
+
 .page-hero .container {
+
 
   position:relative;
 
 
   z-index:2;
+
+
+}
+
+
+
+
+
+.page-hero-tag {
+
+
+  display:inline-flex;
+
+
+  align-items:center;
+
+
+  padding:
+
+    .5rem
+
+    1rem;
+
+
+  margin-bottom:1.2rem;
+
+
+  border-radius:999px;
+
+
+  background:
+
+    rgba(255,255,255,.12);
+
+
+  backdrop-filter:blur(8px);
+
+
+  font-size:.72rem;
+
+
+  font-weight:700;
+
+
+  letter-spacing:.12em;
+
+
+  text-transform:uppercase;
 
 }
 
@@ -86,21 +176,30 @@
 
 .page-hero h1 {
 
-  font-size:
 
-    clamp(2rem,3.5vw,2.8rem);
-
-
-  line-height:1.1;
+  max-width:850px;
 
 
   margin:
 
     0
 
-    0
+    auto
 
-    .7rem;
+    1rem;
+
+
+  font-size:
+
+
+    clamp(2.4rem,5vw,4rem);
+
+
+  line-height:1.05;
+
+
+  font-weight:800;
+
 
 }
 
@@ -110,19 +209,22 @@
 
 .page-hero p {
 
-  max-width:650px;
+
+  max-width:680px;
 
 
   margin:auto;
 
 
-  font-size:1rem;
+  color:
+
+    rgba(255,255,255,.88);
 
 
-  opacity:.95;
+  font-size:1.05rem;
 
 
-  line-height:1.65;
+  line-height:1.75;
 
 }
 
@@ -133,41 +235,36 @@
 @media(max-width:768px){
 
 
-.page-hero{
+  .page-hero {
 
 
-  padding:
+    padding:
 
-    7rem
+      6.5rem
 
-    0
+      0
 
-    3rem;
+      3.5rem;
 
-
-}
-
-
-
-.page-hero h1{
-
-
-  font-size:
-
-    2.2rem;
-
-
-}
+  }
 
 
 
-.page-hero p{
+  .page-hero h1 {
 
 
-  font-size:.95rem;
+    font-size:2.3rem;
+
+  }
 
 
-}
+
+  .page-hero p {
+
+
+    font-size:.95rem;
+
+  }
 
 
 }

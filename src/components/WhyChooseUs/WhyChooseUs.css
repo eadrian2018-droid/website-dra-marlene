@@ -6,9 +6,7 @@
 .why {
 
   padding:
-
     var(--section-padding)
-
     24px;
 
 
@@ -183,29 +181,97 @@
 .why-card {
 
 
-  background:white;
+  position:relative;
+
+
+  overflow:hidden;
+
+
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      #ffffff,
+
+      #f8fbfa
+
+    );
+
+
+  border:
+
+    1px solid rgba(18,115,88,.12);
 
 
   border-radius:22px;
 
 
-  padding:28px 24px;
+  padding:
+
+    1.8rem
+
+    1.5rem;
 
 
   text-align:center;
 
 
-  transition:.35s;
+  transition:
 
+    transform .35s ease,
 
-  border:
+    box-shadow .35s ease,
 
-    1px solid #edf2f7;
+    border-color .35s ease;
 
 
   box-shadow:
 
-    var(--shadow-sm);
+    0 15px 35px rgba(18,56,94,.07);
+
+}
+
+
+
+
+
+.why-card::before {
+
+
+  content:"";
+
+
+  position:absolute;
+
+
+  top:0;
+
+
+  left:0;
+
+
+  width:100%;
+
+
+  height:3px;
+
+
+  background:
+
+    linear-gradient(
+
+      90deg,
+
+      var(--secondary),
+
+      var(--accent)
+
+    );
+
+
+  opacity:.65;
 
 }
 
@@ -216,12 +282,19 @@
 .why-card:hover {
 
 
-  transform:translateY(-6px);
+  transform:
+
+    translateY(-8px);
+
+
+  border-color:
+
+    rgba(216,179,106,.45);
 
 
   box-shadow:
 
-    var(--shadow-md);
+    0 25px 50px rgba(18,56,94,.12);
 
 }
 
@@ -232,17 +305,26 @@
 .why-card-icon {
 
 
-  width:58px;
+  width:
+
+    58px;
 
 
-  height:58px;
+  height:
+
+    58px;
+
+
+  padding:
+
+    12px;
 
 
   margin:
 
     0 auto
 
-    18px;
+    1.2rem;
 
 
   border-radius:50%;
@@ -250,15 +332,12 @@
 
   background:
 
-    linear-gradient(
+    rgba(11,143,114,.10);
 
-      135deg,
 
-      #00b8aa,
+  color:
 
-      #00897b
-
-    );
+    var(--secondary);
 
 
   display:flex;
@@ -268,9 +347,6 @@
 
 
   justify-content:center;
-
-
-  color:white;
 
 }
 
@@ -458,12 +534,17 @@
 
 }
 
+
+
+
+
 /* ===========================================
    LOCATION DETAILS
 =========================================== */
 
 
 .why-location-right {
+
 
   display:flex;
 
@@ -480,7 +561,10 @@
 
 
 
+
+
 .location-dot {
+
 
   width:12px;
 
@@ -497,7 +581,10 @@
 
 
 
+
+
 .location-dot.active {
+
 
   background:#00a79d;
 
@@ -505,7 +592,10 @@
 
 
 
+
+
 .location-line {
+
 
   width:60px;
 
@@ -529,8 +619,6 @@
     );
 
 }
-
-
 
 
 
@@ -775,8 +863,6 @@
   transform:translateY(-3px);
 
 }
-
-
 
 
 
