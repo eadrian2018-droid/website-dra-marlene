@@ -4,6 +4,7 @@ const es = {
     location: "A Minutos de la Frontera con Arizona",
     language: "Equipo Bilingüe",
     phone: "+52 653 208 0587",
+    insurance: "Aceptamos la mayoría de seguros de EE. UU.",
   },
 
   navigation: {

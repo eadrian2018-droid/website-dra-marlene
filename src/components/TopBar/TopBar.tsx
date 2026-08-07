@@ -1,8 +1,9 @@
 import {
-  Languages,
-  MapPin,
-  Phone,
-  Star,
+Languages,
+MapPin,
+Phone,
+Star,
+ShieldCheck,
 } from "lucide-react";
 
 import { useLanguage } from "../../context/LanguageContext";
@@ -35,6 +36,11 @@ export default function TopBar() {
             <MapPin size={14} />
             <span>{t.topBar.location}</span>
           </div>
+
+          <div className="topbar-item">
+  <ShieldCheck size={14} />
+  <span>{t.topBar.insurance}</span>
+</div>
 
           <a
             className="topbar-item"

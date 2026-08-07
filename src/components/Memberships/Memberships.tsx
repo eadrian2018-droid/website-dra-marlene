@@ -23,6 +23,7 @@ export default function Memberships() {
 
           </span>
 
+
           <h2>
 
             Committed to Excellence
@@ -30,6 +31,7 @@ export default function Memberships() {
             Through Continuing Education
 
           </h2>
+
 
           <p>
 
@@ -42,11 +44,14 @@ export default function Memberships() {
 
         </div>
 
+
         <div className="memberships-grid">
+
 
           <div className="membership-item">
 
             <Award className="membership-icon" />
+
 
             <h3>
 
@@ -55,17 +60,29 @@ export default function Memberships() {
 
             </h3>
 
+
             <span>
 
               International Member
 
             </span>
 
+
+            <small className="membership-id">
+
+              ADA Member ID: 454707887
+
+            </small>
+
+
           </div>
+
+
 
           <div className="membership-item">
 
             <ShieldCheck className="membership-icon" />
+
 
             <h3>
 
@@ -73,6 +90,7 @@ export default function Memberships() {
               Dentistry
 
             </h3>
+
 
             <span>
 
@@ -82,9 +100,12 @@ export default function Memberships() {
 
           </div>
 
+
+
           <div className="membership-item">
 
             <GraduationCap className="membership-icon" />
+
 
             <h3>
 
@@ -92,6 +113,7 @@ export default function Memberships() {
               Education
 
             </h3>
+
 
             <span>
 
@@ -101,9 +123,12 @@ export default function Memberships() {
 
           </div>
 
+
+
           <div className="membership-item">
 
             <HeartHandshake className="membership-icon" />
+
 
             <h3>
 
@@ -112,6 +137,7 @@ export default function Memberships() {
 
             </h3>
 
+
             <span>
 
               Honest & Conservative Dentistry
@@ -119,6 +145,7 @@ export default function Memberships() {
             </span>
 
           </div>
+
 
         </div>
 

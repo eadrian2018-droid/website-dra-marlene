@@ -4,6 +4,7 @@ const en = {
     location: "Minutes from the Arizona Border",
     language: "English-Speaking Team",
     phone: "+52 653 208 0587",
+    insurance: "Most U.S. Insurance Accepted",
   },
 
   navigation: {

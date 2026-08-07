@@ -516,3 +516,17 @@
 
 
 }
+
+.membership-id {
+
+  display:block;
+
+  margin-top:12px;
+
+  font-size:.78rem;
+
+  color:#64748b;
+
+  font-weight:600;
+
+}
